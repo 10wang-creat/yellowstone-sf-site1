@@ -1,897 +1,539 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026年9月 美國黃石公園+舊金山 家庭自駕之旅</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        /* 封面 */
-        .cover {
-            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
-            color: white;
-            padding: 80px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cover::before {
-            content: '🏔️';
-            position: absolute;
-            font-size: 300px;
-            opacity: 0.1;
-            top: -50px;
-            right: -50px;
-        }
-        
-        .cover h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cover .subtitle {
-            font-size: 1.5em;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .cover .family {
-            font-size: 1.3em;
-            background: rgba(255,255,255,0.2);
-            display: inline-block;
-            padding: 15px 40px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* 內容區塊 */
-        .content {
-            padding: 60px 40px;
-        }
-        
-        .section {
-            margin-bottom: 60px;
-        }
-        
-        .section-title {
-            font-size: 2.2em;
-            color: #2c5f2d;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #97bc62;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .section-title .emoji {
-            font-size: 1.2em;
-        }
-        
-        /* 重點資訊卡片 */
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .info-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .info-card .emoji {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        .info-card .label {
-            font-size: 1em;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-        
-        .info-card .value {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        
-        /* 時間軸 */
-        .timeline {
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #667eea, #764ba2);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -33px;
-            top: 30px;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid #667eea;
-            box-shadow: 0 0 0 4px white;
-        }
-        
-        .timeline-day {
-            font-size: 1.4em;
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .timeline-date {
-            color: #666;
-            font-size: 0.95em;
-            margin-bottom: 15px;
-        }
-        
-        .timeline-content {
-            color: #333;
-            line-height: 1.8;
-        }
-        
-        .timeline-highlight {
-            background: #fff3cd;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border-left: 4px solid #ffc107;
-        }
-        
-        /* 景點卡片 */
-        .attractions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .attraction-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .attraction-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .attraction-header {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .attraction-header .rank {
-            font-size: 3em;
-            font-weight: bold;
-            opacity: 0.3;
-        }
-        
-        .attraction-header .name {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .attraction-body {
-            padding: 20px;
-        }
-        
-        .attraction-rating {
-            color: #ffc107;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-        
-        .attraction-info {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* 預算表格 */
-        .budget-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .budget-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .budget-table th {
-            padding: 20px;
-            text-align: left;
-            font-size: 1.1em;
-        }
-        
-        .budget-table td {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .budget-table tbody tr:hover {
-            background: #f8f9fa;
-        }
-        
-        .budget-total {
-            background: #fff3cd;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        
-        .budget-highlight {
-            background: #d4edda;
-            font-weight: bold;
-        }
-        
-        /* 特色標籤 */
-        .feature-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .tag {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.95em;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-        
-        /* 注意事項 */
-        .tips-box {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-        }
-        
-        .tips-box h3 {
-            color: #d84315;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-        
-        .tips-box ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .tips-box li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        .tips-box li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #d84315;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        
-        /* 頁尾 */
-        .footer {
-            background: #2c5f2d;
-            color: white;
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2em;
-        }
-        
-        .footer .heart {
-            color: #ff6b6b;
-            font-size: 1.5em;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        /* 列印樣式 */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>美國黃石公園 + 舊金山｜13天家庭自駕之旅</title>
+  <meta name="description" content="黃石公園 + 舊金山 13天家庭自駕行程，含每日路線、景點重點與費用表。">
+  <meta name="theme-color" content="#0f766e">
+
+  <style>
+    :root{
+      --indigo:#0ea5e9;
+      --purple:#22c55e;
+      --amber:#facc15;
+      --mint:#0f766e;
+      --paper:#f8fafc;
+      --ink:#0f172a;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background:linear-gradient(135deg,#e0f2fe 0%,#ecfdf5 100%);
+      color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;
+      line-height:1.6;
+      padding:32px;
+    }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      background:#fff;
+      border-radius:20px;
+      box-shadow:0 20px 50px rgba(15,23,42,.08);
+      overflow:hidden;
+    }
+    .cover{
+      padding:64px 40px;
+      background:
+        radial-gradient(1200px 400px at 10% -10%,rgba(14,165,233,.25),transparent 60%),
+        radial-gradient(900px 400px at 90% 0,rgba(34,197,94,.25),transparent 60%),
+        linear-gradient(135deg,#f0f9ff 0%,#ecfdf5 100%);
+      text-align:center;
+    }
+    .cover h1{ margin:0 0 10px; font-size:clamp(28px,4.5vw,44px); letter-spacing:.5px; }
+    .cover .subtitle{ font-size:clamp(16px,2.8vw,22px); opacity:.9; margin-bottom:12px; }
+    .cover .family{ font-size:16px; opacity:.9; }
+    .content{ padding:8px 24px 40px; }
+    .section{ background:#fff; margin:24px 0; padding:28px 20px; border-radius:16px; box-shadow:0 6px 18px rgba(15,23,42,.06); }
+    .section-title{ display:flex; align-items:center; gap:10px; font-size:22px; margin:0 0 18px; }
+    .section-title .emoji{
+      display:inline-grid; place-items:center; width:36px; height:36px; border-radius:50%;
+      background:linear-gradient(135deg,var(--indigo) 0%,var(--purple) 100%);
+      color:#fff; font-size:18px;
+    }
+    .info-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+    .info-card{ background:var(--paper); border-radius:14px; padding:18px; box-shadow:0 4px 12px rgba(15,23,42,.06); }
+    .info-card .emoji{ font-size:22px; margin-bottom:6px; }
+    .info-card .label{ color:#6b7280; font-size:13px; }
+    .info-card .value{ font-size:20px; font-weight:700; margin-top:4px; }
+    .timeline{ position:relative; padding-left:40px; }
+    .timeline::before{
+      content:''; position:absolute; left:15px; top:0; bottom:0; width:3px;
+      background:linear-gradient(to bottom,var(--indigo),var(--purple));
+    }
+    .timeline-item{
+      position:relative; margin-bottom:40px; padding:25px; background:#f8fafc;
+      border-radius:15px; box-shadow:0 3px 10px rgba(15,23,42,.08);
+    }
+    .timeline-item::before{
+      content:''; position:absolute; left:-33px; top:30px; width:15px; height:15px;
+      border-radius:50%; background:#fff; border:4px solid var(--indigo); box-shadow:0 0 0 4px #fff;
+    }
+    .timeline-day{ font-size:1.1rem; color:var(--indigo); font-weight:800; margin-bottom:6px; }
+    .timeline-date{ color:#666; font-size:.95em; margin-bottom:10px; }
+    .timeline-content{ color:#333; line-height:1.8; }
+    .timeline-highlight{
+      background:#fef9c3; padding:10px 15px; border-radius:8px;
+      margin-top:14px; border-left:4px solid var(--amber);
+    }
+    .spot-grid-wrapper{ width:100%; margin-top:8px; }
+    .spot-grid{ display:grid; gap:20px; }
+    @media (max-width:639px){ .spot-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (min-width:640px) and (max-width:1023px){ .spot-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (min-width:1024px){
+      .spot-grid{ grid-template-columns:repeat(5,minmax(0,1fr)); }
+      .sf-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    }
+    .spot-card{
+      background:#fff; border-radius:16px; padding:12px 12px 14px;
+      box-shadow:0 12px 30px rgba(15,23,42,0.08); display:flex; flex-direction:column;
+      transition:transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .spot-card:hover{ transform:translateY(-4px); box-shadow:0 18px 38px rgba(15,23,42,0.14); }
+    .spot-card img{ width:100%; height:150px; object-fit:cover; border-radius:12px; margin-bottom:10px; }
+    .spot-title-zh{ font-weight:700; font-size:.98rem; margin-bottom:2px; color:#111827; }
+    .spot-title-en{ font-size:.8rem; color:#6b7280; margin-bottom:6px; }
+    .spot-tag{
+      align-self:flex-start; font-size:.75rem; padding:2px 10px; border-radius:999px;
+      background:linear-gradient(120deg,#e0f2fe,#dcfce7); color:#065f46; font-weight:500; margin-bottom:6px;
+    }
+    .spot-info{ font-size:.8rem; color:#4b5563; margin-top:auto; }
+    .feature-tags{ display:flex; flex-wrap:wrap; gap:10px; margin:14px 0; }
+    .tag{
+      background:linear-gradient(135deg,#38bdf8 0%,#22c55e 100%); color:#fff;
+      padding:10px 14px; border-radius:999px; font-size:.95em; box-shadow:0 3px 10px rgba(15,23,42,.18);
+    }
+    .tips-box{
+      background:linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%);
+      padding:22px; border-radius:15px; margin:18px 0;
+    }
+    .tips-box h3{ color:#b91c1c; margin:0 0 14px; font-size:1.2em; }
+    .tips-box ul{ list-style:none; padding:0; margin:0; }
+    .tips-box li{ padding:8px 0 8px 30px; position:relative; line-height:1.6; }
+    .tips-box li::before{
+      content:'✓'; position:absolute; left:0; color:#b91c1c; font-weight:800; font-size:1.1em;
+    }
+    .table-wrap{
+      width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch;
+      position:relative; margin-top:6px;
+    }
+    .budget-table{
+      width:100%; border-collapse:collapse; box-shadow:0 5px 15px rgba(15,23,42,.08);
+      border-radius:10px; overflow:hidden; min-width:560px; background:#fff;
+    }
+    .budget-table thead{ background:linear-gradient(135deg,var(--indigo) 0%,var(--purple) 100%); color:#fff; }
+    .budget-table th{ padding:14px 16px; text-align:left; font-size:1.01em; white-space:nowrap; }
+    .budget-table td{ padding:12px 16px; border-bottom:1px solid #e5e7eb; }
+    .budget-table tbody tr:hover{ background:#f9fafb; }
+    .budget-total{ background:#fef9c3; font-weight:800; font-size:1.05em; }
+    .budget-highlight{ background:#dcfce7; font-weight:800; }
+    @media (max-width:768px){
+      .table-wrap--budget::after,
+      .table-wrap--stay::after{
+        position:absolute; right:10px; bottom:6px; padding:4px 9px; border-radius:999px;
+        background:rgba(255,255,255,.92); color:#047857; font-size:.7rem;
+        box-shadow:0 1px 4px rgba(15,23,42,.15); pointer-events:none;
+      }
+      .table-wrap--budget::after{ content:'← 左右滑動看完整費用'; }
+      .table-wrap--stay::after{ content:'← 左右滑動看住宿安排'; }
+    }
+    .footer{ background:var(--mint); color:#fff; text-align:center; padding:32px; font-size:1.05em; }
+    .footer .heart{ color:#ff6b6b; font-size:1.5em; animation:heartbeat 1.5s ease-in-out infinite; }
+    @keyframes heartbeat{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.1); } }
+    @media (max-width:640px){
+      body{ padding:14px; }
+      .content{ padding:0 14px 28px; }
+      .section{ padding:20px 14px; }
+      .timeline{ padding-left:28px; }
+      .timeline::before{ left:10px; }
+      .timeline-item::before{ left:-28px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 封面 -->
-        <div class="cover">
-            <h1>🏔️ 美國黃石公園+舊金山</h1>
-            <div class="subtitle">13天家庭自駕之旅</div>
-            <div class="family">👨‍👩‍👧‍👦 Lyn + 老公 + 爸爸 + 媽媽</div>
-        </div>
-        
-        <!-- 內容 -->
-        <div class="content">
-            <!-- 基本資訊 -->
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="emoji">📋</span>
-                    行程基本資訊
-                </h2>
-                
-                <div class="info-cards">
-                    <div class="info-card">
-                        <div class="emoji">📅</div>
-                        <div class="label">出發日期</div>
-                        <div class="value">2026/9/14</div>
-                        <div class="label" style="margin-top: 10px;">週一出發</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="emoji">🕐</div>
-                        <div class="label">旅行天數</div>
-                        <div class="value">13天12夜</div>
-                        <div class="label" style="margin-top: 10px;">9/14-9/26</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="emoji">👨‍👩‍👧‍👦</div>
-                        <div class="label">旅行人數</div>
-                        <div class="value">4人</div>
-                        <div class="label" style="margin-top: 10px;">兩對夫妻</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="emoji">💰</div>
-                        <div class="label">預算 (經濟版)</div>
-                        <div class="value">29萬</div>
-                        <div class="label" style="margin-top: 10px;">每人7.3萬</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 為什麼選9月 -->
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="emoji">🍂</span>
-                    為什麼選擇9月出發?
-                </h2>
-                
-                <div class="feature-tags">
-                    <div class="tag">💰 比暑假便宜20-30%</div>
-                    <div class="tag">👥 遊客少50%</div>
-                    <div class="tag">🦌 麋鹿交配季</div>
-                    <div class="tag">🍂 秋色初現</div>
-                    <div class="tag">🌡️ 天氣舒適</div>
-                    <div class="tag">📸 拍照不排隊</div>
-                </div>
-                
-                <div style="background: #fff3e0; padding: 25px; border-radius: 15px; margin-top: 20px;">
-                    <h3 style="color: #f57c00; margin-bottom: 15px;">🦌 9月獨家體驗</h3>
-                    <p style="font-size: 1.1em; line-height: 1.8; color: #333;">
-                        <strong>麋鹿交配季 (Elk Rut):</strong> 9月是黃石公園的麋鹿交配季節,可以聽到公麋鹿的叫聲(bugling),
-                        這是一生難得的野生動物體驗!在拉馬山谷,我們有95%的機會看到麋鹿群,還能欣賞白楊樹轉金黃的秋色。
-                    </p>
-                </div>
-            </div>
-            
-            <!-- 13天行程時間軸 -->
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="emoji">🗓️</span>
-                    13天詳細行程
-                </h2>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 1</div>
-                        <div class="timeline-date">2026/9/14 (週一)</div>
-                        <div class="timeline-content">
-                            <strong>台北 → 舊金山</strong><br>
-                            搭乘國際航班前往舊金山,抵達後搭BART進市區,入住聯合廣場附近飯店,調整時差。
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 2</div>
-                        <div class="timeline-date">2026/9/15 (週二)</div>
-                        <div class="timeline-content">
-                            <strong>舊金山市區觀光</strong><br>
-                            搭纜車前往漁人碼頭,看超可愛的海獅、品嚐螃蟹大餐,逛Ferry Building市場,
-                            傍晚到中國城買伴手禮。
-                            <div class="timeline-highlight">
-                                🦀 必吃: 鄧金尼斯螃蟹 + 蛤蜊濃湯麵包碗
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 3</div>
-                        <div class="timeline-date">2026/9/16 (週三)</div>
-                        <div class="timeline-content">
-                            <strong>舊金山 → 鹽湖城</strong><br>
-                            早上前往金門大橋拍照、九曲花街打卡,下午飛往鹽湖城,抵達後取車、
-                            前往大華超市和Walmart採購食材。
-                            <div class="timeline-highlight">
-                                📸 必拍: 金門大橋 Vista Point
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 4</div>
-                        <div class="timeline-date">2026/9/17 (週四)</div>
-                        <div class="timeline-content">
-                            <strong>鹽湖城 → West Yellowstone</strong><br>
-                            開車5.5小時前往黃石公園,途中在Idaho Falls休息午餐,下午抵達並入住小木屋(連住5晚),
-                            煮第一頓中式晚餐。
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
-                        <div class="timeline-day">Day 5</div>
-                        <div class="timeline-date">2026/9/18 (週五)</div>
-                        <div class="timeline-content">
-                            <strong>黃石下圈 - 最精華的一天!</strong><br>
-                            老忠實間歇泉(每90分鐘噴發) → 大稜鏡溫泉(超夢幻彩虹色) → 
-                            餅乾盆地 → 黃石湖
-                            <div class="timeline-highlight">
-                                ⭐ 本日亮點: 大稜鏡溫泉 - 北美最大溫泉,必拍!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
-                        <div class="timeline-day">Day 6</div>
-                        <div class="timeline-date">2026/9/19 (週六)</div>
-                        <div class="timeline-content">
-                            <strong>黃石上圈 - 動物與秋色</strong><br>
-                            諾里斯間歇泉 → 猛瑪溫泉台地(白色梯田) → Tower Fall → 
-                            拉馬山谷(傍晚觀動物)
-                            <div class="timeline-highlight">
-                                🦌 本日亮點: 拉馬山谷麋鹿交配季 + 白楊樹秋色!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
-                        <div class="timeline-day">Day 7</div>
-                        <div class="timeline-date">2026/9/20 (週日)</div>
-                        <div class="timeline-content">
-                            <strong>黃石峽谷區</strong><br>
-                            清晨6:30海登山谷觀動物 → 回小木屋早餐 → 黃石大峽谷(Artist Point必拍) → 
-                            泥火山區
-                            <div class="timeline-highlight">
-                                📸 本日亮點: Artist Point 最經典黃石角度!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 8</div>
-                        <div class="timeline-date">2026/9/21 (週一)</div>
-                        <div class="timeline-content">
-                            <strong>彈性休息日</strong><br>
-                            睡到自然醒!可以選擇完全休息、重遊最愛景點、或到鎮上的灰熊保護區。
-                            讓爸媽好好休息,洗衣服、整理照片。
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 9</div>
-                        <div class="timeline-date">2026/9/22 (週二)</div>
-                        <div class="timeline-content">
-                            <strong>黃石 → 大提頓 → Jackson</strong><br>
-                            離開黃石往南,遊覽大提頓國家公園(Jackson Lake、Jenny Lake、Mormon Row),
-                            下午抵達Jackson小鎮。
-                            <div class="timeline-highlight">
-                                🍂 本日亮點: 大提頓秋色正美,白楊樹金黃!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 10</div>
-                        <div class="timeline-date">2026/9/23 (週三)</div>
-                        <div class="timeline-content">
-                            <strong>Jackson → 鹽湖城</strong><br>
-                            開車4.5小時返回鹽湖城,可選擇市區觀光(Temple Square、State Capitol)或休息。
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 11</div>
-                        <div class="timeline-date">2026/9/24 (週四)</div>
-                        <div class="timeline-content">
-                            <strong>鹽湖城 → 舊金山</strong><br>
-                            早上還車,搭機返回舊金山,下午輕鬆逛街或休息,晚餐海鮮慶祝。
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 12</div>
-                        <div class="timeline-date">2026/9/25 (週五)</div>
-                        <div class="timeline-content">
-                            <strong>舊金山深度遊</strong><br>
-                            Union Square購物 → 雙子峰360度市景 → 金門公園日本茶園 → 
-                            慶祝晚宴(海鮮大餐)
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-day">Day 13</div>
-                        <div class="timeline-date">2026/9/26 (週六)</div>
-                        <div class="timeline-content">
-                            <strong>舊金山 → 台北</strong><br>
-                            搭機返台,結束完美的13天家庭之旅!週六抵達台北,還有週日可以休息。
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 必看景點TOP 5 -->
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="emoji">⭐</span>
-                    黃石公園必看景點 TOP 5
-                </h2>
-                
-                <div class="attractions">
-                    <div class="attraction-card">
-                        <div class="attraction-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                            <div class="rank">#1</div>
-                            <div class="name">大稜鏡溫泉</div>
-                            <div>Grand Prismatic Spring</div>
-                        </div>
-                        <div class="attraction-body">
-                            <div class="attraction-rating">★★★★★</div>
-                            <div class="attraction-info">
-                                <strong>特色:</strong> 北美最大溫泉,彩虹色彩超夢幻<br>
-                                <strong>行程:</strong> Day 5<br>
-                                <strong>停留:</strong> 1.5小時<br>
-                                <strong>提示:</strong> 一定要走到觀景台俯瞰全景!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="attraction-card">
-                        <div class="attraction-header" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                            <div class="rank">#2</div>
-                            <div class="name">老忠實間歇泉</div>
-                            <div>Old Faithful</div>
-                        </div>
-                        <div class="attraction-body">
-                            <div class="attraction-rating">★★★★★</div>
-                            <div class="attraction-info">
-                                <strong>特色:</strong> 每90分鐘噴發一次,超準時<br>
-                                <strong>行程:</strong> Day 5<br>
-                                <strong>停留:</strong> 1.5小時<br>
-                                <strong>提示:</strong> 先到遊客中心查詢噴發時間
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="attraction-card">
-                        <div class="attraction-header" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
-                            <div class="rank">#3</div>
-                            <div class="name">黃石大峽谷</div>
-                            <div>Artist Point</div>
-                        </div>
-                        <div class="attraction-body">
-                            <div class="attraction-rating">★★★★★</div>
-                            <div class="attraction-info">
-                                <strong>特色:</strong> 黃石最經典角度,必拍!<br>
-                                <strong>行程:</strong> Day 7<br>
-                                <strong>停留:</strong> 2小時<br>
-                                <strong>提示:</strong> Artist Point是最佳拍攝點
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="attraction-card">
-                        <div class="attraction-header" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                            <div class="rank">#4</div>
-                            <div class="name">拉馬山谷</div>
-                            <div>Lamar Valley</div>
-                        </div>
-                        <div class="attraction-body">
-                            <div class="attraction-rating">★★★★★</div>
-                            <div class="attraction-info">
-                                <strong>特色:</strong> 🦌麋鹿交配季!美國塞倫蓋蒂<br>
-                                <strong>行程:</strong> Day 6<br>
-                                <strong>停留:</strong> 2-3小時<br>
-                                <strong>提示:</strong> 傍晚最佳,帶望遠鏡!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="attraction-card">
-                        <div class="attraction-header" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
-                            <div class="rank">#5</div>
-                            <div class="name">猛瑪溫泉</div>
-                            <div>Mammoth Hot Springs</div>
-                        </div>
-                        <div class="attraction-body">
-                            <div class="attraction-rating">★★★★★</div>
-                            <div class="attraction-info">
-                                <strong>特色:</strong> 白色鈣華梯田,像土耳其棉堡<br>
-                                <strong>行程:</strong> Day 6<br>
-                                <strong>停留:</strong> 2小時<br>
-                                <strong>提示:</strong> 上下台地都要看!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 預算表 -->
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="emoji">💰</span>
-                    費用預算 (4人)
-                </h2>
-                
-                <table class="budget-table">
-                    <thead>
-                        <tr>
-                            <th>費用項目</th>
-                            <th>經濟版</th>
-                            <th>標準版</th>
-                            <th>舒適版</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>交通費用</strong></td>
-                            <td>179,000</td>
-                            <td>232,800</td>
-                            <td>291,500</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left: 30px;">→ 國際機票×4人</td>
-                            <td>113,000</td>
-                            <td>147,000</td>
-                            <td>187,000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left: 30px;">→ 美國國內機票×4×2</td>
-                            <td>32,000</td>
-                            <td>43,000</td>
-                            <td>53,000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left: 30px;">→ 租車+保險+油</td>
-                            <td>30,000</td>
-                            <td>37,500</td>
-                            <td>45,000</td>
-                        </tr>
-                        <tr>
-                            <td><strong>住宿費用 (2間房)</strong></td>
-                            <td>64,000</td>
-                            <td>79,000</td>
-                            <td>96,000</td>
-                        </tr>
-                        <tr>
-                            <td><strong>餐飲費用 (多數自煮)</strong></td>
-                            <td>35,400</td>
-                            <td>43,000</td>
-                            <td>52,400</td>
-                        </tr>
-                        <tr>
-                            <td><strong>門票與活動</strong></td>
-                            <td>3,100</td>
-                            <td>5,800</td>
-                            <td>9,100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>其他雜費</strong></td>
-                            <td>11,500</td>
-                            <td>17,200</td>
-                            <td>23,000</td>
-                        </tr>
-                        <tr class="budget-total">
-                            <td><strong>總費用 (4人)</strong></td>
-                            <td><strong>290,300元</strong></td>
-                            <td><strong>384,600元</strong></td>
-                            <td><strong>485,500元</strong></td>
-                        </tr>
-                        <tr class="budget-highlight">
-                            <td><strong>平均每人</strong></td>
-                            <td><strong>72,575元</strong></td>
-                            <td><strong>96,150元</strong></td>
-                            <td><strong>121,375元</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div style="background: #d4edda; padding: 20px; border-radius: 10px; margin-top: 20px;">
-                    <h3 style="color: #155724; margin-bottom: 10px;">💡 省錢秘訣</h3>
-                    <p style="color: #155724; line-height: 1.8;">
-                        • <strong>9月出發:</strong> 比暑假便宜2-3萬<br>
-                        • <strong>自煮餐點:</strong> 比全外食省5-7萬<br>
-                        • <strong>小木屋:</strong> 比飯店便宜且有廚房<br>
-                        • <strong>4人分攤:</strong> 租車、油費每人更便宜
-                    </p>
-                </div>
-            </div>
-            
-            <!-- 重要提醒 -->
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="emoji">⚠️</span>
-                    重要提醒事項
-                </h2>
-                
-                <div class="tips-box">
-                    <h3>🧳 行前準備</h3>
-                    <ul>
-                        <li><strong>2025年3月:</strong> 訂機票+黃石小木屋 (提前6個月最便宜!)</li>
-                        <li><strong>2026年3月:</strong> 申請ESTA、辦理國際駕照</li>
-                        <li><strong>2026年8月:</strong> 購買羽絨衣、保暖裝備 (早晚0-5°C很冷!)</li>
-                        <li><strong>必備物品:</strong> 羽絨衣、保暖手套、毛帽、暖暖包×10包、保溫瓶</li>
-                    </ul>
-                </div>
-                
-                <div class="tips-box" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);">
-                    <h3>🐻 安全注意</h3>
-                    <ul>
-                        <li><strong>觀賞動物:</strong> 熊保持90公尺、野牛保持25公尺距離</li>
-                        <li><strong>不要下車:</strong> 動物過馬路時在車內等待,不要下車靠近</li>
-                        <li><strong>防熊裝備:</strong> 步道健行建議帶防熊噴霧</li>
-                        <li><strong>食物管理:</strong> 食物妥善密封,不留在車外</li>
-                    </ul>
-                </div>
-                
-                <div class="tips-box" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);">
-                    <h3>📱 實用建議</h3>
-                    <ul>
-                        <li><strong>手機訊號:</strong> 園內幾乎沒訊號,下載離線地圖和黃石官方APP</li>
-                        <li><strong>加油策略:</strong> 看到加油站就加!園內只有3個加油站且貴20%</li>
-                        <li><strong>最佳時段:</strong> 清晨6:30-8:30觀動物最佳,避開中午12:00-14:00人潮</li>
-                        <li><strong>帶望遠鏡:</strong> 觀賞動物必備,建議至少200mm鏡頭</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- 住宿說明 -->
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="emoji">🏠</span>
-                    住宿安排 (4人需要2間房)
-                </h2>
-                
-                <table class="budget-table">
-                    <thead>
-                        <tr>
-                            <th>日期</th>
-                            <th>地點</th>
-                            <th>住宿類型</th>
-                            <th>備註</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Day 1-2</td>
-                            <td>舊金山</td>
-                            <td>2間雙床房 或 家庭套房</td>
-                            <td>聯合廣場附近</td>
-                        </tr>
-                        <tr>
-                            <td>Day 3</td>
-                            <td>鹽湖城</td>
-                            <td>2間雙床房</td>
-                            <td>機場附近</td>
-                        </tr>
-                        <tr style="background: #fff9c4;">
-                            <td><strong>Day 4-8</strong></td>
-                            <td><strong>West Yellowstone</strong></td>
-                            <td><strong>2房小木屋 (有廚房)</strong></td>
-                            <td><strong>連住5晚,超重要!</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Day 9</td>
-                            <td>Jackson</td>
-                            <td>2間雙床房</td>
-                            <td>Jackson小鎮</td>
-                        </tr>
-                        <tr>
-                            <td>Day 10</td>
-                            <td>鹽湖城</td>
-                            <td>2間雙床房</td>
-                            <td>機場附近</td>
-                        </tr>
-                        <tr>
-                            <td>Day 11-12</td>
-                            <td>舊金山</td>
-                            <td>2間雙床房 或 家庭套房</td>
-                            <td>聯合廣場附近</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <!-- 頁尾 -->
-        <div class="footer">
-            <p>一起創造難忘的家庭回憶</p>
-            <p style="margin-top: 15px;">
-                <span class="heart">❤️</span>
-            </p>
-            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
-                2026年9月14日 - 9月26日 | 美國黃石公園+舊金山13天家庭之旅
-            </p>
-        </div>
+  <div class="container">
+    <div class="cover">
+      <h1>🏔️ 美國黃石公園 + 舊金山</h1>
+      <div class="subtitle">13天家庭自駕之旅</div>
+      <div class="family">👨‍👩‍👧‍👦 Lyn + 弟弟 + 爸爸 + 媽媽</div>
     </div>
+
+    <div class="content">
+      <!-- 1. 基本資訊 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">📋</span>行程基本資訊</h2>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="emoji">📅</div>
+            <div class="label">出發日期</div>
+            <div class="value">2026/9/28</div>
+            <div class="label" style="margin-top:10px;">週一出發</div>
+          </div>
+          <div class="info-card">
+            <div class="emoji">🕐</div>
+            <div class="label">旅行天數</div>
+            <div class="value">13天12夜</div>
+            <div class="label" style="margin-top:10px;">9/28–10/10</div>
+          </div>
+          <div class="info-card">
+            <div class="emoji">👨‍👩‍👧‍👦</div>
+            <div class="label">旅行人數</div>
+            <div class="value">4人</div>
+            <div class="label" style="margin-top:10px;">一家四口</div>
+          </div>
+          <div class="info-card">
+            <div class="emoji">💰</div>
+            <div class="label">預算 (經濟版)</div>
+            <div class="value">29萬</div>
+            <div class="label" style="margin-top:10px;">每人約 7.3 萬</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 費用預算 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">💰</span>費用預算 (4人)</h2>
+        <div class="table-wrap table-wrap--budget">
+          <table class="budget-table">
+            <thead>
+              <tr><th>費用項目</th><th>經濟版</th><th>標準版</th><th>舒適版</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>交通費用</strong></td><td>179,000</td><td>232,800</td><td>291,500</td></tr>
+              <tr><td style="padding-left:30px;">→ 國際機票×4人</td><td>113,000</td><td>147,000</td><td>187,000</td></tr>
+              <tr><td style="padding-left:30px;">→ 美國國內機票×4×2</td><td>32,000</td><td>43,000</td><td>53,000</td></tr>
+              <tr><td style="padding-left:30px;">→ 租車+保險+油</td><td>30,000</td><td>37,500</td><td>45,000</td></tr>
+              <tr><td><strong>住宿費用 (2間房)</strong></td><td>64,000</td><td>79,000</td><td>96,000</td></tr>
+              <tr><td><strong>餐飲費用 (多數自煮)</strong></td><td>35,400</td><td>43,000</td><td>52,400</td></tr>
+              <tr><td><strong>門票與活動</strong></td><td>3,100</td><td>3,100</td><td>5,100</td></tr>
+              <tr><td style="padding-left:30px;">→ 黃石門票 ($35/車)</td><td>1,100</td><td>1,100</td><td>1,100</td></tr>
+              <tr><td style="padding-left:30px;">→ 舊金山景點×4人</td><td>2,000</td><td>2,000</td><td>2,000</td></tr>
+              <tr><td style="padding-left:30px;">→ 其他活動 (選擇性)</td><td>0</td><td>0</td><td>2,000</td></tr>
+              <tr><td><strong>其他雜費</strong></td><td>11,500</td><td>17,200</td><td>23,000</td></tr>
+              <tr class="budget-total">
+                <td><strong>總費用 (4人)</strong></td>
+                <td><strong>290,300元</strong></td>
+                <td><strong>372,400元</strong></td>
+                <td><strong>471,100元</strong></td>
+              </tr>
+              <tr class="budget-highlight">
+                <td><strong>平均每人</strong></td>
+                <td><strong>72,575元</strong></td>
+                <td><strong>93,100元</strong></td>
+                <td><strong>117,775元</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:#dcfce7; padding:20px; border-radius:10px; margin-top:20px;">
+          <h3 style="color:#166534; margin-bottom:10px;">💡 省錢秘訣</h3>
+          <p style="color:#166534; line-height:1.8;">
+            • <strong>9-10 月出發：</strong>比暑假便宜 2–3 萬<br>
+            • <strong>自煮餐點：</strong>比全外食省 5–7 萬<br>
+            • <strong>小木屋：</strong>比飯店便宜且有廚房<br>
+            • <strong>4 人分攤：</strong>租車、油費每人更便宜<br>
+            • <strong>門票固定：</strong>黃石 $35/車、舊金山景點約 $2000，不因舒適度增加
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. 黃石必看景點 TOP 5 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">🔥</span>黃石必看景點 TOP 5</h2>
+        <div class="spot-grid-wrapper">
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Aerial_image_of_Grand_Prismatic_Spring_%28view_from_the_south%29.jpg" alt="大稜鏡溫泉">
+              <div class="spot-title-zh">大稜鏡溫泉</div>
+              <div class="spot-title-en">Grand Prismatic Spring</div>
+              <div class="spot-tag">Day 5・必拍景點 #1</div>
+              <div class="spot-info">北美最大溫泉，夢幻彩虹色，一定要走到觀景台俯瞰全景。</div>
+            </div>
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Old_Faithful_Geyser_Yellowstone_National_Park.jpg/960px-Old_Faithful_Geyser_Yellowstone_National_Park.jpg" alt="老忠實間歇泉">
+              <div class="spot-title-zh">老忠實間歇泉</div>
+              <div class="spot-title-en">Old Faithful</div>
+              <div class="spot-tag">Day 5・必看噴泉 #2</div>
+              <div class="spot-info">約每 90 分鐘噴發一次，建議先到遊客中心查詢噴發時間再安排動線。</div>
+            </div>
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/ViewFromArtistPointYNP.jpg" alt="黃石大峽谷">
+              <div class="spot-title-zh">黃石大峽谷</div>
+              <div class="spot-title-en">Artist Point</div>
+              <div class="spot-tag">Day 7・必拍角度 #3</div>
+              <div class="spot-info">黃石最經典視角，瀑布與峽谷一覽無遺，建議預留 1.5–2 小時慢慢拍。</div>
+            </div>
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Bison_in_Lamar_Valley_%2853470574300%29.jpg/960px-Bison_in_Lamar_Valley_%2853470574300%29.jpg" alt="拉馬山谷">
+              <div class="spot-title-zh">拉馬山谷</div>
+              <div class="spot-title-en">Lamar Valley</div>
+              <div class="spot-tag">Day 6・野生動物天堂 #4</div>
+              <div class="spot-info">被稱為「美國的塞倫蓋蒂」，傍晚時分是看野牛、麋鹿、狼的最佳時段。</div>
+            </div>
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Mammoth_Hot_Springs_Terraces_%2849200868386%29.jpg/960px-Mammoth_Hot_Springs_Terraces_%2849200868386%29.jpg" alt="猛瑪溫泉">
+              <div class="spot-title-zh">猛瑪溫泉</div>
+              <div class="spot-title-en">Mammoth Hot Springs</div>
+              <div class="spot-tag">Day 6・特色地貌 #5</div>
+              <div class="spot-info">白色鈣華梯田，非常像土耳其棉堡，上下台地都值得走一圈。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 舊金山 TOP 3 景點 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">🌉</span>舊金山 TOP 3 景點</h2>
+        <p style="font-size:.95rem; color:#4b5563; margin:0 0 16px;">
+          第 1–2 天與第 11–12 天主要待在舊金山，這裡整理給家人最容易記得的三個招牌景點。
+        </p>
+        <div class="spot-grid-wrapper">
+          <div class="spot-grid sf-grid">
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Golden_Gate_Bridge_at_sunset_1.jpg/960px-Golden_Gate_Bridge_at_sunset_1.jpg" alt="金門大橋">
+              <div class="spot-title-zh">金門大橋</div>
+              <div class="spot-title-en">Golden Gate Bridge</div>
+              <div class="spot-tag">經典地標 #SF1</div>
+              <div class="spot-info">建議清晨或黃昏到 Vista Point 或 Battery Spencer，拍夕陽與雲霧中的大橋。</div>
+            </div>
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cable_Car_No._25_and_Alcatraz_Island.jpg/960px-Cable_Car_No._25_and_Alcatraz_Island.jpg" alt="舊金山纜車">
+              <div class="spot-title-zh">舊金山纜車</div>
+              <div class="spot-title-en">SF Cable Car</div>
+              <div class="spot-tag">體驗城市風景 #SF2</div>
+              <div class="spot-info">推薦搭 Powell–Hyde 線，一路看坡道、灣景與惡魔島，站在車外扶手拍照最有味道。</div>
+            </div>
+            <div class="spot-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Cal_Sea_Lions_on_Pier_39.JPG/1024px-Cal_Sea_Lions_on_Pier_39.JPG" alt="39號碼頭海獅">
+              <div class="spot-title-zh">39 號碼頭海獅</div>
+              <div class="spot-title-en">Pier 39 Sea Lions</div>
+              <div class="spot-tag">大人小孩都愛 #SF3</div>
+              <div class="spot-info">數百隻海獅在木棧上曬太陽、吵吵鬧鬧，是舊金山最有活力的海邊風景。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 住宿安排 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">🏠</span>住宿安排 (4 人需要 2 間房)</h2>
+        <div class="table-wrap table-wrap--stay">
+          <table class="budget-table">
+            <thead>
+              <tr><th>日期</th><th>地點</th><th>住宿類型</th><th>備註</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Day 1–2</td><td>舊金山</td><td>2 間雙床房 或 家庭套房</td><td>聯合廣場附近</td></tr>
+              <tr><td>Day 3</td><td>鹽湖城</td><td>2 間雙床房</td><td>機場附近</td></tr>
+              <tr class="budget-total">
+                <td><strong>Day 4–8</strong></td>
+                <td><strong>West Yellowstone</strong></td>
+                <td><strong>2 房小木屋 (有廚房)</strong></td>
+                <td><strong>連住 5 晚，超重要！</strong></td>
+              </tr>
+              <tr><td>Day 9</td><td>Jackson</td><td>2 間雙床房</td><td>Jackson 小鎮</td></tr>
+              <tr><td>Day 10</td><td>鹽湖城</td><td>2 間雙床房</td><td>機場附近</td></tr>
+              <tr><td>Day 11–12</td><td>舊金山</td><td>2 間雙床房 或 家庭套房</td><td>聯合廣場附近</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 6. 13天行程時間軸 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">🗓️</span>13 天詳細行程</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-day">Day 1</div>
+            <div class="timeline-date">2026/9/28 (週一)</div>
+            <div class="timeline-content">
+              <strong>台北 → 舊金山</strong><br>
+              搭乘國際航班前往舊金山，抵達後搭 BART 進市區，入住聯合廣場附近飯店，調整時差。
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 2</div>
+            <div class="timeline-date">2026/9/29 (週二)</div>
+            <div class="timeline-content">
+              <strong>舊金山市區觀光</strong><br>
+              搭纜車前往漁人碼頭，看超可愛的海獅、品嚐螃蟹大餐，逛 Ferry Building 市場，傍晚到中國城買伴手禮。
+              <div class="timeline-highlight">🦀 必吃：鄧金尼斯螃蟹 + 蛤蜊濃湯麵包碗</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 3</div>
+            <div class="timeline-date">2026/9/30 (週三)</div>
+            <div class="timeline-content">
+              <strong>舊金山 → 鹽湖城</strong><br>
+              早上前往金門大橋拍照、九曲花街打卡，下午飛往鹽湖城，抵達後取車、前往大華超市和 Walmart 採購食材。
+              <div class="timeline-highlight">📸 必拍：金門大橋 Vista Point</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 4</div>
+            <div class="timeline-date">2026/10/1 (週四)</div>
+            <div class="timeline-content">
+              <strong>鹽湖城 → West Yellowstone</strong><br>
+              開車約 5.5 小時前往黃石公園，途中在 Idaho Falls 休息午餐，下午抵達並入住小木屋 (連住 5 晚)，煮第一頓中式晚餐。
+            </div>
+          </div>
+
+          <div class="timeline-item" style="background:linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%);">
+            <div class="timeline-day">Day 5</div>
+            <div class="timeline-date">2026/10/2 (週五)</div>
+            <div class="timeline-content">
+              <strong>黃石下圈 – 最精華的一天！</strong><br>
+              老忠實間歇泉 (每 90 分鐘噴發) → 大稜鏡溫泉 (超夢幻彩虹色) → 餅乾盆地 → 黃石湖
+              <div class="timeline-highlight">⭐ 本日亮點：大稜鏡溫泉 – 北美最大溫泉，必拍！</div>
+            </div>
+          </div>
+
+          <div class="timeline-item" style="background:linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%);">
+            <div class="timeline-day">Day 6</div>
+            <div class="timeline-date">2026/10/3 (週六)</div>
+            <div class="timeline-content">
+              <strong>黃石上圈 – 動物與秋色</strong><br>
+              諾里斯間歇泉 → 猛瑪溫泉台地 (白色梯田) → Tower Fall → 拉馬山谷 (傍晚觀動物)
+              <div class="timeline-highlight">🦌 本日亮點：拉馬山谷麋鹿交配季 + 白楊樹秋色！</div>
+            </div>
+          </div>
+
+          <div class="timeline-item" style="background:linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%);">
+            <div class="timeline-day">Day 7</div>
+            <div class="timeline-date">2026/10/4 (週日)</div>
+            <div class="timeline-content">
+              <strong>黃石峽谷區</strong><br>
+              清晨 6:30 海登山谷觀動物 → 回小木屋早餐 → 黃石大峽谷 (Artist Point 必拍) → 泥火山區
+              <div class="timeline-highlight">📸 本日亮點：Artist Point 最經典黃石角度！</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 8</div>
+            <div class="timeline-date">2026/10/5 (週一)</div>
+            <div class="timeline-content">
+              <strong>彈性休息日</strong><br>
+              睡到自然醒！可以選擇完全休息、重遊最愛景點，或到鎮上的灰熊保護區。讓爸媽好好休息、洗衣服、整理照片。
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 9</div>
+            <div class="timeline-date">2026/10/6 (週二)</div>
+            <div class="timeline-content">
+              <strong>黃石 → 大提頓 → Jackson</strong><br>
+              離開黃石往南，遊覽大提頓國家公園 (Jackson Lake、Jenny Lake、Mormon Row)，下午抵達 Jackson 小鎮。
+              <div class="timeline-highlight">🍂 本日亮點：大提頓秋色正美，白楊樹金黃！</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 10</div>
+            <div class="timeline-date">2026/10/7 (週三)</div>
+            <div class="timeline-content">
+              <strong>Jackson → 鹽湖城</strong><br>
+              開車約 4.5 小時返回鹽湖城，可選擇市區觀光 (Temple Square、State Capitol) 或休息。
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 11</div>
+            <div class="timeline-date">2026/10/8 (週四)</div>
+            <div class="timeline-content">
+              <strong>鹽湖城 → 舊金山</strong><br>
+              早上還車，搭機返回舊金山，下午輕鬆逛街或休息，晚餐海鮮慶祝。
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 12</div>
+            <div class="timeline-date">2026/10/9 (週五)</div>
+            <div class="timeline-content">
+              <strong>舊金山深度遊</strong><br>
+              Union Square 購物 → 雙子峰 360 度市景 → 金門公園日本茶園 → 慶祝晚宴 (海鮮大餐)。
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 13</div>
+            <div class="timeline-date">2026/10/10 (週六)</div>
+            <div class="timeline-content">
+              <strong>舊金山 → 台北</strong><br>
+              搭機返台，結束完美的 13 天家庭之旅！週六抵達台北，剛好是國慶連假！
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. 為什麼選9-10月 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">🍂</span>為什麼選擇 9-10 月出發？</h2>
+        <div class="feature-tags">
+          <div class="tag">💰 比暑假便宜 20–30%</div>
+          <div class="tag">👥 遊客少 50%</div>
+          <div class="tag">🦌 麋鹿交配季</div>
+          <div class="tag">🍂 秋色正濃</div>
+          <div class="tag">🌡️ 天氣舒適</div>
+          <div class="tag">📸 拍照不排隊</div>
+          <div class="tag">🇹🇼 10/10 國慶連假</div>
+        </div>
+        <div style="background:#fef3c7; padding:25px; border-radius:15px; margin-top:20px;">
+          <h3 style="color:#b45309; margin-bottom:15px;">🦌 9-10 月獨家體驗</h3>
+          <p style="font-size:1.05em; line-height:1.8; color:#333;">
+            <strong>麋鹿交配季 (Elk Rut)：</strong>9-10 月是黃石公園的麋鹿交配季節，可以聽到公麋鹿的叫聲 (bugling)，
+            這是一生難得的野生動物體驗！在拉馬山谷，我們有很高機率看到麋鹿群，還能欣賞白楊樹轉金黃的秋色。
+            <strong>10 月初秋色最美</strong>，白楊樹金黃燦爛，是全年最佳攝影時機！
+          </p>
+        </div>
+      </div>
+
+      <!-- 8. 重要提醒 -->
+      <div class="section">
+        <h2 class="section-title"><span class="emoji">⚠️</span>重要提醒事項</h2>
+        <div class="tips-box">
+          <h3>🧳 行前準備</h3>
+          <ul>
+            <li><strong>2025 年 3 月：</strong>訂機票 + 黃石小木屋 (提前 6 個月最便宜！)</li>
+            <li><strong>2026 年 3 月：</strong>申請 ESTA、辦理國際駕照</li>
+            <li><strong>2026 年 8 月：</strong>購買羽絨衣、保暖裝備 (10 月早晚 -5–5°C 很冷！)</li>
+            <li><strong>必備物品：</strong>羽絨衣、保暖手套、毛帽、暖暖包 ×10 包、保溫瓶</li>
+          </ul>
+        </div>
+
+        <div class="tips-box" style="background:linear-gradient(135deg,#fff3e0 0%,#ffe0b2 100%);">
+          <h3>🐻 安全注意</h3>
+          <ul>
+            <li><strong>觀賞動物：</strong>熊保持 90 公尺、野牛保持 25 公尺距離</li>
+            <li><strong>不要下車：</strong>動物過馬路時在車內等待，不要下車靠近</li>
+            <li><strong>防熊裝備：</strong>步道健行建議帶防熊噴霧</li>
+            <li><strong>食物管理：</strong>食物妥善密封，不留在車外</li>
+          </ul>
+        </div>
+
+        <div class="tips-box" style="background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);">
+          <h3>📱 實用建議</h3>
+          <ul>
+            <li><strong>手機訊號：</strong>園內幾乎沒訊號，下載離線地圖和黃石官方 APP</li>
+            <li><strong>加油策略：</strong>看到加油站就加！園內只有 3 個加油站且貴約 20%</li>
+            <li><strong>最佳時段：</strong>清晨 6:30–8:30 觀動物最佳，避開中午 12:00–14:00 人潮</li>
+            <li><strong>帶望遠鏡：</strong>觀賞動物必備，建議至少 200mm 鏡頭</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>一起創造難忘的家庭回憶</p>
+      <p style="margin-top:8px;"><span class="heart">❤️</span></p>
+      <p style="margin-top:10px; font-size:.9em; opacity:.9;">
+        2026 年 9 月 28 日 – 10 月 10 日｜美國黃石公園 + 舊金山 13 天家庭之旅
+      </p>
+    </div>
+  </div>
 </body>
 </html>
