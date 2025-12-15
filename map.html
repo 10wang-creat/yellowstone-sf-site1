@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>黃石公園 + 舊金山 13天自駕遊｜互動式地圖</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      color: white;
+      padding: 30px 20px;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      font-size: clamp(24px, 5vw, 42px);
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .header p {
+      font-size: clamp(14px, 2.5vw, 18px);
+      opacity: 0.95;
+    }
+    
+    /* Main Layout */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 20px;
+      align-items: start;
+    }
+    
+    @media (max-width: 1024px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Map Container */
+    .map-container {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    #map {
+      width: 100%;
+      height: 600px;
+    }
+    
+    @media (max-width: 768px) {
+      #map { height: 450px; }
+    }
+    
+    /* Map Controls */
+    .map-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 15px 20px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .control-btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .control-btn.primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .control-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .control-btn.secondary {
+      background: white;
+      color: #475569;
+      border: 2px solid #e2e8f0;
+    }
+    
+    .control-btn.secondary:hover {
+      border-color: #667eea;
+      color: #667eea;
+    }
+    
+    .control-btn.secondary.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    /* Info Card */
+    .info-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    
+    .info-card h3 {
+      font-size: 16px;
+      color: #1e293b;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .info-card h3 .emoji {
+      font-size: 20px;
+    }
+    
+    /* Location List */
+    .location-list {
+      list-style: none;
+    }
+    
+    .location-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 8px;
+    }
+    
+    .location-item:hover {
+      background: #f1f5f9;
+    }
+    
+    .location-item.active {
+      background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+      border: 1px solid #667eea30;
+    }
+    
+    .location-marker {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    
+    .location-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .location-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #1e293b;
+      margin-bottom: 2px;
+    }
+    
+    .location-name-en {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+    
+    .location-detail {
+      font-size: 12px;
+      color: #64748b;
+    }
+    
+    .location-stay {
+      font-size: 11px;
+      color: #667eea;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    
+    /* Route Info */
+    .route-info {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-radius: 12px;
+      padding: 15px;
+    }
+    
+    .route-info h4 {
+      font-size: 14px;
+      color: #92400e;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .route-segment {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed #fbbf2480;
+      font-size: 13px;
+    }
+    
+    .route-segment:last-child {
+      border-bottom: none;
+    }
+    
+    .route-segment .route-name {
+      color: #78350f;
+    }
+    
+    .route-segment .route-time {
+      color: #92400e;
+      font-weight: 600;
+    }
+    
+    /* Legend */
+    .legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #475569;
+    }
+    
+    .legend-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    /* Colors for markers */
+    .marker-sf { background: #ef4444; color: white; }
+    .marker-slc { background: #3b82f6; color: white; }
+    .marker-wy { background: #22c55e; color: white; }
+    .marker-cabin { background: #f59e0b; color: white; }
+    .marker-jackson { background: #8b5cf6; color: white; }
+    
+    /* Info Window Style */
+    .gm-style-iw {
+      max-width: 280px !important;
+    }
+    
+    .info-window {
+      padding: 5px;
+    }
+    
+    .info-window h4 {
+      font-size: 16px;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+    
+    .info-window .en-name {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+    
+    .info-window .details {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+    }
+    
+    .info-window .stay-info {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #f0fdf4;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #166534;
+      font-weight: 600;
+    }
+    
+    .info-window .drive-info {
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #fef3c7;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #92400e;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: white;
+      padding: 30px 20px;
+      margin-top: 20px;
+      opacity: 0.9;
+      font-size: 14px;
+    }
+    
+    /* Loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 400px;
+      color: #64748b;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🗺️ 黃石公園 + 舊金山 13天自駕遊</h1>
+      <p>2026/9/28 – 10/10 ｜ 互動式行程地圖 ｜ 點擊景點查看詳細資訊</p>
+    </header>
+    
+    <div class="main-content">
+      <!-- Map -->
+      <div class="map-container">
+        <div id="map">
+          <div class="loading">🗺️ 地圖載入中...</div>
+        </div>
+        <div class="map-controls">
+          <button class="control-btn primary" onclick="fitAllMarkers()">
+            📍 顯示全部景點
+          </button>
+          <button class="control-btn secondary" id="routeBtn" onclick="toggleRoute()">
+            🚗 顯示自駕路線
+          </button>
+          <button class="control-btn secondary" id="terrainBtn" onclick="toggleTerrain()">
+            🏔️ 地形模式
+          </button>
+          <button class="control-btn secondary" id="satelliteBtn" onclick="toggleSatellite()">
+            🛰️ 衛星模式
+          </button>
+        </div>
+      </div>
+      
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Location List -->
+        <div class="info-card">
+          <h3><span class="emoji">📍</span> 行程景點</h3>
+          <ul class="location-list" id="locationList">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+        
+        <!-- Route Info -->
+        <div class="info-card">
+          <div class="route-info">
+            <h4>🚗 車程時間總覽</h4>
+            <div class="route-segment">
+              <span class="route-name">鹽湖城 → 西黃石</span>
+              <span class="route-time">5.5 小時</span>
+            </div>
+            <div class="route-segment">
+              <span class="route-name">黃石 → 大提頓</span>
+              <span class="route-time">1 小時</span>
+            </div>
+            <div class="route-segment">
+              <span class="route-name">大提頓 → 傑克森</span>
+              <span class="route-time">20 分鐘</span>
+            </div>
+            <div class="route-segment">
+              <span class="route-name">傑克森 → 鹽湖城</span>
+              <span class="route-time">4.5 小時</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="info-card">
+          <h3><span class="emoji">🎨</span> 圖例說明</h3>
+          <div class="legend">
+            <div class="legend-item">
+              <span class="legend-icon marker-sf">⭐</span>
+              <span>舊金山（起終點）</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-icon marker-slc">✈️</span>
+              <span>鹽湖城（中轉）</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-icon marker-cabin">🏡</span>
+              <span>西黃石（住宿）</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-icon marker-wy">🦬</span>
+              <span>國家公園</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-icon marker-jackson">🤠</span>
+              <span>傑克森小鎮</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <p>2026 年 9 月 28 日 – 10 月 10 日 ｜ 一家四口的美國西部冒險 ❤️</p>
+    </footer>
+  </div>
+
+  <script>
+    // Location Data
+    const locations = [
+      {
+        id: 'sf',
+        name: '舊金山',
+        nameEn: 'San Francisco',
+        lat: 37.7749,
+        lng: -122.4194,
+        icon: '⭐',
+        color: '#ef4444',
+        markerClass: 'marker-sf',
+        days: 'Day 1-2, 11-12',
+        stay: '共住 4 晚',
+        details: '金門大橋、漁人碼頭、纜車、九曲花街、中國城',
+        driveInfo: '✈️ 飛往鹽湖城約 1.5 小時'
+      },
+      {
+        id: 'slc',
+        name: '鹽湖城',
+        nameEn: 'Salt Lake City',
+        lat: 40.7608,
+        lng: -111.8910,
+        icon: '✈️',
+        color: '#3b82f6',
+        markerClass: 'marker-slc',
+        days: 'Day 3, 10',
+        stay: '共住 2 晚',
+        details: '機場取還車、Temple Square、大華超市採購食材',
+        driveInfo: '🚗 開車至西黃石約 5.5 小時'
+      },
+      {
+        id: 'west-yellowstone',
+        name: '西黃石',
+        nameEn: 'West Yellowstone',
+        lat: 44.6621,
+        lng: -111.1041,
+        icon: '🏡',
+        color: '#f59e0b',
+        markerClass: 'marker-cabin',
+        days: 'Day 4-8',
+        stay: '🏡 小木屋連住 5 晚（有廚房）',
+        details: '黃石西門入口，小鎮有超市、餐廳、灰熊保護區',
+        driveInfo: '🚗 進入黃石公園僅需 1 分鐘'
+      },
+      {
+        id: 'yellowstone',
+        name: '黃石國家公園',
+        nameEn: 'Yellowstone National Park',
+        lat: 44.4280,
+        lng: -110.5885,
+        icon: '🦬',
+        color: '#22c55e',
+        markerClass: 'marker-wy',
+        days: 'Day 5-7',
+        stay: '每日從西黃石出發遊玩',
+        details: '老忠實、大稜鏡溫泉、黃石峽谷、拉馬山谷、猛瑪溫泉',
+        driveInfo: '公園內各景點車程 30分鐘-2小時'
+      },
+      {
+        id: 'grand-teton',
+        name: '大提頓國家公園',
+        nameEn: 'Grand Teton National Park',
+        lat: 43.7904,
+        lng: -110.6818,
+        icon: '🏔️',
+        color: '#22c55e',
+        markerClass: 'marker-wy',
+        days: 'Day 9',
+        stay: '途經遊覽',
+        details: 'Jenny Lake、Jackson Lake、Mormon Row 穀倉、秋色絕美',
+        driveInfo: '🚗 往南至傑克森約 20 分鐘'
+      },
+      {
+        id: 'jackson',
+        name: '傑克森小鎮',
+        nameEn: 'Jackson Hole',
+        lat: 43.4799,
+        lng: -110.7624,
+        icon: '🤠',
+        color: '#8b5cf6',
+        markerClass: 'marker-jackson',
+        days: 'Day 9',
+        stay: '住 1 晚',
+        details: '西部風情小鎮、鹿角拱門、Town Square、精品店',
+        driveInfo: '🚗 返回鹽湖城約 4.5 小時'
+      }
+    ];
+
+    // Route waypoints for driving directions
+    const routeWaypoints = [
+      { lat: 40.7608, lng: -111.8910 }, // Salt Lake City
+      { lat: 42.8713, lng: -112.4433 }, // Idaho Falls (rest stop)
+      { lat: 44.6621, lng: -111.1041 }, // West Yellowstone
+      { lat: 44.4280, lng: -110.5885 }, // Yellowstone
+      { lat: 43.7904, lng: -110.6818 }, // Grand Teton
+      { lat: 43.4799, lng: -110.7624 }, // Jackson
+      { lat: 40.7608, lng: -111.8910 }  // Back to Salt Lake City
+    ];
+
+    let map;
+    let markers = [];
+    let infoWindow;
+    let routeLine = null;
+    let showingRoute = false;
+    let currentMapType = 'roadmap';
+
+    // Initialize map
+    function initMap() {
+      // Center on the trip area
+      const center = { lat: 42.5, lng: -112.5 };
+      
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 5,
+        center: center,
+        mapTypeId: 'roadmap',
+        styles: [
+          {
+            featureType: 'poi',
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+          },
+          {
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{ color: '#a8d4e6' }]
+          }
+        ],
+        mapTypeControl: false,
+        fullscreenControl: true,
+        streetViewControl: false
+      });
+
+      infoWindow = new google.maps.InfoWindow();
+
+      // Create markers
+      locations.forEach((loc, index) => {
+        const marker = new google.maps.Marker({
+          position: { lat: loc.lat, lng: loc.lng },
+          map: map,
+          title: loc.name,
+          label: {
+            text: loc.icon,
+            fontSize: '20px'
+          },
+          animation: google.maps.Animation.DROP
+        });
+
+        marker.addListener('click', () => {
+          showInfoWindow(loc, marker);
+          highlightLocation(loc.id);
+        });
+
+        markers.push(marker);
+      });
+
+      // Add flight path (dashed line SF to SLC)
+      const flightPath = new google.maps.Polyline({
+        path: [
+          { lat: 37.7749, lng: -122.4194 },
+          { lat: 40.7608, lng: -111.8910 }
+        ],
+        geodesic: true,
+        strokeColor: '#3b82f6',
+        strokeOpacity: 0,
+        strokeWeight: 3,
+        icons: [{
+          icon: {
+            path: 'M 0,-1 0,1',
+            strokeOpacity: 1,
+            strokeWeight: 3,
+            scale: 3
+          },
+          offset: '0',
+          repeat: '15px'
+        }],
+        map: map
+      });
+
+      // Populate location list
+      populateLocationList();
+      
+      // Fit all markers
+      setTimeout(fitAllMarkers, 500);
+    }
+
+    function showInfoWindow(loc, marker) {
+      const content = `
+        <div class="info-window">
+          <h4>${loc.icon} ${loc.name}</h4>
+          <div class="en-name">${loc.nameEn}</div>
+          <div class="details">${loc.details}</div>
+          <div class="stay-info">📅 ${loc.days}<br>🛏️ ${loc.stay}</div>
+          <div class="drive-info">${loc.driveInfo}</div>
+        </div>
+      `;
+      infoWindow.setContent(content);
+      infoWindow.open(map, marker);
+    }
+
+    function populateLocationList() {
+      const list = document.getElementById('locationList');
+      list.innerHTML = locations.map(loc => `
+        <li class="location-item" data-id="${loc.id}" onclick="focusLocation('${loc.id}')">
+          <span class="location-marker ${loc.markerClass}">${loc.icon}</span>
+          <div class="location-info">
+            <div class="location-name">${loc.name}</div>
+            <div class="location-name-en">${loc.nameEn}</div>
+            <div class="location-detail">📅 ${loc.days}</div>
+            <div class="location-stay">🛏️ ${loc.stay}</div>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    function focusLocation(id) {
+      const loc = locations.find(l => l.id === id);
+      const markerIndex = locations.findIndex(l => l.id === id);
+      
+      if (loc && markers[markerIndex]) {
+        map.panTo({ lat: loc.lat, lng: loc.lng });
+        map.setZoom(10);
+        showInfoWindow(loc, markers[markerIndex]);
+        highlightLocation(id);
+      }
+    }
+
+    function highlightLocation(id) {
+      document.querySelectorAll('.location-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.id === id) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+    function fitAllMarkers() {
+      const bounds = new google.maps.LatLngBounds();
+      locations.forEach(loc => {
+        bounds.extend({ lat: loc.lat, lng: loc.lng });
+      });
+      map.fitBounds(bounds, { padding: 50 });
+    }
+
+    function toggleRoute() {
+      const btn = document.getElementById('routeBtn');
+      
+      if (showingRoute) {
+        // Hide route
+        if (routeLine) {
+          routeLine.setMap(null);
+          routeLine = null;
+        }
+        btn.classList.remove('active');
+        showingRoute = false;
+      } else {
+        // Show route
+        routeLine = new google.maps.Polyline({
+          path: routeWaypoints,
+          geodesic: true,
+          strokeColor: '#22c55e',
+          strokeOpacity: 0.8,
+          strokeWeight: 4,
+          map: map
+        });
+        btn.classList.add('active');
+        showingRoute = true;
+      }
+    }
+
+    function toggleTerrain() {
+      const btn = document.getElementById('terrainBtn');
+      const satBtn = document.getElementById('satelliteBtn');
+      
+      if (currentMapType === 'terrain') {
+        map.setMapTypeId('roadmap');
+        btn.classList.remove('active');
+        currentMapType = 'roadmap';
+      } else {
+        map.setMapTypeId('terrain');
+        btn.classList.add('active');
+        satBtn.classList.remove('active');
+        currentMapType = 'terrain';
+      }
+    }
+
+    function toggleSatellite() {
+      const btn = document.getElementById('satelliteBtn');
+      const terBtn = document.getElementById('terrainBtn');
+      
+      if (currentMapType === 'hybrid') {
+        map.setMapTypeId('roadmap');
+        btn.classList.remove('active');
+        currentMapType = 'roadmap';
+      } else {
+        map.setMapTypeId('hybrid');
+        btn.classList.add('active');
+        terBtn.classList.remove('active');
+        currentMapType = 'hybrid';
+      }
+    }
+
+    // Error handling for Google Maps
+    function handleMapError() {
+      document.getElementById('map').innerHTML = `
+        <div class="loading" style="flex-direction: column; gap: 15px;">
+          <div style="font-size: 48px;">🗺️</div>
+          <div>需要 Google Maps API Key 才能顯示互動地圖</div>
+          <div style="font-size: 13px; color: #94a3b8;">
+            請在 script 標籤中加入您的 API Key<br>
+            或參考下方的靜態地圖圖片
+          </div>
+        </div>
+      `;
+    }
+  </script>
+  
+  <!-- 
+    ⚠️ 重要：請將 YOUR_API_KEY 替換為你的 Google Maps API Key
+    取得 API Key：https://console.cloud.google.com/google/maps-apis
+  -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDgU6maj9qywhJ1SsVnsRZe31JMgcLbcg&callback=initMap"
+    onerror="handleMapError()">
+  </script>
+</body>
+</html>
