@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預算規劃 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
+        .nav-menu { display: flex; list-style: none; gap: 5px; }
+        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
+        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .budget-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .budget-card.economy .card-header { background: #4caf50; }
+        .budget-card.standard .card-header { background: #2196f3; }
+        .budget-card.comfort .card-header { background: #9c27b0; }
+        .card-header { color: white; padding: 25px; text-align: center; }
+        .card-header h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .card-header .total { font-size: 2.5rem; font-weight: 700; }
+        .card-content { padding: 25px; }
+        .budget-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .budget-item:last-child { border-bottom: none; }
+        .budget-item .label { color: #666; }
+        .budget-item .amount { font-weight: 600; color: var(--primary-color); }
+        .section-title { font-size: 1.8rem; color: var(--primary-color); margin: 40px 0 25px; padding-bottom: 10px; border-bottom: 3px solid var(--secondary-color); }
+        .detail-table { width: 100%; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .detail-table th { background: var(--primary-color); color: white; padding: 15px; text-align: left; }
+        .detail-table td { padding: 15px; border-bottom: 1px solid #eee; }
+        .detail-table tr:nth-child(even) { background: #f9f9f9; }
+        .tips-section { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .tips-section h3 { color: var(--primary-color); margin-bottom: 20px; }
+        .tips-section ul { margin-left: 20px; }
+        .tips-section li { margin-bottom: 10px; }
+        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
+            .nav-menu.active { display: flex; }
+            .budget-grid { grid-template-columns: 1fr; }
+            .detail-table { font-size: 0.85rem; }
+            .detail-table th, .detail-table td { padding: 10px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html">每日行程</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html" class="active">預算規劃</a></li>
+                <li><a href="packing.html">行李清單</a></li>
+                <li><a href="tips.html">旅遊須知</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>💰 預算規劃 Budget</h1>
+        <p>4人13天12夜費用估算（單位：USD）</p>
+    </div>
+    <div class="container">
+        <div class="budget-grid">
+            <div class="budget-card economy">
+                <div class="card-header">
+                    <h3>💚 經濟型</h3>
+                    <p>Budget-Friendly</p>
+                    <div class="total">~$10,000</div>
+                    <p>約 NT$320,000</p>
+                </div>
+                <div class="card-content">
+                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$4,000</span></div>
+                    <div class="budget-item"><span class="label">🏨 住宿（12晚）</span><span class="amount">$2,400</span></div>
+                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,200</span></div>
+                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$1,200</span></div>
+                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$400</span></div>
+                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$800</span></div>
+                </div>
+            </div>
+            <div class="budget-card standard">
+                <div class="card-header">
+                    <h3>💙 標準型</h3>
+                    <p>Standard</p>
+                    <div class="total">~$13,000</div>
+                    <p>約 NT$416,000</p>
+                </div>
+                <div class="card-content">
+                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$5,000</span></div>
+                    <div class="budget-item"><span class="label">🏨 住宿（12晚）</span><span class="amount">$3,200</span></div>
+                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,500</span></div>
+                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$1,600</span></div>
+                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$600</span></div>
+                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$1,100</span></div>
+                </div>
+            </div>
+            <div class="budget-card comfort">
+                <div class="card-header">
+                    <h3>💜 舒適型</h3>
+                    <p>Comfortable</p>
+                    <div class="total">~$16,000</div>
+                    <p>約 NT$512,000</p>
+                </div>
+                <div class="card-content">
+                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$6,000</span></div>
+                    <div class="budget-item"><span class="label">🏨 住宿（12晚）</span><span class="amount">$4,500</span></div>
+                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,800</span></div>
+                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$2,000</span></div>
+                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$800</span></div>
+                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$900</span></div>
+                </div>
+            </div>
+        </div>
+        <h2 class="section-title">📊 費用明細</h2>
+        <table class="detail-table">
+            <tr><th>項目</th><th>說明</th><th>經濟型</th><th>標準型</th><th>舒適型</th></tr>
+            <tr><td>國際機票</td><td>台北-舊金山來回×4</td><td>$3,200</td><td>$4,000</td><td>$5,000</td></tr>
+            <tr><td>國內機票</td><td>SFO-SLC 來回×4</td><td>$800</td><td>$1,000</td><td>$1,000</td></tr>
+            <tr><td>住宿</td><td>12晚（含稅）</td><td>$2,400</td><td>$3,200</td><td>$4,500</td></tr>
+            <tr><td>租車</td><td>8天（含保險）</td><td>$800</td><td>$1,000</td><td>$1,200</td></tr>
+            <tr><td>油費</td><td>約1,200英里</td><td>$400</td><td>$500</td><td>$600</td></tr>
+            <tr><td>餐飲</td><td>13天×4人</td><td>$1,200</td><td>$1,600</td><td>$2,000</td></tr>
+            <tr><td>國家公園門票</td><td>黃石+大提頓</td><td>$70</td><td>$70</td><td>$70</td></tr>
+            <tr><td>惡魔島門票</td><td>4人</td><td>$180</td><td>$180</td><td>$180</td></tr>
+            <tr><td>其他門票活動</td><td>Cable Car等</td><td>$150</td><td>$350</td><td>$550</td></tr>
+            <tr><td>購物紀念品</td><td>依個人</td><td>$500</td><td>$800</td><td>$600</td></tr>
+            <tr><td>交通雜費</td><td>Uber、停車等</td><td>$300</td><td>$300</td><td>$300</td></tr>
+        </table>
+        <div class="tips-section">
+            <h3>💡 省錢小技巧</h3>
+            <ul>
+                <li><strong>機票：</strong>提早 3-6 個月訂購，使用 Google Flights 追蹤價格</li>
+                <li><strong>住宿：</strong>選擇有廚房的住宿，自己煮飯可省大筆餐費</li>
+                <li><strong>餐飲：</strong>在 Costco/Walmart 採買食材，自備午餐進公園</li>
+                <li><strong>租車：</strong>比較各租車網站，使用信用卡附加保險</li>
+                <li><strong>國家公園：</strong>購買 America the Beautiful Pass（$80），全年無限次入園</li>
+                <li><strong>內陸機票：</strong>Southwest 航空免費託運 2 件行李</li>
+            </ul>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/28 - 10/10</p></footer>
+    <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+</body>
+</html>

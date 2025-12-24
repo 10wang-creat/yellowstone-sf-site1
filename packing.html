@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行李清單 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
+        .nav-menu { display: flex; list-style: none; gap: 5px; }
+        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
+        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .weather-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
+        .weather-card { background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1); }
+        .weather-card h4 { color: var(--primary-color); margin-bottom: 10px; }
+        .weather-card .temp { font-size: 1.5rem; color: var(--accent-color); font-weight: 600; }
+        .checklist-section { background: white; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .section-header { background: var(--primary-color); color: white; padding: 20px 25px; display: flex; align-items: center; gap: 15px; }
+        .section-header .icon { font-size: 1.8rem; }
+        .section-content { padding: 25px; }
+        .checklist-item { display: flex; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--primary-color); cursor: pointer; }
+        .checklist-item label { flex: 1; cursor: pointer; }
+        .checklist-item .note { font-size: 0.85rem; color: #888; margin-left: auto; }
+        .checklist-item.critical { background: #fff8e1; margin: 0 -25px; padding: 12px 25px; }
+        .warning-box { background: #ffebee; border-left: 4px solid #f44336; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .warning-box strong { color: #c62828; }
+        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
+            .nav-menu.active { display: flex; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html">每日行程</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="packing.html" class="active">行李清單</a></li>
+                <li><a href="tips.html">旅遊須知</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>🧳 行李清單 Packing List</h1>
+        <p>秋季黃石 & 舊金山必備物品</p>
+    </div>
+    <div class="container">
+        <h3 style="color: var(--primary-color); margin-bottom: 15px;">🌡️ 各地氣溫參考（10月初）</h3>
+        <div class="weather-grid">
+            <div class="weather-card"><h4>🦬 黃石公園</h4><div class="temp">-5°C ~ 15°C</div><p>早晚極冷，可能下雪</p></div>
+            <div class="weather-card"><h4>🏙️ 鹽湖城</h4><div class="temp">8°C ~ 22°C</div><p>秋高氣爽</p></div>
+            <div class="weather-card"><h4>🤠 傑克遜</h4><div class="temp">0°C ~ 15°C</div><p>山區較冷</p></div>
+            <div class="weather-card"><h4>🌉 舊金山</h4><div class="temp">12°C ~ 20°C</div><p>10月最舒適</p></div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">📄</span><h3>重要證件</h3></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="doc1"><label for="doc1">護照（有效期6個月以上）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="doc2"><label for="doc2">ESTA 電子旅行許可</label></div>
+                <div class="checklist-item"><input type="checkbox" id="doc3"><label for="doc3">機票訂位確認單</label></div>
+                <div class="checklist-item"><input type="checkbox" id="doc4"><label for="doc4">租車預訂確認</label></div>
+                <div class="checklist-item"><input type="checkbox" id="doc5"><label for="doc5">國際駕照</label></div>
+                <div class="checklist-item"><input type="checkbox" id="doc6"><label for="doc6">旅遊保險文件</label></div>
+                <div class="checklist-item"><input type="checkbox" id="doc7"><label for="doc7">信用卡 2 張以上</label></div>
+                <div class="checklist-item"><input type="checkbox" id="doc8"><label for="doc8">美金現金 $500-1000</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🧥</span><h3>保暖衣物</h3></div>
+            <div class="section-content">
+                <div class="checklist-item critical"><input type="checkbox" id="cloth1"><label for="cloth1"><strong>防水防風外套</strong></label><span class="note">⭐ 必備</span></div>
+                <div class="checklist-item critical"><input type="checkbox" id="cloth2"><label for="cloth2"><strong>羽絨外套 / 保暖大衣</strong></label><span class="note">⭐ 必備</span></div>
+                <div class="checklist-item"><input type="checkbox" id="cloth3"><label for="cloth3">刷毛外套 / Fleece × 2</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cloth4"><label for="cloth4">長袖上衣 × 4-5</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cloth5"><label for="cloth5">發熱衣褲（內搭）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cloth6"><label for="cloth6">長褲 × 3-4</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cloth7"><label for="cloth7">毛帽 / 手套 / 圍巾</label><span class="note">黃石必備</span></div>
+                <div class="checklist-item"><input type="checkbox" id="cloth8"><label for="cloth8">厚襪子 × 5-6 雙</label></div>
+                <p style="margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 8px;">💡 <strong>洋蔥式穿法：</strong>黃石早晚溫差大，建議多層次穿搭方便穿脫</p>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">👟</span><h3>鞋類</h3></div>
+            <div class="section-content">
+                <div class="checklist-item critical"><input type="checkbox" id="shoe1"><label for="shoe1"><strong>防水登山鞋/健行鞋</strong></label><span class="note">⭐ 黃石必備</span></div>
+                <div class="checklist-item"><input type="checkbox" id="shoe2"><label for="shoe2">舒適運動鞋/休閒鞋</label><span class="note">舊金山市區</span></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">📱</span><h3>電子用品</h3></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="elec1"><label for="elec1">手機 + 充電線</label></div>
+                <div class="checklist-item critical"><input type="checkbox" id="elec2"><label for="elec2"><strong>行動電源（大容量）</strong></label><span class="note">⭐ 黃石無訊號</span></div>
+                <div class="checklist-item"><input type="checkbox" id="elec3"><label for="elec3">相機 + 記憶卡 + 電池</label></div>
+                <div class="checklist-item critical"><input type="checkbox" id="elec4"><label for="elec4"><strong>望遠鏡 / 雙筒望遠鏡</strong></label><span class="note">⭐ 觀賞野生動物</span></div>
+                <div class="checklist-item"><input type="checkbox" id="elec5"><label for="elec5">美規轉接頭（110V，兩腳扁插）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="elec6"><label for="elec6">車用充電器</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">💊</span><h3>藥品</h3></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="med1"><label for="med1">個人常備藥</label></div>
+                <div class="checklist-item"><input type="checkbox" id="med2"><label for="med2">止痛藥 / 退燒藥</label></div>
+                <div class="checklist-item"><input type="checkbox" id="med3"><label for="med3">感冒藥</label></div>
+                <div class="checklist-item"><input type="checkbox" id="med4"><label for="med4">腸胃藥</label></div>
+                <div class="checklist-item"><input type="checkbox" id="med5"><label for="med5">OK繃 / 暈車藥</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🍜</span><h3>台灣食物（選帶）</h3></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="food1"><label for="food1">泡麵 / 杯麵</label></div>
+                <div class="checklist-item"><input type="checkbox" id="food2"><label for="food2">零食餅乾</label></div>
+                <div class="checklist-item"><input type="checkbox" id="food3"><label for="food3">調味包（醬油膏、辣椒醬）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="food4"><label for="food4">茶包 / 即溶咖啡</label></div>
+                <div class="warning-box"><strong>⚠️ 注意：</strong>肉類、水果、蔬菜不可攜帶入境美國！會被沒收並可能罰款</div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🎒</span><h3>其他</h3></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="other1"><label for="other1">後背包（每日隨身）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="other2"><label for="other2">水壺 / 保溫瓶</label></div>
+                <div class="checklist-item"><input type="checkbox" id="other3"><label for="other3">太陽眼鏡</label></div>
+                <div class="checklist-item"><input type="checkbox" id="other4"><label for="other4">防曬乳 / 護唇膏</label></div>
+                <div class="checklist-item"><input type="checkbox" id="other5"><label for="other5">雨傘 / 輕便雨衣</label></div>
+                <div class="checklist-item"><input type="checkbox" id="other6"><label for="other6">頸枕（長途飛行）</label></div>
+            </div>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/28 - 10/10</p></footer>
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.checked = localStorage.getItem(cb.id) === 'true';
+            cb.addEventListener('change', () => localStorage.setItem(cb.id, cb.checked));
+        });
+    </script>
+</body>
+</html>

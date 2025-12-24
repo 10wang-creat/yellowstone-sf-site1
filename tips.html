@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅遊須知 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
+        .nav-menu { display: flex; list-style: none; gap: 5px; }
+        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
+        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .section { background: white; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .section-header { background: var(--primary-color); color: white; padding: 20px 25px; display: flex; align-items: center; gap: 15px; }
+        .section-header .icon { font-size: 1.8rem; }
+        .section-content { padding: 25px; }
+        .section-content h4 { color: var(--primary-color); margin: 20px 0 10px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px; }
+        .section-content h4:first-child { margin-top: 0; }
+        .section-content ul { margin-left: 20px; }
+        .section-content li { margin-bottom: 8px; }
+        .warning-box { background: #ffebee; border-left: 4px solid #f44336; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .tip-box { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
+        .info-card { background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center; }
+        .info-card .label { font-size: 0.85rem; color: #666; }
+        .info-card .value { font-size: 1.2rem; font-weight: 600; color: var(--primary-color); }
+        .link-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .link-list a { background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; transition: 0.3s; }
+        .link-list a:hover { background: #1a3a1d; }
+        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
+            .nav-menu.active { display: flex; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html">每日行程</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="packing.html">行李清單</a></li>
+                <li><a href="tips.html" class="active">旅遊須知</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>💡 旅遊須知 Travel Tips</h1>
+        <p>安全須知與實用資訊</p>
+    </div>
+    <div class="container">
+        <div class="section">
+            <div class="section-header"><span class="icon">📝</span><h3>出發前準備</h3></div>
+            <div class="section-content">
+                <h4>ESTA 電子旅行許可</h4>
+                <ul>
+                    <li>申請費用：$21 USD</li>
+                    <li>建議出發前 72 小時完成申請</li>
+                    <li>有效期限：2 年或護照到期</li>
+                </ul>
+                <h4>機票預訂</h4>
+                <ul>
+                    <li>建議提早 3-6 個月預訂</li>
+                    <li>內陸航班推薦 Southwest（免費託運 2 件行李）</li>
+                </ul>
+                <h4>門票預約</h4>
+                <ul>
+                    <li><strong>惡魔島 Alcatraz：</strong>需提前 2-3 週預訂</li>
+                    <li><strong>Muir Woods：</strong>需預約停車位</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header"><span class="icon">🦬</span><h3>黃石國家公園注意事項</h3></div>
+            <div class="section-content">
+                <h4>🐻 野生動物安全</h4>
+                <div class="warning-box">
+                    <strong>⚠️ 重要安全距離：</strong><br>
+                    • 熊、野狼：保持 100 碼（91公尺）以上<br>
+                    • 野牛、麋鹿：保持 25 碼（23公尺）以上<br>
+                    • 絕對不要餵食、追逐或接近野生動物！
+                </div>
+                <h4>♨️ 地熱區安全</h4>
+                <div class="warning-box">
+                    <strong>⚠️ 嚴格遵守：</strong><br>
+                    • 必須走在木棧道上，不可踏入地熱區<br>
+                    • 地殼薄脆，掉落可能造成嚴重燙傷<br>
+                    • 禁止向溫泉投擲任何物品
+                </div>
+                <h4>📱 通訊狀況</h4>
+                <div class="tip-box">
+                    <strong>💡 重要提醒：</strong>黃石園區內大部分區域無手機訊號！出發前下載離線地圖
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header"><span class="icon">🌉</span><h3>舊金山注意事項</h3></div>
+            <div class="section-content">
+                <h4>🚇 交通方式</h4>
+                <ul>
+                    <li><strong>BART：</strong>機場到市區最方便</li>
+                    <li><strong>Muni：</strong>市區公車/輕軌</li>
+                    <li><strong>Cable Car：</strong>單程 $8，觀光體驗</li>
+                </ul>
+                <div class="tip-box">💡 舊金山不建議租車，停車費貴且車窗常被砸</div>
+                <h4>⚠️ 安全提醒</h4>
+                <div class="warning-box">
+                    <strong>⚠️ 車輛安全：</strong>車內不要放置任何可見物品<br>
+                    <strong>⚠️ 避開區域：</strong>Tenderloin、部分 Market St 南段
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header"><span class="icon">📞</span><h3>緊急聯絡資訊</h3></div>
+            <div class="section-content">
+                <div class="info-grid">
+                    <div class="info-card"><div class="label">美國緊急電話</div><div class="value">911</div></div>
+                    <div class="info-card"><div class="label">駐舊金山辦事處</div><div class="value">+1-415-362-7680</div></div>
+                    <div class="info-card"><div class="label">外交部急難救助</div><div class="value">+886-800-085-095</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header"><span class="icon">🔗</span><h3>實用連結</h3></div>
+            <div class="section-content">
+                <div class="link-list">
+                    <a href="https://esta.cbp.dhs.gov" target="_blank">ESTA 申請</a>
+                    <a href="https://www.nps.gov/yell" target="_blank">黃石官網</a>
+                    <a href="https://www.nps.gov/grte" target="_blank">大提頓官網</a>
+                    <a href="https://www.alcatrazcruises.com" target="_blank">惡魔島訂票</a>
+                    <a href="https://www.sfmta.com" target="_blank">舊金山交通</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/28 - 10/10</p></footer>
+    <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+</body>
+</html>

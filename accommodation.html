@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住宿資訊 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
+        .nav-menu { display: flex; list-style: none; gap: 5px; }
+        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
+        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .location-section { margin-bottom: 50px; }
+        .location-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 20px 30px; border-radius: 15px 15px 0 0; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .location-header .icon { font-size: 2rem; }
+        .location-header .dates { margin-left: auto; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; }
+        .location-content { background: white; border-radius: 0 0 15px 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .hotel-card { border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .hotel-card h4 { color: var(--primary-color); margin-bottom: 10px; }
+        .hotel-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
+        .info-item { display: flex; align-items: center; gap: 8px; }
+        .info-item .label { color: #666; }
+        .price-tag { background: var(--secondary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-weight: 600; display: inline-block; }
+        .tips-box { background: #fff8e1; padding: 15px 20px; border-radius: 10px; border-left: 4px solid var(--secondary-color); margin-top: 20px; }
+        .booking-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        .booking-links a { background: var(--primary-color); color: white; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .booking-links a:hover { background: #1a3a1d; }
+        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
+            .nav-menu.active { display: flex; }
+            .location-header { flex-direction: column; text-align: center; }
+            .location-header .dates { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html">每日行程</a></li>
+                <li><a href="accommodation.html" class="active">住宿資訊</a></li>
+                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="packing.html">行李清單</a></li>
+                <li><a href="tips.html">旅遊須知</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>🏨 住宿資訊 Accommodation</h1>
+        <p>12晚住宿規劃</p>
+    </div>
+    <div class="container">
+        <div class="location-section">
+            <div class="location-header">
+                <span class="icon">✈️</span>
+                <div><h2>舊金山機場附近</h2><p>SFO Airport Area</p></div>
+                <span class="dates">Day 1 | 9/28（1晚）</span>
+            </div>
+            <div class="location-content">
+                <div class="hotel-card">
+                    <h4>🏨 推薦住宿類型：機場旅館</h4>
+                    <div class="hotel-info">
+                        <div class="info-item"><span>📍</span><span>SFO 機場附近</span></div>
+                        <div class="info-item"><span>🚌</span><span>提供機場接駁</span></div>
+                        <div class="info-item"><span class="price-tag">$150-250/晚</span></div>
+                    </div>
+                    <p><strong>推薦選項：</strong>Hilton SFO, Marriott SFO, Hampton Inn SFO</p>
+                    <div class="tips-box">💡 選擇提供免費機場接駁的旅館，隔天方便前往機場搭機去鹽湖城</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-section">
+            <div class="location-header">
+                <span class="icon">🏙️</span>
+                <div><h2>鹽湖城</h2><p>Salt Lake City</p></div>
+                <span class="dates">Day 2 | 9/29（1晚）</span>
+            </div>
+            <div class="location-content">
+                <div class="hotel-card">
+                    <h4>🏨 推薦住宿類型：連鎖旅館</h4>
+                    <div class="hotel-info">
+                        <div class="info-item"><span>📍</span><span>機場或市區附近</span></div>
+                        <div class="info-item"><span>🅿️</span><span>免費停車</span></div>
+                        <div class="info-item"><span class="price-tag">$120-180/晚</span></div>
+                    </div>
+                    <p><strong>推薦選項：</strong>Courtyard by Marriott SLC Airport, Holiday Inn Express</p>
+                    <div class="tips-box">💡 選擇靠近 I-15 交流道的旅館，方便隔天北上前往黃石</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-section">
+            <div class="location-header">
+                <span class="icon">🦬</span>
+                <div><h2>西黃石</h2><p>West Yellowstone</p></div>
+                <span class="dates">Day 3-7 | 9/30 - 10/4（5晚）</span>
+            </div>
+            <div class="location-content">
+                <div class="hotel-card">
+                    <h4>🏠 推薦住宿類型：Cabin 小木屋 / Vacation Rental</h4>
+                    <div class="hotel-info">
+                        <div class="info-item"><span>📍</span><span>West Yellowstone 鎮上</span></div>
+                        <div class="info-item"><span>🍳</span><span>有廚房可自炊</span></div>
+                        <div class="info-item"><span class="price-tag">$200-350/晚</span></div>
+                    </div>
+                    <p><strong>推薦類型：</strong>VRBO/Airbnb 小木屋、Explorer Cabins、Yellowstone Cabins</p>
+                    <div class="tips-box">
+                        <p>💡 <strong>重點建議：</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>選擇有廚房的住宿，可自己煮飯省錢</li>
+                            <li>西黃石離公園西入口僅 1 英里，位置絕佳</li>
+                            <li>連住 5 晚可減少搬行李次數</li>
+                            <li>提早 4-6 個月預訂，旺季房源緊張</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="booking-links">
+                    <a href="https://www.vrbo.com" target="_blank">VRBO</a>
+                    <a href="https://www.airbnb.com" target="_blank">Airbnb</a>
+                    <a href="https://www.booking.com" target="_blank">Booking.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="location-section">
+            <div class="location-header">
+                <span class="icon">🤠</span>
+                <div><h2>傑克遜</h2><p>Jackson, WY</p></div>
+                <span class="dates">Day 8 | 10/5（1晚）</span>
+            </div>
+            <div class="location-content">
+                <div class="hotel-card">
+                    <h4>🏨 推薦住宿類型：旅館 / Motel</h4>
+                    <div class="hotel-info">
+                        <div class="info-item"><span>📍</span><span>Jackson 鎮上</span></div>
+                        <div class="info-item"><span>🅿️</span><span>免費停車</span></div>
+                        <div class="info-item"><span class="price-tag">$180-300/晚</span></div>
+                    </div>
+                    <p><strong>推薦選項：</strong>Super 8 Jackson, Elk Country Inn, 49er Inn</p>
+                    <div class="tips-box">💡 傑克遜是度假勝地，住宿較貴。也可選擇南下住 Afton 或其他小鎮</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-section">
+            <div class="location-header">
+                <span class="icon">🌉</span>
+                <div><h2>舊金山市區</h2><p>San Francisco</p></div>
+                <span class="dates">Day 9-12 | 10/6 - 10/9（4晚）</span>
+            </div>
+            <div class="location-content">
+                <div class="hotel-card">
+                    <h4>🏠 推薦住宿類型：公寓式住宿 / Airbnb</h4>
+                    <div class="hotel-info">
+                        <div class="info-item"><span>📍</span><span>漁人碼頭 / 市區 / 日本城</span></div>
+                        <div class="info-item"><span>🍳</span><span>有廚房可自炊</span></div>
+                        <div class="info-item"><span class="price-tag">$250-400/晚</span></div>
+                    </div>
+                    <p><strong>推薦區域：</strong>Fisherman's Wharf（漁人碼頭）、Union Square、Japantown</p>
+                    <div class="tips-box">
+                        <p>💡 <strong>重點建議：</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>舊金山不建議租車（停車費貴、車窗常被砸）</li>
+                            <li>選擇交通方便、靠近景點的住宿</li>
+                            <li>有廚房可煮爸媽習慣的食物</li>
+                            <li>連住 4 晚減少搬運行李</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+            <h3 style="color: var(--primary-color); margin-bottom: 20px;">📊 住宿費用總覽</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="background: var(--primary-color); color: white;">
+                    <th style="padding: 12px; text-align: left;">地點</th>
+                    <th style="padding: 12px; text-align: center;">晚數</th>
+                    <th style="padding: 12px; text-align: right;">預估費用</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px;">舊金山機場</td>
+                    <td style="padding: 12px; text-align: center;">1 晚</td>
+                    <td style="padding: 12px; text-align: right;">$150-250</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
+                    <td style="padding: 12px;">鹽湖城</td>
+                    <td style="padding: 12px; text-align: center;">1 晚</td>
+                    <td style="padding: 12px; text-align: right;">$120-180</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px;">西黃石</td>
+                    <td style="padding: 12px; text-align: center;">5 晚</td>
+                    <td style="padding: 12px; text-align: right;">$1,000-1,750</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
+                    <td style="padding: 12px;">傑克遜</td>
+                    <td style="padding: 12px; text-align: center;">1 晚</td>
+                    <td style="padding: 12px; text-align: right;">$180-300</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px;">舊金山市區</td>
+                    <td style="padding: 12px; text-align: center;">4 晚</td>
+                    <td style="padding: 12px; text-align: right;">$1,000-1,600</td>
+                </tr>
+                <tr style="background: var(--secondary-color);">
+                    <td style="padding: 12px; font-weight: 600;">總計</td>
+                    <td style="padding: 12px; text-align: center; font-weight: 600;">12 晚</td>
+                    <td style="padding: 12px; text-align: right; font-weight: 600;">$2,450-4,080</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/28 - 10/10</p></footer>
+    <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+</body>
+</html>

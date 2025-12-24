@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日行程 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
+        .nav-menu { display: flex; list-style: none; gap: 5px; }
+        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; font-size: 0.95rem; }
+        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
+        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .phase { margin-bottom: 50px; }
+        .phase-title { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 20px 30px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .phase-title .emoji { font-size: 2rem; }
+        .phase-title .dates { margin-left: auto; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; }
+        .day-card { background: white; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .day-header { background: var(--secondary-color); color: var(--primary-color); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .day-content { padding: 25px; }
+        .day-route { background: #f0f7f0; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .schedule-item { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+        .schedule-item:last-child { border-bottom: none; }
+        .schedule-time { min-width: 80px; color: var(--accent-color); font-weight: 600; }
+        .schedule-activity h4 { color: var(--primary-color); margin-bottom: 5px; }
+        .schedule-activity p { color: #666; font-size: 0.95rem; }
+        .schedule-activity .tips { background: #fff8e1; padding: 10px 15px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; border-left: 3px solid var(--secondary-color); }
+        .highlight-box { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .highlight-box h4 { color: var(--primary-color); margin-bottom: 10px; }
+        .highlight-box ul { margin-left: 20px; }
+        .driving-info { background: #e3f2fd; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .driving-info .icon { font-size: 2rem; }
+        .driving-info .distance { font-weight: 600; color: var(--primary-color); }
+        .flight-info { background: #fff3e0; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .flight-info h4 { color: var(--accent-color); margin-bottom: 10px; }
+        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
+            .nav-menu.active { display: flex; }
+            .phase-title { flex-direction: column; text-align: center; }
+            .phase-title .dates { margin-left: 0; }
+            .schedule-item { flex-direction: column; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html" class="active">每日行程</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="packing.html">行李清單</a></li>
+                <li><a href="tips.html">旅遊須知</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>📋 每日行程 Daily Itinerary</h1>
+        <p>13天12夜完整行程規劃</p>
+    </div>
+    <div class="container">
+        <div class="phase">
+            <div class="phase-title">
+                <span class="emoji">✈️</span>
+                <div><h2>第一階段：抵達</h2><p>Arrival</p></div>
+                <span class="dates">Day 1 | 9/28</span>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 1 - 抵達舊金山</h3><span>9/28（週一）</span></div>
+                <div class="day-content">
+                    <div class="day-route"><span>🛬</span><span>台灣 → 舊金山國際機場（SFO）</span></div>
+                    <div class="schedule-item"><span class="schedule-time">抵達後</span><div class="schedule-activity"><h4>入境 & 取行李</h4><p>完成入境手續，提領行李，入住機場附近旅館</p><div class="tips">💡 今日休息調整時差，不安排其他行程</div></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="phase">
+            <div class="phase-title">
+                <span class="emoji">🦬</span>
+                <div><h2>第二階段：黃石國家公園</h2><p>Yellowstone</p></div>
+                <span class="dates">Day 2-9 | 9/29 - 10/6</span>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 2 - 飛往鹽湖城</h3><span>9/29（週二）</span></div>
+                <div class="day-content">
+                    <div class="flight-info"><h4>✈️ 內陸航班</h4><p><strong>舊金山 SFO → 鹽湖城 SLC</strong>（約 1小時45分鐘）</p></div>
+                    <div class="schedule-item"><span class="schedule-time">上午</span><div class="schedule-activity"><h4>搭機前往鹽湖城</h4><p>抵達後機場取車（建議租 SUV）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>採買物資</h4><p>Costco/Walmart 採買食物、飲料、零食</p><div class="tips">💡 採買清單：瓶裝水、零食、泡麵、水果、三明治材料</div></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 3 - 前往黃石</h3><span>9/30（週三）</span></div>
+                <div class="day-content">
+                    <div class="driving-info"><span class="icon">🚗</span><div><p class="distance">鹽湖城 → 西黃石：約 320 英里（515 公里）</p><p>預估車程：5-6 小時</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>出發北上</h4><p>沿 I-15 北上，經 Pocatello</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>Idaho Falls 午餐</h4><p>休息用餐，補充油料</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">16:00</span><div class="schedule-activity"><h4>抵達西黃石</h4><p>入住 West Yellowstone 住宿</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 4 - 黃石：間歇泉區</h3><span>10/1（週四）</span></div>
+                <div class="day-content">
+                    <div class="day-route"><span>🗺️</span><span>Upper Geyser Basin → Midway Geyser Basin</span></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>Old Faithful 老忠實間歇泉</h4><p>觀賞噴發（約每90分鐘一次）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">10:00</span><div class="schedule-activity"><h4>Upper Geyser Basin 步道</h4><p>探索各種間歇泉，如 Morning Glory Pool</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:30</span><div class="schedule-activity"><h4>Grand Prismatic Spring 大稜鏡溫泉</h4><p>黃石最著名的彩色溫泉</p><div class="tips">💡 建議走 Fairy Falls Trail 看台俯瞰，中午顏色最鮮豔</div></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 5 - 黃石：峽谷區 & 黃石湖</h3><span>10/2（週五）</span></div>
+                <div class="day-content">
+                    <div class="schedule-item"><span class="schedule-time">09:30</span><div class="schedule-activity"><h4>黃石大峽谷</h4><p>Artist Point 觀景台欣賞 Lower Falls 瀑布</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:00</span><div class="schedule-activity"><h4>Hayden Valley</h4><p>觀賞野牛群</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">15:00</span><div class="schedule-activity"><h4>黃石湖 & West Thumb</h4><p>美國最大高山湖，湖畔間歇泉群</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 6 - 黃石：野生動物 & Lamar Valley</h3><span>10/3（週六）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box"><h4>🦌 麋鹿發情季</h4><p>9月底至10月初可聽到公麋鹿的求偶嘶叫聲！</p></div>
+                    <div class="schedule-item"><span class="schedule-time">06:00</span><div class="schedule-activity"><h4>日出野生動物觀賞</h4><p>Lamar Valley（黃石的「非洲大草原」）</p><div class="tips">💡 清晨和黃昏是觀賞野生動物的最佳時間</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:00</span><div class="schedule-activity"><h4>Mammoth Hot Springs 猛獁溫泉</h4><p>獨特的石灰岩梯田地形</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 7 - 黃石：彈性行程</h3><span>10/4（週日）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box"><h4>📋 建議選項</h4><ul><li>重遊最喜歡的景點</li><li>Norris Geyser Basin（最熱的間歇泉區）</li><li>悠閒健行 - Fairy Falls Trail</li><li>西黃石小鎮購買紀念品</li></ul></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 8 - 大提頓 & 傑克遜</h3><span>10/5（週一）</span></div>
+                <div class="day-content">
+                    <div class="driving-info"><span class="icon">🚗</span><div><p class="distance">西黃石 → 傑克遜：約 110 英里</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">10:00</span><div class="schedule-activity"><h4>大提頓國家公園</h4><p>Oxbow Bend、Jenny Lake</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:30</span><div class="schedule-activity"><h4>Mormon Row</h4><p>經典攝影地點</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">16:00</span><div class="schedule-activity"><h4>傑克遜小鎮</h4><p>鹿角拱門廣場、購物</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 9 - 返回舊金山</h3><span>10/6（週二）</span></div>
+                <div class="day-content">
+                    <div class="driving-info"><span class="icon">🚗</span><div><p class="distance">傑克遜 → 鹽湖城：約 280 英里（4.5-5 小時）</p></div></div>
+                    <div class="flight-info"><h4>✈️ 內陸航班</h4><p><strong>鹽湖城 SLC → 舊金山 SFO</strong></p></div>
+                    <div class="schedule-item"><span class="schedule-time">晚上</span><div class="schedule-activity"><h4>入住舊金山</h4><p>市區或漁人碼頭附近住宿</p></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="phase">
+            <div class="phase-title">
+                <span class="emoji">🌉</span>
+                <div><h2>第三階段：舊金山探索</h2><p>San Francisco</p></div>
+                <span class="dates">Day 10-13 | 10/7 - 10/10</span>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 10 - 舊金山市區經典</h3><span>10/7（週三）</span></div>
+                <div class="day-content">
+                    <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>金門大橋 Golden Gate Bridge</h4><p>步行或騎自行車過橋</p><div class="tips">💡 早上較少霧氣，拍照效果最佳</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:30</span><div class="schedule-activity"><h4>漁人碼頭 & Pier 39</h4><p>海鮮午餐、觀賞海獅</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">15:30</span><div class="schedule-activity"><h4>惡魔島 Alcatraz（選項）</h4><p>搭船參觀著名監獄</p><div class="tips">💡 門票約 $45/人，需提前 2-3 週預訂</div></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 11 - 舊金山經典景點</h3><span>10/8（週四）</span></div>
+                <div class="day-content">
+                    <div class="schedule-item"><span class="schedule-time">09:30</span><div class="schedule-activity"><h4>九曲花街 Lombard Street</h4><p>世界最彎曲的街道</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:00</span><div class="schedule-activity"><h4>叮噹車 Cable Car</h4><p>復古纜車體驗</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:30</span><div class="schedule-activity"><h4>中國城 Chinatown</h4><p>北美最古老的中國城</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:30</span><div class="schedule-activity"><h4>聯合廣場 Union Square</h4><p>購物中心區</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 12 - 灣區探索（彈性日）</h3><span>10/9（週五）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box"><h4>📋 三選一行程</h4><ul><li><strong>選項 A：Muir Woods 紅木森林</strong>（需預約停車）</li><li><strong>選項 B：史丹佛大學 / 矽谷</strong></li><li><strong>選項 C：市區購物休閒</strong></li></ul></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 13 - 返程</h3><span>10/10（週六）</span></div>
+                <div class="day-content">
+                    <div class="schedule-item"><span class="schedule-time">上午</span><div class="schedule-activity"><h4>退房 & 最後巡禮</h4><p>根據航班時間安排</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>前往機場</h4><p>搭乘 Uber/BART 前往 SFO</p><div class="tips">💡 國際航班建議提前 3 小時抵達機場</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">--</span><div class="schedule-activity"><h4>搭機返回台灣 ✈️🇹🇼</h4><p>結束美好的 13 天家庭旅程！</p></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/28 - 10/10</p></footer>
+    <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+</body>
+</html>
