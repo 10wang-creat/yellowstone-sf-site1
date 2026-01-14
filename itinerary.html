@@ -40,8 +40,9 @@
         .driving-info { background: #e3f2fd; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .driving-info .icon { font-size: 2rem; }
         .driving-info .distance { font-weight: 600; color: var(--primary-color); }
-        .flight-info { background: #fff3e0; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-        .flight-info h4 { color: var(--accent-color); margin-bottom: 10px; }
+        .flight-info { background: #e8f4fd; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #1976d2; }
+        .flight-info h4 { color: #1565c0; margin-bottom: 10px; }
+        .flight-info .airline { display: inline-block; background: #1976d2; color: white; padding: 2px 10px; border-radius: 5px; font-size: 0.85rem; margin-bottom: 10px; }
         footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
         @media (max-width: 768px) {
             .hamburger { display: flex; }
@@ -74,6 +75,51 @@
         <p>13天12夜完整行程規劃</p>
     </div>
     <div class="container">
+        <!-- 航班總覽 -->
+        <div class="phase">
+            <div class="phase-title">
+                <span class="emoji">✈️</span>
+                <div><h2>航班總覽</h2><p>United Airlines 聯合航空</p></div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>所有航班資訊</h3></div>
+                <div class="day-content">
+                    <table style="width:100%; border-collapse: collapse;">
+                        <tr style="background: #1976d2; color: white;">
+                            <th style="padding: 12px; text-align: left;">航段</th>
+                            <th style="padding: 12px;">日期</th>
+                            <th style="padding: 12px;">航班</th>
+                            <th style="padding: 12px;">時間</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 12px;">去程 1</td>
+                            <td style="padding: 12px; text-align: center;">9/27（日）</td>
+                            <td style="padding: 12px; text-align: center;">UA872</td>
+                            <td style="padding: 12px;">TPE 09:50 → SFO 06:35</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
+                            <td style="padding: 12px;">去程 2</td>
+                            <td style="padding: 12px; text-align: center;">9/27（日）</td>
+                            <td style="padding: 12px; text-align: center;">UA2027</td>
+                            <td style="padding: 12px;">SFO 08:10 → SLC 11:10</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 12px;">回程 1</td>
+                            <td style="padding: 12px; text-align: center;">10/7（三）</td>
+                            <td style="padding: 12px; text-align: center;">UA5970</td>
+                            <td style="padding: 12px;">SLC 09:45 → SFO 11:21</td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td style="padding: 12px;">回程 2</td>
+                            <td style="padding: 12px; text-align: center;">10/9（五）</td>
+                            <td style="padding: 12px; text-align: center;">UA871</td>
+                            <td style="padding: 12px;">SFO 14:25 → TPE 18:45+1</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <div class="phase">
             <div class="phase-title">
                 <span class="emoji">✈️</span>
@@ -84,12 +130,14 @@
                 <div class="day-header"><h3>Day 1 - 抵達鹽湖城</h3><span>9/27（週日）</span></div>
                 <div class="day-content">
                     <div class="flight-info">
+                        <span class="airline">UNITED 聯合航空</span>
                         <h4>✈️ 航班資訊</h4>
-                        <p><strong>長榮 BR8：</strong>TPE 10:15 → SFO 06:50（11小時35分鐘）</p>
-                        <p><strong>達美 DL920：</strong>SFO 10:00 → SLC 12:50（1小時50分鐘）</p>
+                        <p><strong>UA872：</strong>TPE 09:50 → SFO 06:35（11小時45分鐘）</p>
+                        <p><strong>UA2027：</strong>SFO 08:10 → SLC 11:10（2小時）</p>
+                        <p style="margin-top: 10px; color: #1565c0;">💡 轉機時間：1小時35分鐘（同航廈，時間充裕）</p>
                     </div>
-                    <div class="schedule-item"><span class="schedule-time">12:50</span><div class="schedule-activity"><h4>抵達鹽湖城機場</h4><p>提領行李、取車（建議 SUV）</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">14:30</span><div class="schedule-activity"><h4>採買物資</h4><p>前往 Costco/Walmart 採買食物、飲料、零食</p><div class="tips">💡 採買清單：瓶裝水、零食、泡麵、水果、三明治材料</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:10</span><div class="schedule-activity"><h4>抵達鹽湖城機場</h4><p>提領行李、取車（建議 SUV）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:00</span><div class="schedule-activity"><h4>採買物資</h4><p>前往 Costco/Walmart 採買食物、飲料、零食</p><div class="tips">💡 採買清單：瓶裝水、零食、泡麵、水果、三明治材料</div></div></div>
                     <div class="schedule-item"><span class="schedule-time">晚上</span><div class="schedule-activity"><h4>入住鹽湖城</h4><p>機場附近旅館，早點休息調整時差</p></div></div>
                 </div>
             </div>
@@ -103,6 +151,7 @@
                 </div>
             </div>
         </div>
+
         <div class="phase">
             <div class="phase-title">
                 <span class="emoji">🦬</span>
@@ -148,6 +197,7 @@
                 </div>
             </div>
         </div>
+
         <div class="phase">
             <div class="phase-title">
                 <span class="emoji">🏔️</span>
@@ -174,6 +224,7 @@
                 </div>
             </div>
         </div>
+
         <div class="phase">
             <div class="phase-title">
                 <span class="emoji">🚗</span>
@@ -185,11 +236,12 @@
                 <div class="day-content">
                     <div class="driving-info"><span class="icon">🚗</span><div><p class="distance">傑克遜 → 鹽湖城：約 280 英里（4.5-5 小時）</p></div></div>
                     <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>出發南下</h4><p>沿 US-89 南下，經 Star Valley</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">14:00</span><div class="schedule-activity"><h4>抵達鹽湖城</h4><p>市區或機場附近入住</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>彈性行程</h4><p>鹽湖城市區觀光、Temple Square、還車準備</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:00</span><div class="schedule-activity"><h4>抵達鹽湖城</h4><p>機場附近入住（方便隔天早班機）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>彈性行程</h4><p>鹽湖城市區觀光、Temple Square、整理行李</p><div class="tips">💡 隔天早班機 09:45，建議早點休息</div></div></div>
                 </div>
             </div>
         </div>
+
         <div class="phase">
             <div class="phase-title">
                 <span class="emoji">🌉</span>
@@ -200,34 +252,43 @@
                 <div class="day-header"><h3>Day 11 - 飛往舊金山</h3><span>10/7（週三）</span></div>
                 <div class="day-content">
                     <div class="flight-info">
+                        <span class="airline">UNITED 聯合航空</span>
                         <h4>✈️ 航班資訊</h4>
-                        <p><strong>達美 DL1088：</strong>SLC 15:15 → SFO 16:21（2小時6分鐘）</p>
+                        <p><strong>UA5970：</strong>SLC 09:45 → SFO 11:21（2小時36分鐘）</p>
+                        <p style="margin-top: 5px; color: #666;">實際承運：天西航空 SkyWest</p>
                     </div>
-                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>還車 & 前往機場</h4><p>鹽湖城機場還車</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">16:21</span><div class="schedule-activity"><h4>抵達舊金山</h4><p>搭 BART 或 Uber 前往市區</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">晚上</span><div class="schedule-activity"><h4>入住舊金山</h4><p>漁人碼頭或市區住宿</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">07:00</span><div class="schedule-activity"><h4>還車 & 前往機場</h4><p>鹽湖城機場還車（提前 2 小時）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:21</span><div class="schedule-activity"><h4>抵達舊金山</h4><p>搭 BART 或 Uber 前往市區</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:00</span><div class="schedule-activity"><h4>入住 & 午餐</h4><p>漁人碼頭或市區住宿</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>漁人碼頭 Fisherman's Wharf</h4><p>Pier 39 海獅、海鮮餐廳</p></div></div>
                 </div>
             </div>
             <div class="day-card">
                 <div class="day-header"><h3>Day 12 - 舊金山經典景點</h3><span>10/8（週四）</span></div>
                 <div class="day-content">
                     <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>金門大橋 Golden Gate Bridge</h4><p>步行或騎自行車過橋</p><div class="tips">💡 早上較少霧氣，拍照效果最佳</div></div></div>
-                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>漁人碼頭 & Pier 39</h4><p>海鮮午餐、觀賞海獅</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>藝術宮 Palace of Fine Arts</h4><p>羅馬式建築，拍照熱點</p></div></div>
                     <div class="schedule-item"><span class="schedule-time">15:00</span><div class="schedule-activity"><h4>九曲花街 Lombard Street</h4><p>世界最彎曲的街道</p></div></div>
                     <div class="schedule-item"><span class="schedule-time">17:00</span><div class="schedule-activity"><h4>叮噹車 Cable Car</h4><p>復古纜車體驗</p></div></div>
                 </div>
             </div>
             <div class="day-card">
-                <div class="day-header"><h3>Day 13 - 舊金山深度遊 & 返程</h3><span>10/9（週五）</span></div>
+                <div class="day-header"><h3>Day 13 - 舊金山最後巡禮 & 返程</h3><span>10/9（週五）</span></div>
                 <div class="day-content">
-                    <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>中國城 Chinatown</h4><p>北美最古老的中國城</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>聯合廣場 & 購物</h4><p>最後購物時間</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>晚餐 & 整理行李</h4><p>準備前往機場</p></div></div>
-                    <div class="schedule-item"><span class="schedule-time">22:00</span><div class="schedule-activity"><h4>前往機場</h4><p>搭乘 BART 或 Uber 前往 SFO</p></div></div>
+                    <div class="highlight-box">
+                        <h4>🎉 好消息：下午航班，不用趕！</h4>
+                        <p>航班 14:25 起飛，早上還有充足時間逛街購物</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>退房 & 寄放行李</h4><p>行李寄放旅館櫃台</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:30</span><div class="schedule-activity"><h4>中國城 Chinatown</h4><p>北美最古老的中國城</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:00</span><div class="schedule-activity"><h4>聯合廣場 & 最後購物</h4><p>Union Square 周邊</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:30</span><div class="schedule-activity"><h4>回旅館取行李</h4><p>前往機場</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>前往 SFO 機場</h4><p>搭 BART 或 Uber（約 30-40 分鐘）</p></div></div>
                     <div class="flight-info">
+                        <span class="airline">UNITED 聯合航空</span>
                         <h4>✈️ 回程航班</h4>
-                        <p><strong>長榮 BR17：</strong>SFO 01:10 → TPE 05:40+1（13小時30分鐘）</p>
-                        <p>🛬 10/10（週六）05:40 抵達台北桃園機場</p>
+                        <p><strong>UA871：</strong>SFO 14:25 → TPE 18:45+1（13小時20分鐘）</p>
+                        <p style="margin-top: 10px;">🛬 <strong>10/10（週六）18:45</strong> 抵達台北桃園機場</p>
                     </div>
                 </div>
             </div>
