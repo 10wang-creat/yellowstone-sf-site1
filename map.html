@@ -456,12 +456,8 @@
           <h3><span class="emoji">🎨</span> 圖例說明</h3>
           <div class="legend">
             <div class="legend-item">
-              <span class="legend-icon marker-sf">⭐</span>
-              <span>舊金山（起終點）</span>
-            </div>
-            <div class="legend-item">
               <span class="legend-icon marker-slc">✈️</span>
-              <span>鹽湖城（中轉）</span>
+              <span>鹽湖城（起點/中轉）</span>
             </div>
             <div class="legend-item">
               <span class="legend-icon marker-cabin">🏡</span>
@@ -475,33 +471,23 @@
               <span class="legend-icon marker-jackson">🤠</span>
               <span>傑克森小鎮</span>
             </div>
+            <div class="legend-item">
+              <span class="legend-icon marker-sf">🌉</span>
+              <span>舊金山（終點）</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
     
     <footer class="footer">
-      <p>2026 年 9 月 28 日 – 10 月 10 日 ｜ 一家四口的美國西部冒險 ❤️</p>
+      <p>2026 年 9 月 27 日 – 10 月 10 日 ｜ 一家四口的美國西部冒險 ❤️</p>
     </footer>
   </div>
 
   <script>
     // Location Data
     const locations = [
-      {
-        id: 'sf',
-        name: '舊金山',
-        nameEn: 'San Francisco',
-        lat: 37.7749,
-        lng: -122.4194,
-        icon: '⭐',
-        color: '#ef4444',
-        markerClass: 'marker-sf',
-        days: 'Day 1-2, 11-12',
-        stay: '共住 4 晚',
-        details: '金門大橋、漁人碼頭、纜車、九曲花街、中國城',
-        driveInfo: '✈️ 飛往鹽湖城約 1.5 小時'
-      },
       {
         id: 'slc',
         name: '鹽湖城',
@@ -511,9 +497,9 @@
         icon: '✈️',
         color: '#3b82f6',
         markerClass: 'marker-slc',
-        days: 'Day 3, 10',
+        days: 'Day 1, 10',
         stay: '共住 2 晚',
-        details: '機場取還車、Temple Square、大華超市採購食材',
+        details: '機場取還車、Temple Square、Costco/Walmart 採購',
         driveInfo: '🚗 開車至西黃石約 5.5 小時'
       },
       {
@@ -525,8 +511,8 @@
         icon: '🏡',
         color: '#f59e0b',
         markerClass: 'marker-cabin',
-        days: 'Day 4-8',
-        stay: '🏡 小木屋連住 5 晚（有廚房）',
+        days: 'Day 2-7',
+        stay: '🏡 小木屋連住 6 晚（有廚房）',
         details: '黃石西門入口，小鎮有超市、餐廳、灰熊保護區',
         driveInfo: '🚗 進入黃石公園僅需 1 分鐘'
       },
@@ -539,7 +525,7 @@
         icon: '🦬',
         color: '#22c55e',
         markerClass: 'marker-wy',
-        days: 'Day 5-7',
+        days: 'Day 3-7',
         stay: '每日從西黃石出發遊玩',
         details: '老忠實、大稜鏡溫泉、黃石峽谷、拉馬山谷、猛瑪溫泉',
         driveInfo: '公園內各景點車程 30分鐘-2小時'
@@ -553,8 +539,8 @@
         icon: '🏔️',
         color: '#22c55e',
         markerClass: 'marker-wy',
-        days: 'Day 9',
-        stay: '途經遊覽',
+        days: 'Day 8-9',
+        stay: '2天深度遊覽',
         details: 'Jenny Lake、Jackson Lake、Mormon Row 穀倉、秋色絕美',
         driveInfo: '🚗 往南至傑克森約 20 分鐘'
       },
@@ -567,10 +553,24 @@
         icon: '🤠',
         color: '#8b5cf6',
         markerClass: 'marker-jackson',
-        days: 'Day 9',
-        stay: '住 1 晚',
+        days: 'Day 8-9',
+        stay: '住 2 晚',
         details: '西部風情小鎮、鹿角拱門、Town Square、精品店',
         driveInfo: '🚗 返回鹽湖城約 4.5 小時'
+      },
+      {
+        id: 'sf',
+        name: '舊金山',
+        nameEn: 'San Francisco',
+        lat: 37.7749,
+        lng: -122.4194,
+        icon: '🌉',
+        color: '#ef4444',
+        markerClass: 'marker-sf',
+        days: 'Day 11-13',
+        stay: '共住 2 晚',
+        details: '金門大橋、藝術宮、漁人碼頭、聯合廣場、中國城',
+        driveInfo: '✈️ 從鹽湖城飛往舊金山約 2.5 小時'
       }
     ];
 
