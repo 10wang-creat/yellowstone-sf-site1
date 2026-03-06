@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>住宿資訊 | 2026 黃石公園 & 舊金山</title>
+    <title>預算規劃 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
@@ -19,28 +19,37 @@
         .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
         .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
         .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        .location-section { margin-bottom: 50px; }
-        .location-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 20px 30px; border-radius: 15px 15px 0 0; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        .location-header .icon { font-size: 2rem; }
-        .location-header .dates { margin-left: auto; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; }
-        .location-content { background: white; border-radius: 0 0 15px 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .hotel-card { border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
-        .hotel-card h4 { color: var(--primary-color); margin-bottom: 10px; }
-        .hotel-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
-        .info-item { display: flex; align-items: center; gap: 8px; }
-        .price-tag { background: var(--secondary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-weight: 600; display: inline-block; }
-        .tips-box { background: #fff8e1; padding: 15px 20px; border-radius: 10px; border-left: 4px solid var(--secondary-color); margin-top: 20px; }
-        .booking-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-        .booking-links a { background: var(--primary-color); color: white; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .booking-links a:hover { background: #1a3a1d; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .budget-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .budget-card.economy .card-header { background: #4caf50; }
+        .budget-card.standard .card-header { background: #2196f3; }
+        .budget-card.comfort .card-header { background: #9c27b0; }
+        .card-header { color: white; padding: 25px; text-align: center; }
+        .card-header h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .card-header .total { font-size: 2.5rem; font-weight: 700; }
+        .card-content { padding: 25px; }
+        .budget-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .budget-item:last-child { border-bottom: none; }
+        .budget-item .label { color: #666; }
+        .budget-item .amount { font-weight: 600; color: var(--primary-color); }
+        .section-title { font-size: 1.8rem; color: var(--primary-color); margin: 40px 0 25px; padding-bottom: 10px; border-bottom: 3px solid var(--secondary-color); }
+        .detail-table { width: 100%; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .detail-table th { background: var(--primary-color); color: white; padding: 15px; text-align: left; }
+        .detail-table td { padding: 15px; border-bottom: 1px solid #eee; }
+        .detail-table tr:nth-child(even) { background: #f9f9f9; }
+        .tips-section { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .tips-section h3 { color: var(--primary-color); margin-bottom: 20px; }
+        .tips-section ul { margin-left: 20px; }
+        .tips-section li { margin-bottom: 10px; }
         footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
         @media (max-width: 768px) {
             .hamburger { display: flex; }
             .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
             .nav-menu.active { display: flex; }
-            .location-header { flex-direction: column; text-align: center; }
-            .location-header .dates { margin-left: 0; }
+            .budget-grid { grid-template-columns: 1fr; }
+            .detail-table { font-size: 0.85rem; }
+            .detail-table th, .detail-table td { padding: 10px 8px; }
         }
     </style>
 </head>
@@ -52,8 +61,8 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">首頁</a></li>
                 <li><a href="itinerary.html">每日行程</a></li>
-                <li><a href="accommodation.html" class="active">住宿資訊</a></li>
-                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html" class="active">預算規劃</a></li>
                 <li><a href="packing.html">行李清單</a></li>
                 <li><a href="tips.html">旅遊須知</a></li>
                 <li><a href="map.html">互動地圖</a></li>
@@ -61,148 +70,84 @@
         </div>
     </nav>
     <div class="page-header">
-        <h1>🏨 住宿資訊 Accommodation</h1>
-        <p>14晚住宿規劃</p>
+        <h1>💰 預算規劃 Budget</h1>
+        <p>4人15天14夜費用估算（單位：USD）</p>
     </div>
     <div class="container">
-        <div class="location-section">
-            <div class="location-header">
-                <span class="icon">🏙️</span>
-                <div><h2>鹽湖城</h2><p>Salt Lake City</p></div>
-                <span class="dates">Day 1-2 & 11 | 9/26-27, 10/6（3晚）</span>
+        <div class="budget-grid">
+            <div class="budget-card economy">
+                <div class="card-header">
+                    <h3>💚 經濟型</h3>
+                    <p>Budget-Friendly</p>
+                    <div class="total">~$10,500</div>
+                    <p>約 NT$336,000</p>
+                </div>
+                <div class="card-content">
+                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$3,600</span></div>
+                    <div class="budget-item"><span class="label">🏨 住宿（14晚）</span><span class="amount">$2,800</span></div>
+                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,200</span></div>
+                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$1,400</span></div>
+                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$300</span></div>
+                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$1,200</span></div>
+                </div>
             </div>
-            <div class="location-content">
-                <div class="hotel-card">
-                    <h4>🏨 推薦住宿類型：機場旅館</h4>
-                    <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>SLC 機場附近</span></div>
-                        <div class="info-item"><span>🅿️</span><span>免費停車</span></div>
-                        <div class="info-item"><span class="price-tag">$120-180/晚</span></div>
-                    </div>
-                    <p><strong>推薦選項：</strong>Courtyard by Marriott SLC Airport, Holiday Inn Express, Hampton Inn</p>
-                    <div class="tips-box">💡 選擇有免費機場接駁車的旅館！Day 1 晚上搭接駁車入住，Day 2 再搭接駁車去機場取車，省一天租車費。Day 2 有一整天可以購物採買和調時差！</div>
+            <div class="budget-card standard">
+                <div class="card-header">
+                    <h3>💙 標準型</h3>
+                    <p>Standard</p>
+                    <div class="total">~$14,000</div>
+                    <p>約 NT$448,000</p>
+                </div>
+                <div class="card-content">
+                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$4,600</span></div>
+                    <div class="budget-item"><span class="label">🏨 住宿（14晚）</span><span class="amount">$3,700</span></div>
+                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,500</span></div>
+                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$1,800</span></div>
+                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$500</span></div>
+                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$1,900</span></div>
+                </div>
+            </div>
+            <div class="budget-card comfort">
+                <div class="card-header">
+                    <h3>💜 舒適型</h3>
+                    <p>Comfortable</p>
+                    <div class="total">~$17,500</div>
+                    <p>約 NT$560,000</p>
+                </div>
+                <div class="card-content">
+                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$5,500</span></div>
+                    <div class="budget-item"><span class="label">🏨 住宿（14晚）</span><span class="amount">$5,200</span></div>
+                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,800</span></div>
+                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$2,200</span></div>
+                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$700</span></div>
+                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$2,100</span></div>
                 </div>
             </div>
         </div>
-        <div class="location-section">
-            <div class="location-header">
-                <span class="icon">🦬</span>
-                <div><h2>西黃石</h2><p>West Yellowstone</p></div>
-                <span class="dates">Day 3-8 | 9/28 - 10/3（6晚）</span>
-            </div>
-            <div class="location-content">
-                <div class="hotel-card">
-                    <h4>🏠 推薦住宿類型：Cabin 小木屋 / Vacation Rental</h4>
-                    <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>West Yellowstone 鎮上</span></div>
-                        <div class="info-item"><span>🍳</span><span>有廚房可自炊</span></div>
-                        <div class="info-item"><span class="price-tag">$200-350/晚</span></div>
-                    </div>
-                    <p><strong>推薦類型：</strong>VRBO/Airbnb 小木屋、Explorer Cabins、Yellowstone Cabins</p>
-                    <div class="tips-box">
-                        <p>💡 <strong>重點建議：</strong></p>
-                        <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>選擇有廚房的住宿，可自己煮飯省錢</li>
-                            <li>西黃石離公園西入口僅 1 英里，位置絕佳</li>
-                            <li>連住 6 晚可減少搬行李次數</li>
-                            <li>提早 4-6 個月預訂，旺季房源緊張</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="booking-links">
-                    <a href="https://www.vrbo.com" target="_blank">VRBO</a>
-                    <a href="https://www.airbnb.com" target="_blank">Airbnb</a>
-                    <a href="https://www.booking.com" target="_blank">Booking.com</a>
-                </div>
-            </div>
-        </div>
-        <div class="location-section">
-            <div class="location-header">
-                <span class="icon">🏔️</span>
-                <div><h2>大提頓 / 傑克遜</h2><p>Grand Teton / Jackson, WY</p></div>
-                <span class="dates">Day 9-10 | 10/4-5（2晚）</span>
-            </div>
-            <div class="location-content">
-                <div class="hotel-card">
-                    <h4>🏨 推薦住宿類型：旅館 / Motel / Lodge</h4>
-                    <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>Jackson 鎮上或園區內</span></div>
-                        <div class="info-item"><span>🅿️</span><span>免費停車</span></div>
-                        <div class="info-item"><span class="price-tag">$180-300/晚</span></div>
-                    </div>
-                    <p><strong>推薦選項：</strong>Super 8 Jackson, Elk Country Inn, 49er Inn, Jackson Lake Lodge（園區內）</p>
-                    <div class="tips-box">
-                        <p>💡 <strong>重點建議：</strong></p>
-                        <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>傑克遜是度假勝地，住宿較貴</li>
-                            <li>可考慮住園區內 Lodge 體驗更佳</li>
-                            <li>也可選擇南下住 Afton 較便宜</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="location-section">
-            <div class="location-header">
-                <span class="icon">🌉</span>
-                <div><h2>舊金山市區</h2><p>San Francisco</p></div>
-                <span class="dates">Day 12-14 | 10/7-9（3晚）</span>
-            </div>
-            <div class="location-content">
-                <div class="hotel-card">
-                    <h4>🏠 推薦住宿類型：公寓式住宿 / 旅館</h4>
-                    <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>漁人碼頭 / 市區 / 日本城</span></div>
-                        <div class="info-item"><span>🍳</span><span>有廚房可自炊</span></div>
-                        <div class="info-item"><span class="price-tag">$250-400/晚</span></div>
-                    </div>
-                    <p><strong>推薦區域：</strong>Fisherman's Wharf（漁人碼頭）、Union Square、Japantown</p>
-                    <div class="tips-box">
-                        <p>💡 <strong>重點建議：</strong></p>
-                        <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>舊金山不需租車（停車費貴、車窗常被砸）</li>
-                            <li>選擇交通方便、靠近景點的住宿</li>
-                            <li>有廚房可煮爸媽習慣的食物</li>
-                            <li>最後一晚深夜 23:45 航班，退房後可寄放行李玩一整天</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-            <h3 style="color: var(--primary-color); margin-bottom: 20px;">📊 住宿費用總覽</h3>
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr style="background: var(--primary-color); color: white;">
-                    <th style="padding: 12px; text-align: left;">地點</th>
-                    <th style="padding: 12px; text-align: center;">晚數</th>
-                    <th style="padding: 12px; text-align: right;">預估費用</th>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 12px;">鹽湖城（3晚）</td>
-                    <td style="padding: 12px; text-align: center;">3 晚</td>
-                    <td style="padding: 12px; text-align: right;">$360-540</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
-                    <td style="padding: 12px;">西黃石</td>
-                    <td style="padding: 12px; text-align: center;">6 晚</td>
-                    <td style="padding: 12px; text-align: right;">$1,200-2,100</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 12px;">大提頓 / 傑克遜</td>
-                    <td style="padding: 12px; text-align: center;">2 晚</td>
-                    <td style="padding: 12px; text-align: right;">$360-600</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
-                    <td style="padding: 12px;">舊金山市區</td>
-                    <td style="padding: 12px; text-align: center;">3 晚</td>
-                    <td style="padding: 12px; text-align: right;">$750-1,200</td>
-                </tr>
-                <tr style="background: var(--secondary-color);">
-                    <td style="padding: 12px; font-weight: 600;">總計</td>
-                    <td style="padding: 12px; text-align: center; font-weight: 600;">14 晚</td>
-                    <td style="padding: 12px; text-align: right; font-weight: 600;">$2,670-4,440</td>
-                </tr>
-            </table>
+        <h2 class="section-title">📊 費用明細</h2>
+        <table class="detail-table">
+            <tr><th>項目</th><th>說明</th><th>經濟型</th><th>標準型</th><th>舒適型</th></tr>
+            <tr><td>國際機票</td><td>台北-舊金山來回×4（NT$28,342/人）</td><td>$3,600</td><td>$3,600</td><td>$4,500</td></tr>
+            <tr><td>國內機票</td><td>SFO-SLC 來回×4（含在聯程票內）</td><td>含上方</td><td>含上方</td><td>含上方</td></tr>
+            <tr><td>住宿</td><td>14晚（含稅）</td><td>$2,800</td><td>$3,700</td><td>$5,200</td></tr>
+            <tr><td>租車</td><td>9天（含保險）</td><td>$810</td><td>$990</td><td>$1,170</td></tr>
+            <tr><td>油費</td><td>約1,200英里</td><td>$400</td><td>$500</td><td>$600</td></tr>
+            <tr><td>餐飲</td><td>15天×4人</td><td>$1,400</td><td>$1,800</td><td>$2,200</td></tr>
+            <tr><td>國家公園門票</td><td>America the Beautiful Pass</td><td>$80</td><td>$80</td><td>$80</td></tr>
+            <tr><td>其他門票活動</td><td>Cable Car、Jenny Lake 船票等</td><td>$220</td><td>$420</td><td>$620</td></tr>
+            <tr><td>購物紀念品</td><td>依個人</td><td>$800</td><td>$1,500</td><td>$1,700</td></tr>
+            <tr><td>交通雜費</td><td>Uber、停車等</td><td>$400</td><td>$400</td><td>$400</td></tr>
+        </table>
+        <div class="tips-section">
+            <h3>💡 省錢小技巧</h3>
+            <ul>
+                <li><strong>機票：</strong>目前查到 NT$28,342/人，4人約 NT$113,368（≈ $3,550 USD）</li>
+                <li><strong>住宿：</strong>選擇有廚房的住宿，自己煮飯可省大筆餐費</li>
+                <li><strong>餐飲：</strong>在 Costco/Walmart 採買食材，自備午餐進公園</li>
+                <li><strong>租車：</strong>比較各租車網站，使用信用卡附加保險</li>
+                <li><strong>國家公園：</strong>購買 America the Beautiful Pass（$80），全年無限次入園</li>
+                <li><strong>鹽湖城購物：</strong>猶他州消費稅 7.25%，比加州（10%+）便宜，裝備盡量在鹽湖城買</li>
+            </ul>
         </div>
     </div>
     <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
