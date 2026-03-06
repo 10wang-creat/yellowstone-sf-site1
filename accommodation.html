@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>住宿資訊 | 2026 黃石公園 & 舊金山</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <style>
         :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        body { font-family: 'Noto Sans TC', 'Noto Color Emoji', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
         nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
@@ -30,10 +30,8 @@
         .hotel-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
         .info-item { display: flex; align-items: center; gap: 8px; }
         .price-tag { background: var(--secondary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-weight: 600; display: inline-block; }
+        .confirmed-tag { background: #4caf50; color: white; padding: 3px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-left: 8px; }
         .tips-box { background: #fff8e1; padding: 15px 20px; border-radius: 10px; border-left: 4px solid var(--secondary-color); margin-top: 20px; }
-        .booking-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-        .booking-links a { background: var(--primary-color); color: white; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .booking-links a:hover { background: #1a3a1d; }
         footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
         @media (max-width: 768px) {
             .hamburger { display: flex; }
@@ -62,150 +60,156 @@
     </nav>
     <div class="page-header">
         <h1>🏨 住宿資訊 Accommodation</h1>
-        <p>14晚住宿規劃</p>
+        <p>13晚住宿規劃（全部已確認預訂 ✅）</p>
     </div>
     <div class="container">
+        <!-- 鹽湖城 -->
         <div class="location-section">
             <div class="location-header">
                 <span class="icon">🏙️</span>
                 <div><h2>鹽湖城</h2><p>Salt Lake City</p></div>
-                <span class="dates">Day 1-2 & 11 | 9/26-27, 10/6（3晚）</span>
+                <span class="dates">Day 1-2 & 11 | 9/26-28, 10/6-7（共 3 晚）</span>
             </div>
             <div class="location-content">
                 <div class="hotel-card">
-                    <h4>🏨 推薦住宿類型：機場旅館</h4>
+                    <h4>🏨 鹽湖城機場凱悅酒店 <span class="confirmed-tag">✅ 已確認</span></h4>
                     <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>SLC 機場附近</span></div>
-                        <div class="info-item"><span>🅿️</span><span>免費停車</span></div>
-                        <div class="info-item"><span class="price-tag">$120-180/晚</span></div>
+                        <div class="info-item"><span>📍</span><span>鹽湖城機場附近</span></div>
+                        <div class="info-item"><span>📅</span><span>9/26 - 9/28（2晚）</span></div>
+                        <div class="info-item"><span class="price-tag">US$367.35</span></div>
                     </div>
-                    <p><strong>推薦選項：</strong>Courtyard by Marriott SLC Airport, Holiday Inn Express, Hampton Inn</p>
-                    <div class="tips-box">💡 選擇有免費機場接駁車的旅館！Day 1 晚上搭接駁車入住，Day 2 再搭接駁車去機場取車，省一天租車費。Day 2 有一整天可以購物採買和調時差！</div>
+                    <p>免費取消 ｜ 有免費機場接駁車</p>
                 </div>
+                <div class="hotel-card">
+                    <h4>🏨 鹽湖城機場凱悅酒店 <span class="confirmed-tag">✅ 已確認</span></h4>
+                    <div class="hotel-info">
+                        <div class="info-item"><span>📍</span><span>鹽湖城機場附近</span></div>
+                        <div class="info-item"><span>📅</span><span>10/6 - 10/7（1晚）</span></div>
+                        <div class="info-item"><span class="price-tag">US$183.68</span></div>
+                    </div>
+                    <p>免費取消 ｜ 回程前一晚</p>
+                </div>
+                <div class="tips-box">💡 同一家旅館，有免費機場接駁車！Day 1 晚上搭接駁車入住，Day 2 搭接駁車去機場取車。回程 Day 11 還車後也搭接駁車回旅館。</div>
             </div>
         </div>
+        <!-- 西黃石 -->
         <div class="location-section">
             <div class="location-header">
                 <span class="icon">🦬</span>
                 <div><h2>西黃石</h2><p>West Yellowstone</p></div>
-                <span class="dates">Day 3-8 | 9/28 - 10/3（6晚）</span>
+                <span class="dates">Day 3-8 | 9/28 - 10/4（6晚）</span>
             </div>
             <div class="location-content">
                 <div class="hotel-card">
-                    <h4>🏠 推薦住宿類型：Cabin 小木屋 / Vacation Rental</h4>
+                    <h4>🏠 會所酒店 <span class="confirmed-tag">✅ 已確認</span></h4>
                     <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>West Yellowstone 鎮上</span></div>
-                        <div class="info-item"><span>🍳</span><span>有廚房可自炊</span></div>
-                        <div class="info-item"><span class="price-tag">$200-350/晚</span></div>
+                        <div class="info-item"><span>📍</span><span>西黃石</span></div>
+                        <div class="info-item"><span>📅</span><span>9/28 - 10/4（6晚）</span></div>
+                        <div class="info-item"><span class="price-tag">US$2,113.61</span></div>
                     </div>
-                    <p><strong>推薦類型：</strong>VRBO/Airbnb 小木屋、Explorer Cabins、Yellowstone Cabins</p>
+                    <p>免費取消 ｜ 離黃石公園西入口僅 1 英里</p>
                     <div class="tips-box">
-                        <p>💡 <strong>重點建議：</strong></p>
+                        <p>💡 <strong>重點提醒：</strong></p>
                         <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>選擇有廚房的住宿，可自己煮飯省錢</li>
-                            <li>西黃石離公園西入口僅 1 英里，位置絕佳</li>
-                            <li>連住 6 晚可減少搬行李次數</li>
-                            <li>提早 4-6 個月預訂，旺季房源緊張</li>
+                            <li>確認是否有廚房可自炊</li>
+                            <li>連住 6 晚，不用搬行李</li>
+                            <li>Day 2 在鹽湖城 Costco 採買的食材都帶過來</li>
                         </ul>
                     </div>
                 </div>
-                <div class="booking-links">
-                    <a href="https://www.vrbo.com" target="_blank">VRBO</a>
-                    <a href="https://www.airbnb.com" target="_blank">Airbnb</a>
-                    <a href="https://www.booking.com" target="_blank">Booking.com</a>
-                </div>
             </div>
         </div>
+        <!-- 傑克遜 -->
         <div class="location-section">
             <div class="location-header">
                 <span class="icon">🏔️</span>
-                <div><h2>大提頓 / 傑克遜</h2><p>Grand Teton / Jackson, WY</p></div>
-                <span class="dates">Day 9-10 | 10/4-5（2晚）</span>
+                <div><h2>傑克遜</h2><p>Jackson, WY</p></div>
+                <span class="dates">Day 9-10 | 10/4 - 10/6（2晚）</span>
             </div>
             <div class="location-content">
                 <div class="hotel-card">
-                    <h4>🏨 推薦住宿類型：旅館 / Motel / Lodge</h4>
+                    <h4>🏨 49年代套房汽車旅館 <span class="confirmed-tag">✅ 已確認</span></h4>
                     <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>Jackson 鎮上或園區內</span></div>
-                        <div class="info-item"><span>🅿️</span><span>免費停車</span></div>
-                        <div class="info-item"><span class="price-tag">$180-300/晚</span></div>
+                        <div class="info-item"><span>📍</span><span>傑克遜小鎮</span></div>
+                        <div class="info-item"><span>📅</span><span>10/4 - 10/6（2晚）</span></div>
+                        <div class="info-item"><span class="price-tag">US$592.54</span></div>
                     </div>
-                    <p><strong>推薦選項：</strong>Super 8 Jackson, Elk Country Inn, 49er Inn, Jackson Lake Lodge（園區內）</p>
-                    <div class="tips-box">
-                        <p>💡 <strong>重點建議：</strong></p>
-                        <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>傑克遜是度假勝地，住宿較貴</li>
-                            <li>可考慮住園區內 Lodge 體驗更佳</li>
-                            <li>也可選擇南下住 Afton 較便宜</li>
-                        </ul>
-                    </div>
+                    <p>免費取消 ｜ 鄰近鹿角拱門廣場</p>
+                    <div class="tips-box">💡 傑克遜是度假勝地，走路可逛 Town Square、藝廊街。Day 10 下午逛完後出發返回鹽湖城。</div>
                 </div>
             </div>
         </div>
+        <!-- 舊金山 -->
         <div class="location-section">
             <div class="location-header">
                 <span class="icon">🌉</span>
-                <div><h2>舊金山市區</h2><p>San Francisco</p></div>
-                <span class="dates">Day 12-14 | 10/7-9（3晚）</span>
+                <div><h2>舊金山</h2><p>San Francisco</p></div>
+                <span class="dates">Day 12-14 | 10/7 - 10/9（2晚）</span>
             </div>
             <div class="location-content">
                 <div class="hotel-card">
-                    <h4>🏠 推薦住宿類型：公寓式住宿 / 旅館</h4>
+                    <h4>🏨 Riu Plaza Fisherman's Wharf <span class="confirmed-tag">✅ 已確認</span></h4>
                     <div class="hotel-info">
-                        <div class="info-item"><span>📍</span><span>漁人碼頭 / 市區 / 日本城</span></div>
-                        <div class="info-item"><span>🍳</span><span>有廚房可自炊</span></div>
-                        <div class="info-item"><span class="price-tag">$250-400/晚</span></div>
+                        <div class="info-item"><span>📍</span><span>漁人碼頭</span></div>
+                        <div class="info-item"><span>📅</span><span>10/7 - 10/9（2晚）</span></div>
+                        <div class="info-item"><span class="price-tag">TWD 22,533（≈ US$705）</span></div>
                     </div>
-                    <p><strong>推薦區域：</strong>Fisherman's Wharf（漁人碼頭）、Union Square、Japantown</p>
+                    <p>免費取消 ｜ 漁人碼頭絕佳位置</p>
                     <div class="tips-box">
-                        <p>💡 <strong>重點建議：</strong></p>
+                        <p>💡 <strong>位置優勢：</strong></p>
                         <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>舊金山不需租車（停車費貴、車窗常被砸）</li>
-                            <li>選擇交通方便、靠近景點的住宿</li>
-                            <li>有廚房可煮爸媽習慣的食物</li>
-                            <li>最後一晚深夜 23:45 航班，退房後可寄放行李玩一整天</li>
+                            <li>步行可到 Pier 39、漁人碼頭</li>
+                            <li>步行可到中國城、藝術宮</li>
+                            <li>金門大橋搭 Uber 約 15 分鐘</li>
+                            <li>10/9 退房後可寄放行李，逛中國城到中午再去機場</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- 費用總覽 -->
         <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
             <h3 style="color: var(--primary-color); margin-bottom: 20px;">📊 住宿費用總覽</h3>
             <table style="width: 100%; border-collapse: collapse;">
                 <tr style="background: var(--primary-color); color: white;">
-                    <th style="padding: 12px; text-align: left;">地點</th>
+                    <th style="padding: 12px; text-align: left;">住宿</th>
                     <th style="padding: 12px; text-align: center;">晚數</th>
-                    <th style="padding: 12px; text-align: right;">預估費用</th>
+                    <th style="padding: 12px; text-align: right;">費用</th>
                 </tr>
                 <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 12px;">鹽湖城（3晚）</td>
-                    <td style="padding: 12px; text-align: center;">3 晚</td>
-                    <td style="padding: 12px; text-align: right;">$360-540</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
-                    <td style="padding: 12px;">西黃石</td>
-                    <td style="padding: 12px; text-align: center;">6 晚</td>
-                    <td style="padding: 12px; text-align: right;">$1,200-2,100</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 12px;">大提頓 / 傑克遜</td>
+                    <td style="padding: 12px;">鹽湖城凱悅（9/26-28）</td>
                     <td style="padding: 12px; text-align: center;">2 晚</td>
-                    <td style="padding: 12px; text-align: right;">$360-600</td>
+                    <td style="padding: 12px; text-align: right;">$367.35</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
-                    <td style="padding: 12px;">舊金山市區</td>
-                    <td style="padding: 12px; text-align: center;">3 晚</td>
-                    <td style="padding: 12px; text-align: right;">$750-1,200</td>
+                    <td style="padding: 12px;">西黃石 會所酒店</td>
+                    <td style="padding: 12px; text-align: center;">6 晚</td>
+                    <td style="padding: 12px; text-align: right;">$2,113.61</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px;">傑克遜 49年代套房</td>
+                    <td style="padding: 12px; text-align: center;">2 晚</td>
+                    <td style="padding: 12px; text-align: right;">$592.54</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
+                    <td style="padding: 12px;">鹽湖城凱悅（10/6-7）</td>
+                    <td style="padding: 12px; text-align: center;">1 晚</td>
+                    <td style="padding: 12px; text-align: right;">$183.68</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px;">Riu Plaza Fisherman's Wharf</td>
+                    <td style="padding: 12px; text-align: center;">2 晚</td>
+                    <td style="padding: 12px; text-align: right;">$705（TWD 22,533）</td>
                 </tr>
                 <tr style="background: var(--secondary-color);">
                     <td style="padding: 12px; font-weight: 600;">總計</td>
-                    <td style="padding: 12px; text-align: center; font-weight: 600;">14 晚</td>
-                    <td style="padding: 12px; text-align: right; font-weight: 600;">$2,670-4,440</td>
+                    <td style="padding: 12px; text-align: center; font-weight: 600;">13 晚</td>
+                    <td style="padding: 12px; text-align: right; font-weight: 600;">≈ US$3,962</td>
                 </tr>
             </table>
         </div>
     </div>
-    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/9 | 全部已確認預訂 ✅</p></footer>
     <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
 </body>
 </html>
