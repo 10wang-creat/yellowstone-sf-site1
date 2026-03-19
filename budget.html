@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>預算規劃 | 2026 黃石公園 & 舊金山</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <style>
         :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        body { font-family: 'Noto Sans TC', 'Noto Color Emoji', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
         nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
@@ -19,26 +19,29 @@
         .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
         .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
         .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px; }
-        .budget-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .budget-card.economy .card-header { background: #4caf50; }
-        .budget-card.standard .card-header { background: #2196f3; }
-        .budget-card.comfort .card-header { background: #9c27b0; }
-        .card-header { color: white; padding: 25px; text-align: center; }
-        .card-header h3 { font-size: 1.5rem; margin-bottom: 5px; }
-        .card-header .total { font-size: 2.5rem; font-weight: 700; }
-        .card-content { padding: 25px; }
-        .budget-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
-        .budget-item:last-child { border-bottom: none; }
-        .budget-item .label { color: #666; }
-        .budget-item .amount { font-weight: 600; color: var(--primary-color); }
-        .section-title { font-size: 1.8rem; color: var(--primary-color); margin: 40px 0 25px; padding-bottom: 10px; border-bottom: 3px solid var(--secondary-color); }
-        .detail-table { width: 100%; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        .detail-table th { background: var(--primary-color); color: white; padding: 15px; text-align: left; }
-        .detail-table td { padding: 15px; border-bottom: 1px solid #eee; }
-        .detail-table tr:nth-child(even) { background: #f9f9f9; }
-        .tips-section { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .total-banner { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; border-radius: 20px; padding: 35px; margin-bottom: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .total-banner .label { font-size: 1rem; opacity: 0.9; margin-bottom: 5px; }
+        .total-banner .amount { font-size: 3rem; font-weight: 700; }
+        .total-banner .sub { font-size: 1.1rem; opacity: 0.85; margin-top: 8px; }
+        .total-banner .breakdown { display: flex; justify-content: center; gap: 30px; margin-top: 25px; flex-wrap: wrap; }
+        .total-banner .breakdown-item { text-align: center; }
+        .total-banner .breakdown-item .num { font-size: 1.4rem; font-weight: 700; }
+        .total-banner .breakdown-item .desc { font-size: 0.8rem; opacity: 0.8; }
+        .section-title { font-size: 1.5rem; color: var(--primary-color); margin: 35px 0 20px; padding-bottom: 8px; border-bottom: 3px solid var(--secondary-color); display: flex; align-items: center; gap: 10px; }
+        .confirmed-badge { background: #4caf50; color: white; padding: 3px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; }
+        .estimated-badge { background: #ff9800; color: white; padding: 3px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; }
+        .pending-badge { background: #e91e63; color: white; padding: 3px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; }
+        .budget-table { width: 100%; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px; border-collapse: collapse; }
+        .budget-table th { background: var(--primary-color); color: white; padding: 14px 18px; text-align: left; font-size: 0.95rem; }
+        .budget-table th:last-child { text-align: right; }
+        .budget-table td { padding: 14px 18px; border-bottom: 1px solid #eee; }
+        .budget-table td:last-child { text-align: right; font-weight: 600; color: var(--primary-color); }
+        .budget-table tr:nth-child(even) { background: #f9f9f9; }
+        .budget-table tr.subtotal { background: #e8f5e9; }
+        .budget-table tr.subtotal td { font-weight: 700; border-top: 2px solid var(--primary-color); }
+        .budget-table .note { font-size: 0.85rem; color: #888; font-weight: 400; }
+        .tips-section { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-top: 30px; }
         .tips-section h3 { color: var(--primary-color); margin-bottom: 20px; }
         .tips-section ul { margin-left: 20px; }
         .tips-section li { margin-bottom: 10px; }
@@ -47,9 +50,10 @@
             .hamburger { display: flex; }
             .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
             .nav-menu.active { display: flex; }
-            .budget-grid { grid-template-columns: 1fr; }
-            .detail-table { font-size: 0.85rem; }
-            .detail-table th, .detail-table td { padding: 10px 8px; }
+            .total-banner .amount { font-size: 2.2rem; }
+            .total-banner .breakdown { gap: 15px; }
+            .budget-table { font-size: 0.9rem; }
+            .budget-table th, .budget-table td { padding: 10px 12px; }
         }
     </style>
 </head>
@@ -71,86 +75,203 @@
     </nav>
     <div class="page-header">
         <h1>💰 預算規劃 Budget</h1>
-        <p>4人15天14夜費用估算（單位：USD）</p>
+        <p>4人 15天 費用總覽（單位：TWD 台幣）</p>
     </div>
     <div class="container">
-        <div class="budget-grid">
-            <div class="budget-card economy">
-                <div class="card-header">
-                    <h3>💚 經濟型</h3>
-                    <p>Budget-Friendly</p>
-                    <div class="total">~$10,500</div>
-                    <p>約 NT$336,000</p>
+
+        <!-- Total Banner -->
+        <div class="total-banner">
+            <div class="label">預估旅行總費用（4人）</div>
+            <div class="amount">≈ TWD 363,000 - 445,000</div>
+            <div class="sub">每人約 NT$90,800 - $111,300</div>
+            <div class="breakdown">
+                <div class="breakdown-item">
+                    <div class="num">91,146</div>
+                    <div class="desc">✅ 機票 3人（已購）</div>
                 </div>
-                <div class="card-content">
-                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$3,600</span></div>
-                    <div class="budget-item"><span class="label">🏨 住宿（14晚）</span><span class="amount">$2,800</span></div>
-                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,200</span></div>
-                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$1,400</span></div>
-                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$300</span></div>
-                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$1,200</span></div>
+                <div class="breakdown-item">
+                    <div class="num">~30,000</div>
+                    <div class="desc">⏳ 機票 第4人</div>
                 </div>
-            </div>
-            <div class="budget-card standard">
-                <div class="card-header">
-                    <h3>💙 標準型</h3>
-                    <p>Standard</p>
-                    <div class="total">~$14,000</div>
-                    <p>約 NT$448,000</p>
+                <div class="breakdown-item">
+                    <div class="num">126,264</div>
+                    <div class="desc">✅ 住宿 13晚</div>
                 </div>
-                <div class="card-content">
-                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$4,600</span></div>
-                    <div class="budget-item"><span class="label">🏨 住宿（14晚）</span><span class="amount">$3,700</span></div>
-                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,500</span></div>
-                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$1,800</span></div>
-                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$500</span></div>
-                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$1,900</span></div>
+                <div class="breakdown-item">
+                    <div class="num">~28,000</div>
+                    <div class="desc">⏳ 租車 10天</div>
                 </div>
-            </div>
-            <div class="budget-card comfort">
-                <div class="card-header">
-                    <h3>💜 舒適型</h3>
-                    <p>Comfortable</p>
-                    <div class="total">~$17,500</div>
-                    <p>約 NT$560,000</p>
-                </div>
-                <div class="card-content">
-                    <div class="budget-item"><span class="label">✈️ 機票（4人）</span><span class="amount">$5,500</span></div>
-                    <div class="budget-item"><span class="label">🏨 住宿（14晚）</span><span class="amount">$5,200</span></div>
-                    <div class="budget-item"><span class="label">🚗 租車 + 油費</span><span class="amount">$1,800</span></div>
-                    <div class="budget-item"><span class="label">🍽️ 餐飲</span><span class="amount">$2,200</span></div>
-                    <div class="budget-item"><span class="label">🎫 門票活動</span><span class="amount">$700</span></div>
-                    <div class="budget-item"><span class="label">🛍️ 雜費購物</span><span class="amount">$2,100</span></div>
+                <div class="breakdown-item">
+                    <div class="num">87,000-158,000</div>
+                    <div class="desc">📝 其他預估</div>
                 </div>
             </div>
         </div>
-        <h2 class="section-title">📊 費用明細</h2>
-        <table class="detail-table">
-            <tr><th>項目</th><th>說明</th><th>經濟型</th><th>標準型</th><th>舒適型</th></tr>
-            <tr><td>國際機票</td><td>台北-舊金山來回×4（NT$28,342/人）</td><td>$3,600</td><td>$3,600</td><td>$4,500</td></tr>
-            <tr><td>國內機票</td><td>SFO-SLC 來回×4（含在聯程票內）</td><td>含上方</td><td>含上方</td><td>含上方</td></tr>
-            <tr><td>住宿</td><td>14晚（含稅）</td><td>$2,800</td><td>$3,700</td><td>$5,200</td></tr>
-            <tr><td>租車</td><td>9天（含保險）</td><td>$810</td><td>$990</td><td>$1,170</td></tr>
-            <tr><td>油費</td><td>約1,200英里</td><td>$400</td><td>$500</td><td>$600</td></tr>
-            <tr><td>餐飲</td><td>15天×4人</td><td>$1,400</td><td>$1,800</td><td>$2,200</td></tr>
-            <tr><td>國家公園門票</td><td>America the Beautiful Pass</td><td>$80</td><td>$80</td><td>$80</td></tr>
-            <tr><td>其他門票活動</td><td>Cable Car、Jenny Lake 船票等</td><td>$220</td><td>$420</td><td>$620</td></tr>
-            <tr><td>購物紀念品</td><td>依個人</td><td>$800</td><td>$1,500</td><td>$1,700</td></tr>
-            <tr><td>交通雜費</td><td>Uber、停車等</td><td>$400</td><td>$400</td><td>$400</td></tr>
+
+        <!-- 已確認費用 -->
+        <h2 class="section-title">✅ 已確認費用 <span class="confirmed-badge">已訂購</span></h2>
+        <table class="budget-table">
+            <tr><th>項目</th><th>說明</th><th>費用（TWD）</th></tr>
+            <tr>
+                <td>✈️ 機票（3人）</td>
+                <td>聯合航空 TPE↔SFO↔SLC × 3人<br><span class="note">每人 TWD 30,382</span></td>
+                <td>91,146</td>
+            </tr>
+            <tr>
+                <td>🏨 鹽湖城凱悅（2晚）</td>
+                <td>9/26-28 機場附近<br><span class="note">US$367.35｜有免費機場接駁車</span></td>
+                <td>11,695</td>
+            </tr>
+            <tr>
+                <td>🏠 西黃石 會所酒店（6晚）</td>
+                <td>9/28-10/4<br><span class="note">US$2,113.61｜離黃石西門 1 英里</span></td>
+                <td>67,287</td>
+            </tr>
+            <tr>
+                <td>🏨 傑克遜 49年代套房（2晚）</td>
+                <td>10/4-6<br><span class="note">US$592.54｜鄰近 Town Square</span></td>
+                <td>18,864</td>
+            </tr>
+            <tr>
+                <td>🏨 鹽湖城凱悅（1晚）</td>
+                <td>10/6-7 回程前一晚<br><span class="note">US$183.68</span></td>
+                <td>5,847</td>
+            </tr>
+            <tr>
+                <td>🏨 Riu Plaza Fisherman's Wharf（2晚）</td>
+                <td>10/7-9 漁人碼頭</td>
+                <td>22,571</td>
+            </tr>
+            <tr class="subtotal">
+                <td>已確認小計</td>
+                <td></td>
+                <td>217,410</td>
+            </tr>
         </table>
+
+        <!-- 待確認費用 -->
+        <h2 class="section-title">⏳ 待購項目 <span class="pending-badge">待補購</span></h2>
+        <table class="budget-table">
+            <tr><th>項目</th><th>說明</th><th>預估（TWD）</th></tr>
+            <tr>
+                <td>✈️ 第 4 人機票</td>
+                <td>聯合航空 TPE↔SFO↔SLC × 1人<br><span class="note">預估與其他 3 人相近價格</span></td>
+                <td>~30,000</td>
+            </tr>
+            <tr>
+                <td>🚗 租車 SUV</td>
+                <td>10天 9/27-10/6 SLC 機場取還<br><span class="note">Sixt Toyota RAV4 參考價 TWD 28,377</span></td>
+                <td>~28,000</td>
+            </tr>
+        </table>
+
+        <!-- 預估費用 -->
+        <h2 class="section-title">📝 預估費用 <span class="estimated-badge">待確認</span></h2>
+        <table class="budget-table">
+            <tr><th>項目</th><th>說明</th><th>預估（TWD）</th></tr>
+            <tr>
+                <td>⛽ 油費</td>
+                <td>約 1,200 英里<br><span class="note">SLC↔西黃石來回 + 園區內</span></td>
+                <td>11,000 - 16,000</td>
+            </tr>
+            <tr>
+                <td>🍽️ 餐飲</td>
+                <td>15 天 × 4 人<br><span class="note">小木屋自炊為主，偶爾外食</span></td>
+                <td>38,000 - 58,000</td>
+            </tr>
+            <tr>
+                <td>🎫 門票</td>
+                <td>America the Beautiful Pass<br><span class="note">一車通用，含黃石+大提頓</span></td>
+                <td>2,600</td>
+            </tr>
+            <tr>
+                <td>🚕 交通雜費</td>
+                <td>Uber（舊金山+鹽湖城接駁）<br><span class="note">金門大橋、機場接送等</span></td>
+                <td>9,600 - 16,000</td>
+            </tr>
+            <tr>
+                <td>🛒 日用品採買</td>
+                <td>Costco/Walmart 食材、水、零食<br><span class="note">Day 2 鹽湖城採買</span></td>
+                <td>6,400 - 9,600</td>
+            </tr>
+            <tr>
+                <td>🛍️ 購物</td>
+                <td>REI 裝備、聯合廣場、紀念品<br><span class="note">依個人需求</span></td>
+                <td>16,000 - 48,000</td>
+            </tr>
+            <tr>
+                <td>📱 網路</td>
+                <td>美國 SIM 卡或 eSIM × 4<br><span class="note">15 天上網</span></td>
+                <td>2,600 - 4,800</td>
+            </tr>
+            <tr>
+                <td>💵 小費</td>
+                <td>餐廳、行李員、房務<br><span class="note">美國小費文化</span></td>
+                <td>4,800 - 8,000</td>
+            </tr>
+            <tr>
+                <td>🆘 旅遊保險</td>
+                <td>4 人旅平險<br><span class="note">建議出發前購買</span></td>
+                <td>3,200 - 6,400</td>
+            </tr>
+            <tr>
+                <td>🛂 ESTA 電子簽證</td>
+                <td>美國旅行授權 × 4人<br><span class="note">US$21/人｜效期 2 年｜出發前 72 小時申請</span></td>
+                <td>2,688</td>
+            </tr>
+            <tr class="subtotal">
+                <td>預估小計</td>
+                <td></td>
+                <td>96,900 - 169,500</td>
+            </tr>
+        </table>
+
+        <!-- 總計 -->
+        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-top: 30px;">
+            <h3 style="color: var(--primary-color); margin-bottom: 20px;">📊 費用總計</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="background: var(--primary-color); color: white;">
+                    <th style="padding: 14px 18px; text-align: left;">類別</th>
+                    <th style="padding: 14px 18px; text-align: right;">金額（TWD）</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 14px 18px;">✅ 已確認（3人機票+住宿）</td>
+                    <td style="padding: 14px 18px; text-align: right; font-weight: 600;">217,410</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
+                    <td style="padding: 14px 18px;">⏳ 待購（第4人機票+租車）</td>
+                    <td style="padding: 14px 18px; text-align: right; font-weight: 600;">~58,000</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 14px 18px;">📝 預估費用</td>
+                    <td style="padding: 14px 18px; text-align: right; font-weight: 600;">96,900 - 169,500</td>
+                </tr>
+                <tr style="background: var(--secondary-color);">
+                    <td style="padding: 14px 18px; font-weight: 700; font-size: 1.1rem;">旅行總費用（4人）</td>
+                    <td style="padding: 14px 18px; text-align: right; font-weight: 700; font-size: 1.1rem;">≈ 372,700 - 445,300</td>
+                </tr>
+                <tr style="background: #fff8e1;">
+                    <td style="padding: 14px 18px;">每人平均</td>
+                    <td style="padding: 14px 18px; text-align: right; font-weight: 600;">≈ 93,200 - 111,300</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 省錢小技巧 -->
         <div class="tips-section">
             <h3>💡 省錢小技巧</h3>
             <ul>
-                <li><strong>機票：</strong>目前查到 NT$28,342/人，4人約 NT$113,368（≈ $3,550 USD）</li>
-                <li><strong>住宿：</strong>選擇有廚房的住宿，自己煮飯可省大筆餐費</li>
-                <li><strong>餐飲：</strong>在 Costco/Walmart 採買食材，自備午餐進公園</li>
-                <li><strong>租車：</strong>比較各租車網站，使用信用卡附加保險</li>
-                <li><strong>國家公園：</strong>購買 America the Beautiful Pass（$80），全年無限次入園</li>
-                <li><strong>鹽湖城購物：</strong>猶他州消費稅 7.25%，比加州（10%+）便宜，裝備盡量在鹽湖城買</li>
+                <li><strong>自炊為主：</strong>西黃石小木屋 6 晚自己煮，可省下大量餐費</li>
+                <li><strong>Costco 採買：</strong>Day 2 在鹽湖城大量採購食材和日用品</li>
+                <li><strong>鹽湖城買裝備：</strong>猶他州消費稅 7.25%，比加州（10%+）便宜</li>
+                <li><strong>租車比價：</strong>建議比較 Sixt、Hertz、Enterprise，選含保險的方案</li>
+                <li><strong>America the Beautiful Pass：</strong>US$80 一車通用，比單買黃石+大提頓門票便宜</li>
+                <li><strong>舊金山不租車：</strong>用 Uber 和步行，免停車費和車窗被砸風險</li>
+                <li><strong>自備午餐進公園：</strong>黃石園區內餐廳貴且選擇少</li>
             </ul>
         </div>
     </div>
-    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/9 | 15天</p></footer>
     <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
 </body>
 </html>
