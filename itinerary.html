@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>每日行程 | 2026 黃石公園 & 舊金山</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <style>
         :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+        body { font-family: 'Noto Sans TC', 'Noto Color Emoji', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
         nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
@@ -37,6 +37,12 @@
         .highlight-box { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 20px; border-radius: 10px; margin: 20px 0; }
         .highlight-box h4 { color: var(--primary-color); margin-bottom: 10px; }
         .highlight-box ul { margin-left: 20px; }
+        .shopping-list { background: white; border: 2px solid var(--secondary-color); border-radius: 12px; padding: 20px; margin: 15px 0; }
+        .shopping-list h4 { color: var(--primary-color); margin-bottom: 12px; font-size: 1.1rem; }
+        .shopping-category { margin-bottom: 15px; }
+        .shopping-category h5 { color: var(--accent-color); font-size: 0.95rem; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px dashed #ccc; }
+        .shopping-category ul { margin-left: 18px; font-size: 0.9rem; color: #555; }
+        .shopping-category li { margin-bottom: 3px; }
         .driving-info { background: #e3f2fd; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .driving-info .icon { font-size: 2rem; }
         .driving-info .distance { font-weight: 600; color: var(--primary-color); }
@@ -77,55 +83,24 @@
     <div class="container">
         <!-- 航班總覽 -->
         <div class="phase">
-            <div class="phase-title">
-                <span class="emoji">✈️</span>
-                <div><h2>航班總覽</h2><p>United Airlines 聯合航空</p></div>
-            </div>
+            <div class="phase-title"><span class="emoji">✈️</span><div><h2>航班總覽</h2><p>United Airlines 聯合航空</p></div></div>
             <div class="day-card">
                 <div class="day-header"><h3>所有航班資訊</h3></div>
                 <div class="day-content">
                     <table style="width:100%; border-collapse: collapse;">
-                        <tr style="background: #1976d2; color: white;">
-                            <th style="padding: 12px; text-align: left;">航段</th>
-                            <th style="padding: 12px;">日期</th>
-                            <th style="padding: 12px;">航班</th>
-                            <th style="padding: 12px;">時間</th>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 12px;">去程 1</td>
-                            <td style="padding: 12px; text-align: center;">9/26（六）</td>
-                            <td style="padding: 12px; text-align: center;">UA852</td>
-                            <td style="padding: 12px;">TPE 14:30 → SFO 11:15</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
-                            <td style="padding: 12px;">去程 2</td>
-                            <td style="padding: 12px; text-align: center;">9/26（六）</td>
-                            <td style="padding: 12px; text-align: center;">UA4805（天西航空）</td>
-                            <td style="padding: 12px;">SFO 16:15 → SLC 19:15</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 12px;">回程 1</td>
-                            <td style="padding: 12px; text-align: center;">10/7（三）</td>
-                            <td style="padding: 12px; text-align: center;">UA5970（天西航空）</td>
-                            <td style="padding: 12px;">SLC 16:12 → SFO 17:48</td>
-                        </tr>
-                        <tr style="background: #e3f2fd;">
-                            <td style="padding: 12px;">回程 2</td>
-                            <td style="padding: 12px; text-align: center;">10/9（五）</td>
-                            <td style="padding: 12px; text-align: center;">UA871</td>
-                            <td style="padding: 12px;">SFO 14:25 → TPE 18:45+1</td>
-                        </tr>
+                        <tr style="background: #1976d2; color: white;"><th style="padding: 12px; text-align: left;">航段</th><th style="padding: 12px;">日期</th><th style="padding: 12px;">航班</th><th style="padding: 12px;">時間</th></tr>
+                        <tr style="border-bottom: 1px solid #eee;"><td style="padding: 12px;">去程 1</td><td style="padding: 12px; text-align: center;">9/26（六）</td><td style="padding: 12px; text-align: center;">UA852</td><td style="padding: 12px;">TPE 14:30 → SFO 11:15</td></tr>
+                        <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;"><td style="padding: 12px;">去程 2</td><td style="padding: 12px; text-align: center;">9/26（六）</td><td style="padding: 12px; text-align: center;">UA4805（天西航空）</td><td style="padding: 12px;">SFO 16:15 → SLC 19:15</td></tr>
+                        <tr style="border-bottom: 1px solid #eee;"><td style="padding: 12px;">回程 1</td><td style="padding: 12px; text-align: center;">10/7（三）</td><td style="padding: 12px; text-align: center;">UA5970（天西航空）</td><td style="padding: 12px;">SLC 16:12 → SFO 17:48</td></tr>
+                        <tr style="background: #e3f2fd;"><td style="padding: 12px;">回程 2</td><td style="padding: 12px; text-align: center;">10/9（五）</td><td style="padding: 12px; text-align: center;">UA871</td><td style="padding: 12px;">SFO 14:25 → TPE 18:45+1</td></tr>
                     </table>
                 </div>
             </div>
         </div>
+
         <!-- 第一階段：鹽湖城 -->
         <div class="phase">
-            <div class="phase-title">
-                <span class="emoji">🏙️</span>
-                <div><h2>第一階段：抵達鹽湖城</h2><p>Arrival & Shopping in Salt Lake City</p></div>
-                <span class="dates">Day 1-2 | 9/26-27</span>
-            </div>
+            <div class="phase-title"><span class="emoji">🏙️</span><div><h2>第一階段：抵達鹽湖城</h2><p>Arrival & Shopping in Salt Lake City</p></div><span class="dates">Day 1-2 | 9/26-27</span></div>
             <div class="day-card">
                 <div class="day-header"><h3>Day 1 - 抵達鹽湖城</h3><span>9/26（週五）</span></div>
                 <div class="day-content">
@@ -151,19 +126,110 @@
                     <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>機場取車（建議 SUV）</h4><p>搭旅館接駁車到機場租車中心取車</p><div class="tips">💡 第二天取車省一天租車費！取車後直接開去購物</div></div></div>
                     <div class="schedule-item"><span class="schedule-time">10:00</span><div class="schedule-activity"><h4>REI / The North Face Outlet 購物</h4><p>採購戶外裝備：防水外套、登山鞋、保暖配件</p><div class="tips">💡 Outlets at Traverse Mountain 有 North Face Outlet，在往黃石方向順路</div></div></div>
                     <div class="schedule-item"><span class="schedule-time">13:00</span><div class="schedule-activity"><h4>午餐</h4></div></div>
-                    <div class="schedule-item"><span class="schedule-time">14:00</span><div class="schedule-activity"><h4>Costco / Walmart 採買</h4><p>食物、飲料、零食、瓶裝水、泡麵、水果、三明治材料</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:00</span><div class="schedule-activity"><h4>Costco / Walmart 採買</h4><p>為黃石 6 天自炊準備所有食材和日用品</p></div></div>
+
+                    <!-- 採買清單 -->
+                    <div class="shopping-list">
+                        <h4>📋 Day 2 採買清單（Costco / Walmart）</h4>
+                        <div class="shopping-category">
+                            <h5>🥩 肉類 & 蛋白質</h5>
+                            <ul>
+                                <li>牛排（Costco 大包裝，分裝冷凍）</li>
+                                <li>雞胸肉 / 雞腿</li>
+                                <li>培根 Bacon</li>
+                                <li>香腸 Sausage</li>
+                                <li>雞蛋（1-2 打）</li>
+                                <li>火腿片 / 火雞肉片（三明治用）</li>
+                            </ul>
+                        </div>
+                        <div class="shopping-category">
+                            <h5>🥦 蔬果</h5>
+                            <ul>
+                                <li>生菜沙拉包（即食）</li>
+                                <li>小番茄、小黃瓜</li>
+                                <li>洋蔥、大蒜、馬鈴薯</li>
+                                <li>香蕉、蘋果、橘子（車上零食）</li>
+                                <li>酪梨（三明治 / 沙拉用）</li>
+                            </ul>
+                        </div>
+                        <div class="shopping-category">
+                            <h5>🍞 主食 & 碳水</h5>
+                            <ul>
+                                <li>吐司麵包（三明治用）</li>
+                                <li>義大利麵 Pasta + 紅醬</li>
+                                <li>白米（小包裝）或微波白飯</li>
+                                <li>泡麵 / 杯麵（備用糧食）</li>
+                                <li>Tortilla 墨西哥薄餅</li>
+                            </ul>
+                        </div>
+                        <div class="shopping-category">
+                            <h5>🥫 調味料 & 醬料</h5>
+                            <ul>
+                                <li>鹽、胡椒、食用油</li>
+                                <li>醬油（小瓶）</li>
+                                <li>番茄醬 Ketchup、美乃滋</li>
+                                <li>花生醬（高熱量，登山好夥伴）</li>
+                                <li>蜂蜜或果醬</li>
+                            </ul>
+                        </div>
+                        <div class="shopping-category">
+                            <h5>🥤 飲料 & 水</h5>
+                            <ul>
+                                <li>瓶裝水 × 2 箱（園區內買很貴）</li>
+                                <li>運動飲料 Gatorade</li>
+                                <li>咖啡（即溶或冷泡包）</li>
+                                <li>茶包</li>
+                                <li>牛奶（小瓶）</li>
+                                <li>果汁</li>
+                            </ul>
+                        </div>
+                        <div class="shopping-category">
+                            <h5>🍫 零食 & 能量補給</h5>
+                            <ul>
+                                <li>能量棒 Granola Bar / Clif Bar</li>
+                                <li>堅果 Trail Mix</li>
+                                <li>巧克力</li>
+                                <li>餅乾、洋芋片</li>
+                                <li>果乾（藍莓、蔓越莓）</li>
+                                <li>口香糖（開車提神）</li>
+                            </ul>
+                        </div>
+                        <div class="shopping-category">
+                            <h5>🧻 日用品</h5>
+                            <ul>
+                                <li>廚房紙巾 Paper Towel</li>
+                                <li>保鮮膜 / 夾鏈袋 Ziploc</li>
+                                <li>垃圾袋</li>
+                                <li>洗碗精（小瓶）</li>
+                                <li>海綿</li>
+                                <li>鋁箔紙（烤肉用）</li>
+                                <li>濕紙巾</li>
+                            </ul>
+                        </div>
+                        <div class="shopping-category">
+                            <h5>🏔️ 戶外 & 防護</h5>
+                            <ul>
+                                <li>防曬乳 SPF50+</li>
+                                <li>護唇膏（高海拔乾燥）</li>
+                                <li>防熊噴霧 Bear Spray（REI 或 Walmart 購買）</li>
+                                <li>暖暖包（10月早晚很冷）</li>
+                                <li>OK 繃、基本藥品</li>
+                            </ul>
+                        </div>
+                        <div class="tips" style="margin-top: 15px;">
+                            💡 <strong>採買提醒：</strong>Costco 需要會員卡，沒有的話可以去 Walmart。黃石園區內物資選擇少且貴，在鹽湖城一次買齊最省！肉類可以分裝放保冷袋，路上買一袋冰塊保鮮。
+                        </div>
+                    </div>
+
                     <div class="schedule-item"><span class="schedule-time">16:00</span><div class="schedule-activity"><h4>Temple Square 鹽湖城聖殿廣場</h4><p>鹽湖城最著名地標，免費參觀</p></div></div>
                     <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>晚餐 & 整理行李</h4><p>回旅館打包明天出發的物資</p></div></div>
                 </div>
             </div>
         </div>
+
         <!-- 第二階段：前往黃石 -->
         <div class="phase">
-            <div class="phase-title">
-                <span class="emoji">🚗</span>
-                <div><h2>第二階段：前往黃石</h2><p>Drive to Yellowstone</p></div>
-                <span class="dates">Day 3 | 9/28</span>
-            </div>
+            <div class="phase-title"><span class="emoji">🚗</span><div><h2>第二階段：前往黃石</h2><p>Drive to Yellowstone</p></div><span class="dates">Day 3 | 9/28</span></div>
             <div class="day-card">
                 <div class="day-header"><h3>Day 3 - 鹽湖城 → 西黃石</h3><span>9/28（週日）</span></div>
                 <div class="day-content">
@@ -175,13 +241,10 @@
                 </div>
             </div>
         </div>
+
         <!-- 第三階段：黃石 -->
         <div class="phase">
-            <div class="phase-title">
-                <span class="emoji">🦬</span>
-                <div><h2>第三階段：黃石國家公園</h2><p>Yellowstone National Park</p></div>
-                <span class="dates">Day 4-8 | 9/29 - 10/3</span>
-            </div>
+            <div class="phase-title"><span class="emoji">🦬</span><div><h2>第三階段：黃石國家公園</h2><p>Yellowstone National Park</p></div><span class="dates">Day 4-8 | 9/29 - 10/3</span></div>
             <div class="day-card">
                 <div class="day-header"><h3>Day 4 - 間歇泉區</h3><span>9/29（週一）</span></div>
                 <div class="day-content">
@@ -232,13 +295,10 @@
                 </div>
             </div>
         </div>
+
         <!-- 第四階段：大提頓 -->
         <div class="phase">
-            <div class="phase-title">
-                <span class="emoji">🏔️</span>
-                <div><h2>第四階段：大提頓國家公園</h2><p>Grand Teton National Park</p></div>
-                <span class="dates">Day 9-10 | 10/4-5</span>
-            </div>
+            <div class="phase-title"><span class="emoji">🏔️</span><div><h2>第四階段：大提頓國家公園</h2><p>Grand Teton National Park</p></div><span class="dates">Day 9-10 | 10/4-5</span></div>
             <div class="day-card">
                 <div class="day-header"><h3>Day 9 - 大提頓北段（日出 Oxbow Bend）</h3><span>10/4（週六）</span></div>
                 <div class="day-content">
@@ -260,13 +320,10 @@
                 </div>
             </div>
         </div>
+
         <!-- 第五階段：返回鹽湖城 -->
         <div class="phase">
-            <div class="phase-title">
-                <span class="emoji">🚗</span>
-                <div><h2>第五階段：返回鹽湖城</h2><p>Return to Salt Lake City</p></div>
-                <span class="dates">Day 11 | 10/6</span>
-            </div>
+            <div class="phase-title"><span class="emoji">🚗</span><div><h2>第五階段：返回鹽湖城</h2><p>Return to Salt Lake City</p></div><span class="dates">Day 11 | 10/6</span></div>
             <div class="day-card">
                 <div class="day-header"><h3>Day 11 - 傑克遜 → 鹽湖城</h3><span>10/6（週一）</span></div>
                 <div class="day-content">
@@ -277,13 +334,10 @@
                 </div>
             </div>
         </div>
+
         <!-- 第六階段：舊金山 -->
         <div class="phase">
-            <div class="phase-title">
-                <span class="emoji">🌉</span>
-                <div><h2>第六階段：舊金山探索</h2><p>San Francisco</p></div>
-                <span class="dates">Day 12-14 | 10/7-9</span>
-            </div>
+            <div class="phase-title"><span class="emoji">🌉</span><div><h2>第六階段：舊金山探索</h2><p>San Francisco</p></div><span class="dates">Day 12-14 | 10/7-9</span></div>
             <div class="day-card">
                 <div class="day-header"><h3>Day 12 - 鹽湖城半日 & 飛往舊金山</h3><span>10/7（週三）</span></div>
                 <div class="day-content">
