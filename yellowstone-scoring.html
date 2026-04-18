@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黃石景點分級建議 | 2026 黃石公園 & 舊金山家庭旅遊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+<style>
+:root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; --grade-a: #27ae60; --grade-b: #e67e22; --grade-c: #c0392b; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans TC', 'Noto Color Emoji', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
+nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
+.nav-menu { display: flex; list-style: none; gap: 5px; flex-wrap: wrap; }
+.nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; font-size: 0.95rem; }
+.nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
+.hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
+.hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; transition: 0.3s; }
+
+.page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); color: white; padding: 60px 20px; text-align: center; }
+.page-header h1 { font-size: 2.8rem; margin-bottom: 15px; }
+.page-header p { font-size: 1.15rem; opacity: 0.95; max-width: 850px; margin: 0 auto; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+
+.grading-legend { background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.grading-legend h2 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.6rem; }
+.legend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.legend-item { padding: 20px; border-radius: 12px; border-left: 6px solid; }
+.legend-item.grade-a { background: #e8f5e9; border-left-color: var(--grade-a); }
+.legend-item.grade-b { background: #fff3cd; border-left-color: var(--grade-b); }
+.legend-item.grade-c { background: #fdecea; border-left-color: var(--grade-c); }
+.legend-item h3 { margin-bottom: 8px; font-size: 1.2rem; }
+.legend-item.grade-a h3 { color: var(--grade-a); }
+.legend-item.grade-b h3 { color: var(--grade-b); }
+.legend-item.grade-c h3 { color: var(--grade-c); }
+.legend-item p { font-size: 0.95rem; }
+
+.criteria-box { background: #f0f7f0; border-left: 5px solid var(--primary-color); padding: 20px 25px; border-radius: 10px; margin-bottom: 30px; }
+.criteria-box h3 { color: var(--primary-color); margin-bottom: 12px; }
+.criteria-box ul { padding-left: 20px; font-size: 0.95rem; }
+.criteria-box ul li { margin-bottom: 6px; }
+
+.filter-bar { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; align-items: center; }
+.filter-btn { background: white; border: 2px solid var(--primary-color); color: var(--primary-color); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: 0.9rem; transition: all 0.2s; font-weight: 500; }
+.filter-btn.active { background: var(--primary-color); color: white; }
+.filter-btn:hover { background: var(--secondary-color); color: var(--primary-color); border-color: var(--secondary-color); }
+
+.spots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+.spot-card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 5px solid; position: relative; transition: transform 0.2s; }
+.spot-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+.spot-card.grade-a { border-top-color: var(--grade-a); }
+.spot-card.grade-b { border-top-color: var(--grade-b); }
+.spot-card.grade-c { border-top-color: var(--grade-c); }
+.grade-badge { position: absolute; top: -15px; right: 20px; background: var(--grade-a); color: white; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.spot-card.grade-a .grade-badge { background: var(--grade-a); }
+.spot-card.grade-b .grade-badge { background: var(--grade-b); }
+.spot-card.grade-c .grade-badge { background: var(--grade-c); }
+.spot-card h3 { color: var(--primary-color); font-size: 1.25rem; margin-bottom: 5px; }
+.spot-card .english-name { color: #888; font-size: 0.85rem; margin-bottom: 15px; font-style: italic; }
+.spot-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; font-size: 0.85rem; }
+.meta-item { background: #fafaf5; padding: 8px 10px; border-radius: 8px; }
+.meta-item .label { color: #888; font-size: 0.75rem; margin-bottom: 2px; }
+.meta-item .value { font-weight: 600; color: var(--primary-color); }
+.spot-description { font-size: 0.95rem; margin-bottom: 15px; color: #555; }
+.spot-notes { background: #fff9e6; padding: 12px 15px; border-radius: 10px; font-size: 0.9rem; border-left: 3px solid var(--secondary-color); }
+.spot-notes strong { color: var(--accent-color); }
+
+.difficulty-dots { display: inline-flex; gap: 3px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; }
+.dot.filled { background: var(--primary-color); }
+.dot.filled.hard { background: var(--grade-c); }
+
+.summary-box { background: white; border-radius: 20px; padding: 35px; margin-top: 40px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.summary-box h2 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.6rem; }
+.sample-schedule { background: #fafaf5; padding: 20px; border-radius: 12px; margin-top: 15px; }
+.sample-schedule h4 { color: var(--primary-color); margin-bottom: 10px; }
+.sample-schedule table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.sample-schedule th, .sample-schedule td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; font-size: 0.92rem; }
+.sample-schedule th { background: var(--primary-color); color: white; }
+
+footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 40px 20px; }
+
+@media (max-width: 768px) {
+.hamburger { display: flex; }
+.nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
+.nav-menu.active { display: flex; }
+.page-header h1 { font-size: 2rem; }
+.spots-grid { grid-template-columns: 1fr; }
+}
+
+@media print {
+nav, .hamburger, footer, .filter-bar { display: none !important; }
+.spot-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+body { background: white; }
+}
+</style>
+</head>
+<body>
+<nav>
+<div class="nav-container">
+<a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+<div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+<ul class="nav-menu" id="navMenu">
+<li><a href="index.html">首頁</a></li>
+<li><a href="itinerary.html">每日行程</a></li>
+<li><a href="accommodation.html">住宿資訊</a></li>
+<li><a href="budget.html">預算規劃</a></li>
+<li><a href="packing.html">行李清單</a></li>
+<li><a href="tips.html">旅遊須知</a></li>
+<li><a href="health.html">健康注意</a></li>
+<li><a href="yellowstone-scoring.html" class="active">景點分級</a></li>
+<li><a href="map.html">互動地圖</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="page-header">
+<h1>🎯 黃石景點分級建議</h1>
+<p>針對有心血管慢性病長輩設計的景點評分。依「體能需求、海拔、步道型態、地熱強度」四維度，將景點分為 A/B/C 三級，讓現場能彈性調整。</p>
+</section>
+
+<div class="container">
+
+<!-- 評分標準說明 -->
+<div class="grading-legend">
+<h2>📊 分級說明</h2>
+<div class="legend-grid">
+<div class="legend-item grade-a">
+<h3>🟢 A 級｜必去</h3>
+<p>長輩友善，強烈推薦。木棧道或鋪裝步道、短距離、景觀回報高。</p>
+</div>
+<div class="legend-item grade-b">
+<h3>🟡 B 級｜視狀況</h3>
+<p>有一定挑戰但可行。當日身體狀況好再去；不舒服就跳過。</p>
+</div>
+<div class="legend-item grade-c">
+<h3>🔴 C 級｜建議跳過</h3>
+<p>長距離、陡坡、高海拔或體能要求高。對心血管患者風險明顯。</p>
+</div>
+</div>
+</div>
+
+<div class="criteria-box">
+<h3>🔍 評分四維度</h3>
+<ul>
+<li><strong>🫁 體能需求</strong>：步行距離、坡度、是否有階梯</li>
+<li><strong>⛰️ 海拔高度</strong>：2,200 m 以下為低風險，2,400 m 以上需謹慎</li>
+<li><strong>🛤️ 步道型態</strong>：木棧道/鋪裝 > 碎石平坦 > 土徑陡坡</li>
+<li><strong>♨️ 地熱強度</strong>：硫化氫濃度、蒸氣暴露時間</li>
+</ul>
+</div>
+
+<!-- 篩選 -->
+<div class="filter-bar">
+<span style="font-weight: 600; color: var(--primary-color);">🔍 篩選：</span>
+<button class="filter-btn active" onclick="filterGrade('all')">全部</button>
+<button class="filter-btn" onclick="filterGrade('a')">🟢 A 級必去</button>
+<button class="filter-btn" onclick="filterGrade('b')">🟡 B 級視狀況</button>
+<button class="filter-btn" onclick="filterGrade('c')">🔴 C 級跳過</button>
+</div>
+
+<!-- 景點卡片 -->
+<div class="spots-grid" id="spotsGrid">
+
+<!-- A 級 -->
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>老忠實間歇泉</h3>
+<div class="english-name">Old Faithful Geyser</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,225 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">無障礙木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.5 km 內</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">每 60–90 分鐘噴發一次，經典必看。木棧道平坦，停車場到觀景區只需幾分鐘。</div>
+<div class="spot-notes">🕐 <strong>訪客中心可查下一次噴發時間</strong>。建議坐在木椅上等待，旁邊有洗手間、餐廳、醫療診所。</div>
+</div>
+
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>大稜鏡溫泉（停車場觀景）</h3>
+<div class="english-name">Grand Prismatic Spring (from parking)</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,215 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.6 km 來回</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">黃石最美的彩色溫泉，木棧道環繞一圈。從停車場直接進入，平坦好走。</div>
+<div class="spot-notes">⚠️ <strong>蒸氣較大時能見度降低</strong>，且含硫化氫。若身體不適盡早離開。</div>
+</div>
+
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>Artist Point 黃石大峽谷觀景</h3>
+<div class="english-name">Artist Point (Grand Canyon of Yellowstone)</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,385 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">鋪裝步道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.2 km</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">黃石大瀑布與峽谷的明信片視角。停車場到觀景台極短距離，鋪裝平坦。</div>
+<div class="spot-notes">📸 <strong>最經典的大峽谷景點</strong>。清晨或傍晚光線最美。輪椅也可抵達。</div>
+</div>
+
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>Lamar Valley 野生動物觀察</h3>
+<div class="english-name">Lamar Valley Wildlife Viewing</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">1,950 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">車上觀察</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">車內</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">「美國的塞倫蓋蒂」。車內就能看到野牛群、麋鹿、郊狼，運氣好能看到狼。海拔較低、無地熱。</div>
+<div class="spot-notes">🌅 <strong>清晨 6–9 點、傍晚 5–7 點最佳</strong>。極冷，車內備暖飲、熱水袋、厚毯。</div>
+</div>
+
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>West Thumb Geyser Basin</h3>
+<div class="english-name">西拇指間歇泉盆地</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,360 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">1 km 環狀</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">湖畔的間歇泉區，溫泉與黃石湖相鄰，景色獨特。下迴圈有一段約 10% 坡度，但整體平緩。</div>
+<div class="spot-notes">💧 <strong>相對無人擠</strong>，空氣流通比老忠實區好。長輩走起來壓力小。</div>
+</div>
+
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>Mammoth Hot Springs 下層露台</h3>
+<div class="english-name">Mammoth Lower Terraces</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">1,900 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.5 km</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">石灰華梯田地形，黃石北區必看。海拔相對低，且有醫療診所（全年營運）在同區。</div>
+<div class="spot-notes">♨️ <strong>只走下層</strong>即可看到主要景觀。上層梯田需爬升，建議跳過。</div>
+</div>
+
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>Fountain Paint Pots</h3>
+<div class="english-name">噴泉油漆罐</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,195 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.8 km 環狀</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">四種地熱特徵一次看齊：間歇泉、熱泉、泥火山、噴氣孔。木棧道平坦，短距離。</div>
+<div class="spot-notes">🎨 <strong>CP 值高</strong>。單一點可看到全部類型的地熱奇觀。</div>
+</div>
+
+<div class="spot-card grade-a" data-grade="a">
+<span class="grade-badge">A 級</span>
+<h3>Hayden Valley 野生動物觀察</h3>
+<div class="english-name">海登山谷</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,370 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">車上觀察</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">車內</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">另一個野生動物熱點，靠近 Canyon Village。野牛群、灰熊、鳥類豐富。</div>
+<div class="spot-notes">🦌 <strong>秋季麋鹿求偶季可聽到鳴叫</strong>。觀景點停車即可，不需下車步行。</div>
+</div>
+
+<!-- B 級 -->
+<div class="spot-card grade-b" data-grade="b">
+<span class="grade-badge">B 級</span>
+<h3>Upper Geyser Basin 延伸木棧道</h3>
+<div class="english-name">Old Faithful 周邊延伸步道</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,225 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">2–5 km（可選）</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">從老忠實延伸到 Morning Glory Pool 的木棧道區。景點密集但累積距離可觀。</div>
+<div class="spot-notes">✂️ <strong>可走多遠走多遠</strong>，累了隨時折返。只走到 Castle Geyser（0.5 km）就停很好。</div>
+</div>
+
+<div class="spot-card grade-b" data-grade="b">
+<span class="grade-badge">B 級</span>
+<h3>Norris Geyser Basin 下圈</h3>
+<div class="english-name">諾里斯間歇泉盆地</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,290 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道 + 土徑</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">1.5 km</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">黃石最熱最酸的地熱區，有世界最高間歇泉 Steamboat。但<strong>硫化氫濃度高</strong>，長輩要注意。</div>
+<div class="spot-notes">⚠️ <strong>心血管患者謹慎</strong>。若感覺胸悶或頭痛，立刻離開。風大日較佳。</div>
+</div>
+
+<div class="spot-card grade-b" data-grade="b">
+<span class="grade-badge">B 級</span>
+<h3>Mud Volcano Area 下圈</h3>
+<div class="english-name">泥火山區下圈</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,360 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.5 km</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">冒泡泥漿、硫磺釜，地熱奇觀之一。下圈無障礙。但<strong>硫磺味最重</strong>的區域之一。</div>
+<div class="spot-notes">😷 <strong>若長輩對硫磺敏感</strong>，可直接跳過。景觀其他區都有類似呈現。</div>
+</div>
+
+<div class="spot-card grade-b" data-grade="b">
+<span class="grade-badge">B 級</span>
+<h3>Lower Falls 觀景點（Lookout Point）</h3>
+<div class="english-name">下瀑布觀景點</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,385 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">鋪裝步道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.3 km 有坡</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">從北緣看大瀑布的另一個角度。有下坡路段但不長。</div>
+<div class="spot-notes">🚶 <strong>有坡度但距離短</strong>。Artist Point（A 級）已經夠看，此點可省略。</div>
+</div>
+
+<div class="spot-card grade-b" data-grade="b">
+<span class="grade-badge">B 級</span>
+<h3>Biscuit Basin</h3>
+<div class="english-name">餅乾間歇泉盆地</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,225 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">0.9 km 環狀</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">老忠實北邊的小型地熱區，藍寶石池很美。但 2024 年曾因水蒸氣爆發部分關閉，需確認開放狀況。</div>
+<div class="spot-notes">📅 <strong>出發前查詢 NPS 官網</strong>，確認是否全面開放。</div>
+</div>
+
+<!-- C 級 -->
+<div class="spot-card grade-c" data-grade="c">
+<span class="grade-badge">C 級</span>
+<h3>Uncle Tom's Trail</h3>
+<div class="english-name">湯姆叔叔步道</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,380 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">陡梯</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">328 階來回</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled hard"></span><span class="dot filled hard"></span><span class="dot filled hard"></span><span class="dot filled hard"></span><span class="dot filled hard"></span></span></div></div>
+</div>
+<div class="spot-description">下 328 階金屬樓梯到大瀑布底。<strong>對心血管患者極度不建議</strong>。</div>
+<div class="spot-notes">🚫 <strong>絕對跳過</strong>。Artist Point 就能看到大瀑布全景。</div>
+</div>
+
+<div class="spot-card grade-c" data-grade="c">
+<span class="grade-badge">C 級</span>
+<h3>Grand Prismatic Overlook</h3>
+<div class="english-name">大稜鏡高處觀景</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,230 m（爬升 60 m）</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">土徑陡坡</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">2.4 km 來回</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">從 Fairy Falls 停車場上山可俯瞰大稜鏡全景。景色確實壯觀，但<strong>爬升 + 高海拔對心血管負擔大</strong>。</div>
+<div class="spot-notes">🚫 <strong>建議跳過</strong>。停車場木棧道看到的大稜鏡已夠震撼。</div>
+</div>
+
+<div class="spot-card grade-c" data-grade="c">
+<span class="grade-badge">C 級</span>
+<h3>Observation Point</h3>
+<div class="english-name">觀察點（老忠實上方）</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,325 m（爬升 70 m）</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">陡坡土徑</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">1.8 km 來回</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">從上方俯瞰老忠實噴發。短但陡，對有心臟病的長輩不推薦。</div>
+<div class="spot-notes">🚫 <strong>直接在木棧道觀賞老忠實即可</strong>。不用為了角度冒險。</div>
+</div>
+
+<div class="spot-card grade-c" data-grade="c">
+<span class="grade-badge">C 級</span>
+<h3>Mount Washburn</h3>
+<div class="english-name">華斯本山</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">3,118 m（爬升 450 m）</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">山徑</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">10 km 來回</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled hard"></span><span class="dot filled hard"></span><span class="dot filled hard"></span><span class="dot filled hard"></span><span class="dot filled hard"></span></span></div></div>
+</div>
+<div class="spot-description">黃石最高觀景點，海拔超過 3,000 m。<strong>心血管患者絕對避免</strong>。</div>
+<div class="spot-notes">🚫 <strong>完全排除</strong>。海拔本身就是風險。</div>
+</div>
+
+<div class="spot-card grade-c" data-grade="c">
+<span class="grade-badge">C 級</span>
+<h3>Mammoth Upper Terraces（步行）</h3>
+<div class="english-name">猛獁上層梯田步道</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">1,990 m（爬升 90 m）</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">木棧道 + 階梯</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">2 km 含爬升</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></div></div>
+</div>
+<div class="spot-description">上層梯田景觀與下層類似，但步行需爬階梯上升。</div>
+<div class="spot-notes">💡 <strong>替代方案</strong>：可改走 Upper Terrace Drive 開車繞一圈，車上就能看到。</div>
+</div>
+
+<div class="spot-card grade-c" data-grade="c">
+<span class="grade-badge">C 級</span>
+<h3>Fairy Falls</h3>
+<div class="english-name">仙女瀑布</div>
+<div class="spot-meta">
+<div class="meta-item"><div class="label">海拔</div><div class="value">2,200 m</div></div>
+<div class="meta-item"><div class="label">步道</div><div class="value">平坦土徑</div></div>
+<div class="meta-item"><div class="label">距離</div><div class="value">8.4 km 來回</div></div>
+<div class="meta-item"><div class="label">體能</div><div class="value"><span class="difficulty-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span></span></div></div>
+</div>
+<div class="spot-description">步道平坦但距離長。8 公里對高海拔下的長輩太累。</div>
+<div class="spot-notes">🚫 <strong>距離太長</strong>。瀑布景觀普通，不值得冒險。</div>
+</div>
+
+</div>
+
+<!-- 推薦行程 -->
+<div class="summary-box">
+<h2>🗓️ 推薦 5 天行程配置（對長輩友善版）</h2>
+<p>以下配置優先選 A 級，B 級視當天狀況，完全避開 C 級。每天<strong>中午回旅館休息 1 小時</strong>，避免連續在高海拔活動。</p>
+
+<div class="sample-schedule">
+<h4>🗺️ Day 4（9/29）西區｜適應日</h4>
+<table>
+<tr><th>時段</th><th>景點</th><th>等級</th></tr>
+<tr><td>上午</td><td>Old Faithful 老忠實 + Visitor Center</td><td>🟢 A</td></tr>
+<tr><td>中午</td><td>Old Faithful Inn 用餐 + 休息</td><td>—</td></tr>
+<tr><td>下午</td><td>Grand Prismatic（停車場觀景）</td><td>🟢 A</td></tr>
+<tr><td>回程前</td><td>Fountain Paint Pots（體力足才去）</td><td>🟢 A</td></tr>
+</table>
+</div>
+
+<div class="sample-schedule">
+<h4>🗺️ Day 5（9/30）大峽谷區</h4>
+<table>
+<tr><th>時段</th><th>景點</th><th>等級</th></tr>
+<tr><td>上午</td><td>Artist Point 大峽谷觀景</td><td>🟢 A</td></tr>
+<tr><td>上午後</td><td>Canyon Village 用餐休息</td><td>—</td></tr>
+<tr><td>下午</td><td>Hayden Valley 野生動物觀察</td><td>🟢 A</td></tr>
+<tr><td>傍晚</td><td>Mud Volcano 下圈（選擇性）</td><td>🟡 B</td></tr>
+</table>
+</div>
+
+<div class="sample-schedule">
+<h4>🗺️ Day 6（10/1）野生動物日｜Lamar Valley</h4>
+<table>
+<tr><th>時段</th><th>景點</th><th>等級</th></tr>
+<tr><td>清晨 6–9 點</td><td>Lamar Valley 清晨野生動物</td><td>🟢 A</td></tr>
+<tr><td>中午</td><td>回西黃石休息（很長車程，休息日）</td><td>—</td></tr>
+<tr><td>下午</td><td>西黃石鎮 + Grizzly Discovery Center</td><td>🟢 A</td></tr>
+<tr><td>傍晚</td><td>早睡恢復</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="sample-schedule">
+<h4>🗺️ Day 7（10/2）北區｜Mammoth</h4>
+<table>
+<tr><th>時段</th><th>景點</th><th>等級</th></tr>
+<tr><td>上午</td><td>Mammoth Hot Springs 下層梯田</td><td>🟢 A</td></tr>
+<tr><td>上午</td><td>Upper Terrace Drive（車上觀景）</td><td>🟢 A</td></tr>
+<tr><td>中午</td><td>Mammoth Village 用餐</td><td>—</td></tr>
+<tr><td>下午</td><td>Norris Geyser Basin 下圈（選擇性）</td><td>🟡 B</td></tr>
+</table>
+</div>
+
+<div class="sample-schedule">
+<h4>🗺️ Day 8（10/3）湖區｜West Thumb + 過渡日</h4>
+<table>
+<tr><th>時段</th><th>景點</th><th>等級</th></tr>
+<tr><td>上午</td><td>West Thumb Geyser Basin</td><td>🟢 A</td></tr>
+<tr><td>中午</td><td>Grant Village 用餐</td><td>—</td></tr>
+<tr><td>下午</td><td>Lake Yellowstone 湖邊散步休息</td><td>🟢 A</td></tr>
+<tr><td>傍晚</td><td>早點休息，隔天準備往 Jackson</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="criteria-box" style="margin-top: 25px;">
+<h3>💡 靈活調整原則</h3>
+<ul>
+<li><strong>當日血壓偏高</strong>（比基準值高 20 mmHg）→ 只做半天、取消 B 級景點</li>
+<li><strong>睡眠不好</strong> → 改為在旅館休息或只做車內觀景</li>
+<li><strong>天氣惡劣</strong>（下雪、大風）→ 當天改為西黃石鎮室內活動</li>
+<li><strong>硫磺味敏感</strong> → 跳過所有地熱區，專走 Lamar/Hayden Valley 野生動物路線</li>
+<li><strong>行程寧可少一點，不要勉強</strong>。景色永遠都在，身體健康最重要。</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+<p>🦬 2026 黃石公園 & 舊金山家庭旅遊</p>
+<p>黃石景點分級建議｜請搭配 <a href="health.html" style="color: var(--secondary-color);">健康注意事項</a> 一併參考</p>
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+function filterGrade(grade) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.querySelectorAll('.spot-card').forEach(card => {
+    if (grade === 'all' || card.dataset.grade === grade) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
