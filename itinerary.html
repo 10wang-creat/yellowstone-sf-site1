@@ -5,36 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>每日行程 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans TC', 'Noto Color Emoji', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
-        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
-        .nav-menu { display: flex; list-style: none; gap: 5px; }
-        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; font-size: 0.95rem; }
-        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
-        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
-        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
-        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         .phase { margin-bottom: 50px; }
-        .phase-title { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 20px 30px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .phase-title { background: linear-gradient(135deg, var(--primary-color) 0%, #6D93C8 100%); color: white; padding: 20px 30px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .phase-title .emoji { font-size: 2rem; }
         .phase-title .dates { margin-left: auto; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; }
         .day-card { background: white; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
         .day-header { background: var(--secondary-color); color: var(--primary-color); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .day-content { padding: 25px; }
-        .day-route { background: #f0f7f0; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .day-route { background: #E3EEE7; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .schedule-item { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px solid #eee; flex-wrap: wrap; }
         .schedule-item:last-child { border-bottom: none; }
         .schedule-time { min-width: 80px; color: var(--accent-color); font-weight: 600; }
         .schedule-activity h4 { color: var(--primary-color); margin-bottom: 5px; }
         .schedule-activity p { color: #666; font-size: 0.95rem; }
-        .schedule-activity .tips { background: #fff8e1; padding: 10px 15px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; border-left: 3px solid var(--secondary-color); }
-        .highlight-box { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .schedule-activity .tips { background: #E7EFF8; padding: 10px 15px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; border-left: 3px solid var(--secondary-color); }
+        .highlight-box { background: linear-gradient(135deg, #E3EEE7 0%, #CBE0D3 100%); padding: 20px; border-radius: 10px; margin: 20px 0; }
         .highlight-box h4 { color: var(--primary-color); margin-bottom: 10px; }
         .highlight-box ul { margin-left: 20px; }
         .shopping-list { background: white; border: 2px solid var(--secondary-color); border-radius: 12px; padding: 20px; margin: 15px 0; }
@@ -43,17 +31,13 @@
         .shopping-category h5 { color: var(--accent-color); font-size: 0.95rem; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px dashed #ccc; }
         .shopping-category ul { margin-left: 18px; font-size: 0.9rem; color: #555; }
         .shopping-category li { margin-bottom: 3px; }
-        .driving-info { background: #e3f2fd; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .driving-info { background: #E7EFF8; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .driving-info .icon { font-size: 2rem; }
         .driving-info .distance { font-weight: 600; color: var(--primary-color); }
-        .flight-info { background: #e8f4fd; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #1976d2; }
-        .flight-info h4 { color: #1565c0; margin-bottom: 10px; }
-        .flight-info .airline { display: inline-block; background: #1976d2; color: white; padding: 2px 10px; border-radius: 5px; font-size: 0.85rem; margin-bottom: 10px; }
-        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        .flight-info { background: #E7EFF8; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #6D93C8; }
+        .flight-info h4 { color: #46689A; margin-bottom: 10px; }
+        .flight-info .airline { display: inline-block; background: #6D93C8; color: white; padding: 2px 10px; border-radius: 5px; font-size: 0.85rem; margin-bottom: 10px; }
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
-            .nav-menu.active { display: flex; }
             .phase-title { flex-direction: column; text-align: center; }
             .phase-title .dates { margin-left: 0; }
             .schedule-item { flex-direction: column; gap: 5px; }
@@ -90,11 +74,11 @@
                 <div class="day-header"><h3>所有航班資訊</h3></div>
                 <div class="day-content">
                     <table style="width:100%; border-collapse: collapse;">
-                        <tr style="background: #1976d2; color: white;"><th style="padding: 12px; text-align: left;">航段</th><th style="padding: 12px;">日期</th><th style="padding: 12px;">航班</th><th style="padding: 12px;">時間</th></tr>
+                        <tr style="background: #6D93C8; color: white;"><th style="padding: 12px; text-align: left;">航段</th><th style="padding: 12px;">日期</th><th style="padding: 12px;">航班</th><th style="padding: 12px;">時間</th></tr>
                         <tr style="border-bottom: 1px solid #eee;"><td style="padding: 12px;">去程 1</td><td style="padding: 12px; text-align: center;">9/26（六）</td><td style="padding: 12px; text-align: center;">UA852</td><td style="padding: 12px;">TPE 14:30 → SFO 11:15</td></tr>
                         <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;"><td style="padding: 12px;">去程 2</td><td style="padding: 12px; text-align: center;">9/26（六）</td><td style="padding: 12px; text-align: center;">UA4805（天西航空）</td><td style="padding: 12px;">SFO 16:15 → SLC 19:15</td></tr>
                         <tr style="border-bottom: 1px solid #eee;"><td style="padding: 12px;">回程 1</td><td style="padding: 12px; text-align: center;">10/7（三）</td><td style="padding: 12px; text-align: center;">UA5970（天西航空）</td><td style="padding: 12px;">SLC 16:12 → SFO 17:48</td></tr>
-                        <tr style="background: #e3f2fd;"><td style="padding: 12px;">回程 2</td><td style="padding: 12px; text-align: center;">10/9（五）</td><td style="padding: 12px; text-align: center;">UA871</td><td style="padding: 12px;">SFO 14:25 → TPE 18:45+1</td></tr>
+                        <tr style="background: #E7EFF8;"><td style="padding: 12px;">回程 2</td><td style="padding: 12px; text-align: center;">10/9（五）</td><td style="padding: 12px; text-align: center;">UA871</td><td style="padding: 12px;">SFO 14:25 → TPE 18:45+1</td></tr>
                     </table>
                 </div>
             </div>
@@ -111,7 +95,7 @@
                         <h4>✈️ 航班資訊</h4>
                         <p><strong>UA852：</strong>TPE 14:30 → SFO 11:15（11小時45分鐘，直飛）</p>
                         <p><strong>UA4805：</strong>SFO 16:15 → SLC 19:15（2小時，天西航空承運）</p>
-                        <p style="margin-top: 10px; color: #1565c0;">💡 轉機時間：5 小時，可在 SFO 機場用餐休息、購買 SIM 卡</p>
+                        <p style="margin-top: 10px; color: #46689A;">💡 轉機時間：5 小時，可在 SFO 機場用餐休息、購買 SIM 卡</p>
                     </div>
                     <div class="schedule-item"><span class="schedule-time">19:15</span><div class="schedule-activity"><h4>抵達鹽湖城機場</h4><p>提領行李，搭旅館接駁車或 Uber 前往旅館</p><div class="tips">💡 第二天再取車，省一天租車費！機場附近旅館多有免費接駁車</div></div></div>
                     <div class="schedule-item"><span class="schedule-time">20:30</span><div class="schedule-activity"><h4>入住旅館</h4><p>機場附近旅館，早點休息調整時差</p></div></div>

@@ -1,0 +1,112 @@
+/* ============================================================
+   2026 黃石公園 & 舊金山 — 全站共用樣式
+   色盤：夏季冷柔（鼠尾草綠主色 × 藏藍骨架）
+   ============================================================ */
+:root {
+    /* 骨架色 */
+    --primary-color: #34435E;   /* 藏藍 */
+    --primary-dark: #232E42;    /* 深藏藍（漸層用） */
+    /* 主色 */
+    --secondary-color: #9DB6A8; /* 鼠尾草綠 */
+    --accent-color: #6D93C8;    /* 海藍 */
+    /* 背景與文字 */
+    --bg-light: #F0EEF3;        /* 珍珠白 */
+    --text-dark: #333;
+    --text-light: #fff;
+    /* 延伸色 */
+    --mist: #AAC9E8;            /* 霧藍 */
+    --mint: #A9D7BC;            /* 薄荷 */
+    --lavender: #BBADD8;        /* 薰衣草 */
+    --wisteria: #8981C2;        /* 紫藤 */
+    --rose: #E1A2BA;            /* 玫瑰粉 */
+    /* 淡色底 */
+    --tint-sage: #E3EEE7;
+    --tint-blue: #E7EFF8;
+    /* 功能色（分級、警示） */
+    --safe: #6FA287;
+    --warning: #CFA15E;
+    --danger: #B85C6E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Noto Sans TC', 'Noto Color Emoji', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+/* ---------- 導覽列 ---------- */
+nav {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.nav-logo {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 15px 0;
+    text-decoration: none;
+}
+.nav-menu { display: flex; list-style: none; gap: 5px; }
+.nav-menu a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 20px 15px;
+    display: block;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+.nav-menu a:hover, .nav-menu a.active {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+.hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
+.hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; transition: 0.3s; }
+
+/* ---------- 頁首橫幅 ---------- */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+.page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+/* ---------- 頁尾 ---------- */
+footer {
+    background: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+
+/* ---------- 手機版 ---------- */
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-color);
+        flex-direction: column;
+        padding: 20px;
+    }
+    .nav-menu.active { display: flex; }
+}

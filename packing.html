@@ -5,20 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>行李清單 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
-        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
-        .nav-menu { display: flex; list-style: none; gap: 5px; }
-        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; }
-        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
-        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
-        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
-        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         .weather-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
         .weather-card { background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1); }
@@ -33,14 +21,10 @@
         .checklist-item input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--primary-color); cursor: pointer; }
         .checklist-item label { flex: 1; cursor: pointer; }
         .checklist-item .note { font-size: 0.85rem; color: #888; margin-left: auto; }
-        .checklist-item.critical { background: #fff8e1; margin: 0 -25px; padding: 12px 25px; }
-        .warning-box { background: #ffebee; border-left: 4px solid #f44336; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .warning-box strong { color: #c62828; }
-        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        .checklist-item.critical { background: #E7EFF8; margin: 0 -25px; padding: 12px 25px; }
+        .warning-box { background: #F7E7EB; border-left: 4px solid #B85C6E; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .warning-box strong { color: #A64D5F; }
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
-            .nav-menu.active { display: flex; }
         }
     </style>
 </head>
@@ -98,7 +82,7 @@
                 <div class="checklist-item"><input type="checkbox" id="cloth6"><label for="cloth6">長褲 × 3-4</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cloth7"><label for="cloth7">毛帽 / 手套 / 圍巾</label><span class="note">黃石必備</span></div>
                 <div class="checklist-item"><input type="checkbox" id="cloth8"><label for="cloth8">厚襪子 × 5-6 雙</label></div>
-                <p style="margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 8px;">💡 <strong>洋蔥式穿法：</strong>黃石早晚溫差大，建議多層次穿搭方便穿脫</p>
+                <p style="margin-top: 15px; padding: 15px; background: #E3EEE7; border-radius: 8px;">💡 <strong>洋蔥式穿法：</strong>黃石早晚溫差大，建議多層次穿搭方便穿脫</p>
             </div>
         </div>
         <div class="checklist-section">

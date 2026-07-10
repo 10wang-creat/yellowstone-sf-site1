@@ -5,23 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>住宿資訊 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        :root { --primary-color: #2c5530; --secondary-color: #d4a84b; --accent-color: #8b4513; --bg-light: #f5f5dc; --text-dark: #333; --text-light: #fff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans TC', 'Noto Color Emoji', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; }
-        nav { background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a1d 100%); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .nav-logo { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; padding: 15px 0; text-decoration: none; }
-        .nav-menu { display: flex; list-style: none; gap: 5px; }
-        .nav-menu a { color: var(--text-light); text-decoration: none; padding: 20px 15px; display: block; transition: all 0.3s; }
-        .nav-menu a:hover, .nav-menu a.active { background: var(--secondary-color); color: var(--primary-color); }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 10px; }
-        .hamburger span { width: 25px; height: 3px; background: var(--text-light); margin: 3px 0; }
-        .page-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 60px 20px; text-align: center; }
-        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         .location-section { margin-bottom: 50px; }
-        .location-header { background: linear-gradient(135deg, var(--primary-color) 0%, #3d7042 100%); color: white; padding: 20px 30px; border-radius: 15px 15px 0 0; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .location-header { background: linear-gradient(135deg, var(--primary-color) 0%, #6D93C8 100%); color: white; padding: 20px 30px; border-radius: 15px 15px 0 0; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .location-header .icon { font-size: 2rem; }
         .location-header .dates { margin-left: auto; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; }
         .location-content { background: white; border-radius: 0 0 15px 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
@@ -30,13 +18,9 @@
         .hotel-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
         .info-item { display: flex; align-items: center; gap: 8px; }
         .price-tag { background: var(--secondary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-weight: 600; display: inline-block; }
-        .confirmed-tag { background: #4caf50; color: white; padding: 3px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-left: 8px; }
-        .tips-box { background: #fff8e1; padding: 15px 20px; border-radius: 10px; border-left: 4px solid var(--secondary-color); margin-top: 20px; }
-        footer { background: var(--primary-color); color: var(--text-light); text-align: center; padding: 30px; margin-top: 50px; }
+        .confirmed-tag { background: #6FA287; color: white; padding: 3px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-left: 8px; }
+        .tips-box { background: #E7EFF8; padding: 15px 20px; border-radius: 10px; border-left: 4px solid var(--secondary-color); margin-top: 20px; }
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary-color); flex-direction: column; padding: 20px; }
-            .nav-menu.active { display: flex; }
             .location-header { flex-direction: column; text-align: center; }
             .location-header .dates { margin-left: 0; }
         }

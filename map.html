@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>黃石公園 + 舊金山 15天自駕遊｜互動式地圖</title>
+  <title>互動地圖 | 2026 黃石公園 & 舊金山</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #6D93C8 0%, #34435E 100%);
       min-height: 100vh;
-      padding: 20px;
     }
     
     .container {
+      padding: 20px;
       max-width: 1400px;
       margin: 0 auto;
     }
@@ -26,40 +28,6 @@
       padding: 30px 20px;
       margin-bottom: 20px;
       position: relative;
-    }
-    
-    /* 返回按鈕 */
-    .back-btn {
-      position: absolute;
-      left: 20px;
-      top: 30px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 18px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: 600;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
-    }
-    
-    .back-btn:hover {
-      background: rgba(255,255,255,0.35);
-      transform: translateX(-3px);
-    }
-    
-    @media (max-width: 768px) {
-      .back-btn {
-        position: relative;
-        left: 0;
-        top: 0;
-        margin-bottom: 15px;
-      }
     }
     
     .header h1 {
@@ -128,7 +96,7 @@
     }
     
     .control-btn.primary {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #6D93C8 0%, #34435E 100%);
       color: white;
     }
     
@@ -144,14 +112,14 @@
     }
     
     .control-btn.secondary:hover {
-      border-color: #667eea;
-      color: #667eea;
+      border-color: #6D93C8;
+      color: #6D93C8;
     }
     
     .control-btn.secondary.active {
-      background: #667eea;
+      background: #6D93C8;
       color: white;
-      border-color: #667eea;
+      border-color: #6D93C8;
     }
     
     /* Sidebar */
@@ -203,8 +171,8 @@
     }
     
     .location-item.active {
-      background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-      border: 1px solid #667eea30;
+      background: linear-gradient(135deg, #6D93C815 0%, #34435E15 100%);
+      border: 1px solid #6D93C830;
     }
     
     .location-marker {
@@ -243,21 +211,21 @@
     
     .location-stay {
       font-size: 11px;
-      color: #667eea;
+      color: #6D93C8;
       font-weight: 600;
       margin-top: 4px;
     }
     
     /* Route Info */
     .route-info {
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      background: linear-gradient(135deg, #F5EFDC 0%, #EFE4C3 100%);
       border-radius: 12px;
       padding: 15px;
     }
     
     .route-info h4 {
       font-size: 14px;
-      color: #92400e;
+      color: #6E6146;
       margin-bottom: 10px;
       display: flex;
       align-items: center;
@@ -278,11 +246,11 @@
     }
     
     .route-segment .route-name {
-      color: #78350f;
+      color: #6E6146;
     }
     
     .route-segment .route-time {
-      color: #92400e;
+      color: #6E6146;
       font-weight: 600;
     }
     
@@ -312,11 +280,11 @@
     }
     
     /* Colors for markers */
-    .marker-sf { background: #ef4444; color: white; }
-    .marker-slc { background: #3b82f6; color: white; }
-    .marker-wy { background: #22c55e; color: white; }
-    .marker-cabin { background: #f59e0b; color: white; }
-    .marker-jackson { background: #8b5cf6; color: white; }
+    .marker-sf { background: #B85C6E; color: white; }
+    .marker-slc { background: #6D93C8; color: white; }
+    .marker-wy { background: #6FA287; color: white; }
+    .marker-cabin { background: #CFA15E; color: white; }
+    .marker-jackson { background: #8981C2; color: white; }
     
     /* Info Window Style */
     .gm-style-iw {
@@ -348,20 +316,20 @@
     .info-window .stay-info {
       margin-top: 10px;
       padding: 8px 12px;
-      background: #f0fdf4;
+      background: #DFEDE4;
       border-radius: 8px;
       font-size: 12px;
-      color: #166534;
+      color: #3F6B54;
       font-weight: 600;
     }
     
     .info-window .drive-info {
       margin-top: 8px;
       padding: 8px 12px;
-      background: #fef3c7;
+      background: #F5EFDC;
       border-radius: 8px;
       font-size: 12px;
-      color: #92400e;
+      color: #6E6146;
     }
     
     /* Footer */
@@ -386,12 +354,26 @@
   </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="itinerary.html">每日行程</a></li>
+        <li><a href="accommodation.html">住宿資訊</a></li>
+        <li><a href="budget.html">預算規劃</a></li>
+        <li><a href="packing.html">行李清單</a></li>
+        <li><a href="tips.html">旅遊須知</a></li>
+        <li><a href="health.html">健康注意</a></li>
+        <li><a href="yellowstone-scoring.html">景點分級</a></li>
+        <li><a href="map.html" class="active">互動地圖</a></li>
+      </ul>
+    </div>
+  </nav>
+  <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
   <div class="container">
     <header class="header">
-      <a href="index.html" class="back-btn">
-        <span>←</span>
-        <span>返回主網頁</span>
-      </a>
       <h1>🗺️ 黃石公園 + 舊金山 15天自駕遊</h1>
       <p>2026/9/26 – 10/10 ｜ 互動式行程地圖 ｜ 點擊景點查看詳細資訊</p>
     </header>
@@ -495,7 +477,7 @@
         lat: 40.7608,
         lng: -111.8910,
         icon: '✈️',
-        color: '#3b82f6',
+        color: '#6D93C8',
         markerClass: 'marker-slc',
         days: 'Day 1-2, 11',
         stay: '共住 3 晚',
@@ -509,7 +491,7 @@
         lat: 44.6621,
         lng: -111.1041,
         icon: '🏡',
-        color: '#f59e0b',
+        color: '#CFA15E',
         markerClass: 'marker-cabin',
         days: 'Day 3-8',
         stay: '🏡 小木屋連住 6 晚（有廚房）',
@@ -523,7 +505,7 @@
         lat: 44.4280,
         lng: -110.5885,
         icon: '🦬',
-        color: '#22c55e',
+        color: '#6FA287',
         markerClass: 'marker-wy',
         days: 'Day 4-8',
         stay: '每日從西黃石出發遊玩',
@@ -537,7 +519,7 @@
         lat: 43.7904,
         lng: -110.6818,
         icon: '🏔️',
-        color: '#22c55e',
+        color: '#6FA287',
         markerClass: 'marker-wy',
         days: 'Day 9-10',
         stay: '2天深度遊覽',
@@ -551,7 +533,7 @@
         lat: 43.4799,
         lng: -110.7624,
         icon: '🤠',
-        color: '#8b5cf6',
+        color: '#8981C2',
         markerClass: 'marker-jackson',
         days: 'Day 9-10',
         stay: '住 2 晚',
@@ -565,7 +547,7 @@
         lat: 37.7749,
         lng: -122.4194,
         icon: '🌉',
-        color: '#ef4444',
+        color: '#B85C6E',
         markerClass: 'marker-sf',
         days: 'Day 12-14',
         stay: '共住 3 晚',
@@ -648,7 +630,7 @@
           { lat: 40.7608, lng: -111.8910 }
         ],
         geodesic: true,
-        strokeColor: '#3b82f6',
+        strokeColor: '#6D93C8',
         strokeOpacity: 0,
         strokeWeight: 3,
         icons: [{
@@ -745,7 +727,7 @@
         routeLine = new google.maps.Polyline({
           path: routeWaypoints,
           geodesic: true,
-          strokeColor: '#22c55e',
+          strokeColor: '#6FA287',
           strokeOpacity: 0.8,
           strokeWeight: 4,
           map: map
@@ -810,5 +792,6 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDgU6maj9qywhJ1SsVnsRZe31JMgcLbcg&callback=initMap"
     onerror="handleMapError()">
   </script>
+  <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
 </body>
 </html>
