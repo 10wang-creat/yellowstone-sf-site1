@@ -10,6 +10,7 @@
 ├── accommodation.html         住宿資訊
 ├── budget.html                預算規劃
 ├── packing.html               行李清單
+├── shopping.html              採買清單（可勾選、進度存在本機）
 ├── tips.html                  旅遊須知
 ├── health.html                長輩健康注意事項
 ├── yellowstone-scoring.html   黃石景點分級建議

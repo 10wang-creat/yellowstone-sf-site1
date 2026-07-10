@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>採買清單 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .toolbar { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .progress-pill { background: var(--primary-color); color: white; padding: 8px 20px; border-radius: 25px; font-weight: 600; }
+        .reset-btn { background: white; color: var(--primary-color); border: 2px solid var(--secondary-color); padding: 8px 20px; border-radius: 25px; cursor: pointer; font-family: inherit; font-size: 0.95rem; }
+        .reset-btn:hover { background: var(--secondary-color); }
+        .stage-title { color: var(--primary-color); font-size: 1.5rem; margin: 40px 0 15px; padding-left: 12px; border-left: 5px solid var(--secondary-color); }
+        .stage-title:first-of-type { margin-top: 0; }
+        .checklist-section { background: white; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .section-header { background: var(--primary-color); color: white; padding: 15px 25px; display: flex; align-items: center; gap: 12px; }
+        .section-header .icon { font-size: 1.5rem; }
+        .section-header h3 { font-size: 1.1rem; font-weight: 600; }
+        .section-header .count { margin-left: auto; background: rgba(255,255,255,0.2); padding: 3px 12px; border-radius: 15px; font-size: 0.85rem; }
+        .section-content { padding: 15px 25px; }
+        .checklist-item { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] { width: 21px; height: 21px; accent-color: var(--primary-color); cursor: pointer; flex-shrink: 0; }
+        .checklist-item label { flex: 1; cursor: pointer; }
+        .checklist-item input:checked + label { color: #999; text-decoration: line-through; }
+        .info-box { background: var(--tint-blue); border-left: 4px solid var(--accent-color); padding: 15px 20px; margin: 15px 0 25px; border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html">每日行程</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="packing.html">行李清單</a></li>
+                <li><a href="shopping.html" class="active">採買清單</a></li>
+                <li><a href="tips.html">旅遊須知</a></li>
+                <li><a href="health.html">健康注意</a></li>
+                <li><a href="yellowstone-scoring.html">景點分級</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>🛒 採買清單 Shopping List</h1>
+        <p>Day 2 鹽湖城一次買齊｜西黃石補鮮食｜Day 11 回程採買</p>
+    </div>
+    <div class="container">
+        <div class="toolbar">
+            <span class="progress-pill" id="totalProgress">0 / 0</span>
+            <button class="reset-btn" onclick="resetAll()">清除所有勾選</button>
+            <span style="color:#888; font-size:0.9rem;">勾選進度會自動儲存在這台裝置</span>
+        </div>
+
+        <h2 class="stage-title">📍 Day 2（9/27）鹽湖城主採買 — Walmart / Target</h2>
+        <div class="info-box">💡 Walmart 24 小時營業、不需會員卡，選擇多又便宜；Target 品質稍好，適合買日用品。黃石園區內物資選擇少且貴，在鹽湖城一次買齊最省！</div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🥩</span><h3>肉類 & 蛋白質</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s1i1"><label for="s1i1">牛排（可到西黃石 Food Roundup 買現切鮮肉）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s1i2"><label for="s1i2">雞胸肉 / 雞腿（鹽湖城買冷凍包，或西黃石買鮮）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s1i3"><label for="s1i3">培根 Bacon</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s1i4"><label for="s1i4">香腸 Sausage</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s1i5"><label for="s1i5">雞蛋（1-2 打）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s1i6"><label for="s1i6">火腿片 / 火雞肉片（三明治用）</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🥦</span><h3>蔬果</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s2i1"><label for="s2i1">生菜沙拉包（即食）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i2"><label for="s2i2">小番茄、小黃瓜</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i3"><label for="s2i3">洋蔥、大蒜、馬鈴薯</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i4"><label for="s2i4">香蕉、蘋果、橘子（車上零食）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i5"><label for="s2i5">酪梨（三明治 / 沙拉用）</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🍞</span><h3>主食 & 碳水</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s3i1"><label for="s3i1">吐司麵包（三明治用）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i2"><label for="s3i2">義大利麵 Pasta + 紅醬</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i3"><label for="s3i3">白米（小包裝）或微波白飯</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i4"><label for="s3i4">泡麵 / 杯麵（備用糧食）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i5"><label for="s3i5">Tortilla 墨西哥薄餅</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🥫</span><h3>調味料 & 醬料</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s4i1"><label for="s4i1">鹽、胡椒、食用油</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i2"><label for="s4i2">醬油（小瓶）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i3"><label for="s4i3">番茄醬 Ketchup、美乃滋</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i4"><label for="s4i4">花生醬（高熱量，登山好夥伴）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i5"><label for="s4i5">蜂蜜或果醬</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🥤</span><h3>飲料 & 水</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s5i1"><label for="s5i1">瓶裝水 × 2 箱（園區內買很貴）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i2"><label for="s5i2">運動飲料 Gatorade</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i3"><label for="s5i3">咖啡（即溶或冷泡包）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i4"><label for="s5i4">茶包</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i5"><label for="s5i5">牛奶（小瓶）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i6"><label for="s5i6">果汁</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🍫</span><h3>零食 & 能量補給</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s6i1"><label for="s6i1">能量棒 Granola Bar / Clif Bar</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s6i2"><label for="s6i2">堅果 Trail Mix</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s6i3"><label for="s6i3">巧克力</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s6i4"><label for="s6i4">餅乾、洋芋片</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s6i5"><label for="s6i5">果乾（藍莓、蔓越莓）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s6i6"><label for="s6i6">口香糖（開車提神）</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🧻</span><h3>日用品</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s7i1"><label for="s7i1">廚房紙巾 Paper Towel</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i2"><label for="s7i2">保鮮膜 / 夾鏈袋 Ziploc</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i3"><label for="s7i3">垃圾袋</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i4"><label for="s7i4">洗碗精（小瓶）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i5"><label for="s7i5">海綿</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i6"><label for="s7i6">鋁箔紙（烤肉用）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i7"><label for="s7i7">濕紙巾</label></div>
+            </div>
+        </div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🏔️</span><h3>戶外 & 防護</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s8i1"><label for="s8i1">防曬乳 SPF50+</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s8i2"><label for="s8i2">護唇膏（高海拔乾燥）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s8i3"><label for="s8i3">防熊噴霧 Bear Spray（REI 或 Walmart 購買）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s8i4"><label for="s8i4">暖暖包（10月早晚很冷）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s8i5"><label for="s8i5">OK 繃、基本藥品</label></div>
+            </div>
+        </div>
+
+        <h2 class="stage-title">📍 Day 3（9/28）西黃石補鮮食</h2>
+        <div class="info-box">💡 兩家超市：<strong>Food Roundup</strong>（107 Dunraven St, 7AM–10PM）、<strong>Market Place</strong>（22 Madison Ave, 7AM–8PM）。價格比城市貴 30–40%，只補容易壞的鮮食就好。</div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🥛</span><h3>易壞鮮食（到西黃石再買）</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="wyi1"><label for="wyi1">鮮奶</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi2"><label for="wyi2">優格</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi3"><label for="wyi3">雞蛋（若 Day 2 沒買）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi4"><label for="wyi4">現切鮮肉（牛排、雞腿）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi5"><label for="wyi5">新鮮蔬果補充</label></div>
+            </div>
+        </div>
+
+        <h2 class="stage-title">📍 Day 11（10/6）回鹽湖城採買 — 還車前</h2>
+        <div class="info-box">💡 猶他州稅 7.25% 比加州便宜，趁還有車先買大件！大型家電拆掉原廠紙箱、用衣物包進行李箱省空間。目標 16:00 前還車。</div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🍨</span><h3>回程採買</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="d11i1"><label for="d11i1">Ninja Creami（美規 120V 台灣可直接用，先用 app 查庫存或下單店取）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="d11i2"><label for="d11i2">伴手禮（堅果、巧克力、維他命）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="d11i3"><label for="d11i3">回程零食</label></div>
+                <div class="checklist-item"><input type="checkbox" id="d11i4"><label for="d11i4">缺漏的日用品最後補齊</label></div>
+            </div>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        const KEY = 'yswtrip-shopping-v1';
+        let saved = {};
+        try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+        const boxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+        boxes.forEach(cb => {
+            if (saved[cb.id]) cb.checked = true;
+            cb.addEventListener('change', () => {
+                saved[cb.id] = cb.checked;
+                localStorage.setItem(KEY, JSON.stringify(saved));
+                update();
+            });
+        });
+        function update() {
+            document.querySelectorAll('.checklist-section').forEach(sec => {
+                const all = sec.querySelectorAll('input[type="checkbox"]');
+                const done = sec.querySelectorAll('input:checked');
+                const c = sec.querySelector('[data-count]');
+                if (c) c.textContent = done.length + ' / ' + all.length;
+            });
+            const done = document.querySelectorAll('.checklist-item input:checked').length;
+            document.getElementById('totalProgress').textContent = done + ' / ' + boxes.length;
+        }
+        function resetAll() {
+            if (!confirm('確定要清除所有勾選？')) return;
+            saved = {};
+            localStorage.setItem(KEY, '{}');
+            boxes.forEach(cb => cb.checked = false);
+            update();
+        }
+        update();
+    </script>
+</body>
+</html>
