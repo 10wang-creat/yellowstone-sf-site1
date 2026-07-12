@@ -107,9 +107,8 @@ nav, .hamburger, footer, .filter-bar { display: none !important; }
 </section>
 
 <div class="pn-bar" id="pnBar">
-<a class="pn-chip" href="#legend">分級說明</a>
-<a class="pn-chip" href="#spots">景點分級</a>
-<a class="pn-chip" href="#plan">推薦行程</a>
+<button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
+<button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
 </div>
 <div class="container">
 
@@ -142,8 +141,11 @@ nav, .hamburger, footer, .filter-bar { display: none !important; }
 </ul>
 </div>
 
+<!-- 景點分級清單（可收合） -->
+<div class="score-block" id="spots">
+<h2 style="color: var(--primary-color); margin-bottom: 15px;">🏔️ 景點分級清單</h2>
 <!-- 篩選 -->
-<div class="filter-bar pn-anchor" id="spots">
+<div class="filter-bar">
 <span style="font-weight: 600; color: var(--primary-color);">🔍 篩選：</span>
 <button class="filter-btn active" onclick="filterGrade('all')">全部</button>
 <button class="filter-btn" onclick="filterGrade('a')">🟢 A 級必去</button>
@@ -424,6 +426,7 @@ nav, .hamburger, footer, .filter-bar { display: none !important; }
 </div>
 
 </div>
+</div>
 
 <!-- 推薦行程 -->
 <div class="summary-box pn-anchor" id="plan">
@@ -518,8 +521,7 @@ function filterGrade(grade) {
 }
 </script>
 <button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
-<script>
-(function(){ var t=document.getElementById('pnTop'); if(!t) return; window.addEventListener('scroll',function(){ (window.scrollY>400)?t.classList.add('pn-show'):t.classList.remove('pn-show'); }); t.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); }); })();
-</script>
+<script>window.PAGENAV = { selector: '.grading-legend, .score-block, .summary-box', labelMax: 5 };</script>
+<script src="assets/js/pagenav.js"></script>
 </body>
 </html>

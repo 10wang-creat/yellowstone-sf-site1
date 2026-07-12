@@ -386,6 +386,9 @@
           <div class="loading">🗺️ 地圖載入中...</div>
         </div>
         <div class="map-controls">
+          <a class="control-btn primary" href="https://www.google.com/maps/dir/?api=1&amp;origin=Salt+Lake+City,UT&amp;destination=Salt+Lake+City,UT&amp;waypoints=West+Yellowstone,MT%7CYellowstone+National+Park%7CGrand+Teton+National+Park%7CJackson,WY&amp;travelmode=driving" target="_blank" rel="noopener" style="text-decoration:none;">
+            🧭 用 Google 地圖開啟路線
+          </a>
           <button class="control-btn primary" onclick="fitAllMarkers()">
             📍 顯示全部景點
           </button>
@@ -773,13 +776,14 @@
     // Error handling for Google Maps
     function handleMapError() {
       document.getElementById('map').innerHTML = `
-        <div class="loading" style="flex-direction: column; gap: 15px;">
+        <div class="loading" style="flex-direction: column; gap: 15px; padding: 20px; text-align: center;">
           <div style="font-size: 48px;">🗺️</div>
-          <div>需要 Google Maps API Key 才能顯示互動地圖</div>
+          <div>互動地圖暫時無法載入</div>
           <div style="font-size: 13px; color: #94a3b8;">
-            請在 script 標籤中加入您的 API Key<br>
-            或參考下方的靜態地圖圖片
+            可能是 Google Maps 金鑰的網域限制、API 未啟用或未開通計費。<br>
+            仍可用下方按鈕在 Google 地圖開啟完整路線。
           </div>
+          <a href="https://www.google.com/maps/dir/?api=1&origin=Salt+Lake+City,UT&destination=Salt+Lake+City,UT&waypoints=West+Yellowstone,MT|Yellowstone+National+Park|Grand+Teton+National+Park|Jackson,WY&travelmode=driving" target="_blank" rel="noopener" style="background:#6D93C8;color:#fff;padding:10px 18px;border-radius:20px;text-decoration:none;font-weight:600;">🧭 用 Google 地圖開啟路線</a>
         </div>
       `;
     }
