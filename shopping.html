@@ -6,6 +6,7 @@
     <title>採買清單 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagenav.css">
     <style>
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         .toolbar { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
@@ -51,6 +52,14 @@
         <h1>🛒 採買清單 Shopping List</h1>
         <p>會所酒店只有微波爐＋小冰箱＋自備小萬用鍋，採買以能微波、泡熱水的食材為主</p>
     </div>
+    <div class="pn-bar" id="pnBar">
+        <button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
+        <button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
+        <a class="pn-chip" href="#s-slc">鹽湖城</a>
+        <a class="pn-chip" href="#s-wy">西黃石</a>
+        <a class="pn-chip" href="#s-return">回程採買</a>
+        <a class="pn-chip" href="#s-gift">伴手禮</a>
+    </div>
     <div class="container">
         <div class="toolbar">
             <span class="progress-pill" id="totalProgress">0 / 0</span>
@@ -58,7 +67,7 @@
             <span style="color:#888; font-size:0.9rem;">勾選進度會自動儲存在這台裝置</span>
         </div>
 
-        <h2 class="stage-title">📍 Day 2（9/27）鹽湖城採買（常溫乾貨）— Walmart / Target</h2>
+        <h2 class="stage-title pn-anchor" id="s-slc">📍 Day 2（9/27）鹽湖城採買（常溫乾貨）— Walmart / Target</h2>
         <div class="info-box">💡 Walmart 24 小時營業、不需會員卡，選擇多又便宜；Target 品質稍好，適合買日用品。黃石園區內物資選擇少且貴，常溫乾貨與日用品在鹽湖城一次買齊最省！</div>
         <div class="info-box">🧊 <strong>Day 2 只買常溫可放的！</strong>採買隔天要開 5–6 小時車到西黃石，途中沒有冷藏——肉、蛋、奶、生菜、豆腐等<strong>需冷藏冷凍的鮮食一律到西黃石再買</strong>；西黃石只有小冰箱，鮮食少量多買、隨買隨煮。</div>
         <div class="info-box">🍳 <strong>會所酒店廚房設備有限：</strong>房內只有微波爐＋小冰箱，無爐台烤箱；自備旅行萬用鍋不大（萬用電壓，插上直接用）。採買請以<strong>能微波、泡熱水、或小份量鍋煮</strong>的食材為主，冷凍鮮食少量買（小冰箱冷凍格有限）。</div>
@@ -147,7 +156,7 @@
             </div>
         </div>
 
-        <h2 class="stage-title">📍 Day 3（9/28）西黃石買鮮食（冷藏類全在此買）</h2>
+        <h2 class="stage-title pn-anchor" id="s-wy">📍 Day 3（9/28）西黃石買鮮食（冷藏類全在此買）</h2>
         <div class="info-box">💡 兩家超市：<strong>Food Roundup</strong>（107 Dunraven St, 7AM–10PM）、<strong>Market Place</strong>（22 Madison Ave, 7AM–8PM）。<strong>所有需冷藏冷凍的鮮食都在這裡買</strong>；價格比城市貴 30–40%，但小冰箱容量有限，<strong>少量多買、隨買隨煮</strong>最實際。</div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🥛</span><h3>冷藏鮮食（少量多買，小冰箱容量有限）</h3><span class="count" data-count></span></div>
@@ -164,7 +173,7 @@
             </div>
         </div>
 
-        <h2 class="stage-title">📍 Day 11（10/6）回鹽湖城採買 — 還車前</h2>
+        <h2 class="stage-title pn-anchor" id="s-return">📍 Day 11（10/6）回鹽湖城採買 — 還車前</h2>
         <div class="info-box">💡 猶他州稅約 7.75% 比加州便宜，趁還有車先買大件！大型家電拆掉原廠紙箱、用衣物包進行李箱省空間。目標 16:00 前還車。</div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🍨</span><h3>回程採買</h3><span class="count" data-count></span></div>
@@ -176,7 +185,7 @@
             </div>
         </div>
 
-        <h2 class="stage-title">🎁 伴手禮・服飾・家電（分站採買）</h2>
+        <h2 class="stage-title pn-anchor" id="s-gift">🎁 伴手禮・服飾・家電（分站採買）</h2>
         <div class="info-box">💡 這三類橫跨多站，每項已標註建議購買地點。詳細攻略見「旅遊須知」購物指南。<strong>農產類（生鮮果、肉、種子）不能帶回台灣，加工封裝的 OK。</strong></div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🎁</span><h3>伴手禮</h3><span class="count" data-count></span></div>
@@ -245,5 +254,8 @@
         }
         update();
     </script>
+    <button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
+    <script>window.PAGENAV = { selector: '.checklist-section', noChips: true };</script>
+    <script src="assets/js/pagenav.js"></script>
 </body>
 </html>

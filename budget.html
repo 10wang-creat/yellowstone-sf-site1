@@ -6,6 +6,7 @@
     <title>預算規劃 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagenav.css">
     <style>
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
         .total-banner { background: linear-gradient(135deg, var(--primary-color) 0%, #6D93C8 100%); color: white; border-radius: 20px; padding: 35px; margin-bottom: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
@@ -64,6 +65,10 @@
         <h1>💰 預算規劃 Budget</h1>
         <p>4人 15天 費用總覽（單位：TWD 台幣）</p>
     </div>
+    <div class="pn-bar" id="pnBar">
+        <button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
+        <button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
+    </div>
     <div class="container">
         <div class="total-banner">
             <div class="label">預估旅行總費用（4人）</div>
@@ -92,6 +97,7 @@
                 </div>
             </div>
         </div>
+        <div class="budget-sec">
         <h2 class="section-title">✅ 已確認費用 <span class="confirmed-badge">已訂購</span></h2>
         <table class="budget-table">
             <tr><th>項目</th><th>說明</th><th>費用（TWD）</th></tr>
@@ -131,6 +137,8 @@
                 <td>217,410</td>
             </tr>
         </table>
+        </div>
+        <div class="budget-sec">
         <h2 class="section-title">⏳ 待購項目 <span class="pending-badge">待補購</span></h2>
         <table class="budget-table">
             <tr><th>項目</th><th>說明</th><th>預估（TWD）</th></tr>
@@ -145,6 +153,8 @@
                 <td>~28,000</td>
             </tr>
         </table>
+        </div>
+        <div class="budget-sec">
         <h2 class="section-title">📝 預估費用 <span class="estimated-badge">待確認</span></h2>
         <table class="budget-table">
             <tr><th>項目</th><th>說明</th><th>預估（TWD）</th></tr>
@@ -204,7 +214,8 @@
                 <td>95,900 - 164,500</td>
             </tr>
         </table>
-        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-top: 30px;">
+        </div>
+        <div class="budget-sec" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-top: 30px;">
             <h3 style="color: var(--primary-color); margin-bottom: 20px;">📊 費用總計</h3>
             <table style="width: 100%; border-collapse: collapse;">
                 <tr style="background: var(--primary-color); color: white;">
@@ -248,6 +259,9 @@
         </div>
     </div>
     <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
+    <button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
     <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+    <script>window.PAGENAV = { selector: '.budget-sec, .tips-section', labelMax: 5 };</script>
+    <script src="assets/js/pagenav.js"></script>
 </body>
 </html>

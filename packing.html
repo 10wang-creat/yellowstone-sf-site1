@@ -6,6 +6,7 @@
     <title>行李清單 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagenav.css">
     <style>
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         .weather-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
@@ -50,6 +51,10 @@
     <div class="page-header">
         <h1>🧳 行李清單 Packing List</h1>
         <p>秋季黃石 & 舊金山必備物品</p>
+    </div>
+    <div class="pn-bar" id="pnBar">
+        <button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
+        <button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
     </div>
     <div class="container">
         <h3 style="color: var(--primary-color); margin-bottom: 15px;">🌡️ 各地氣溫參考（10月初）</h3>
@@ -145,5 +150,8 @@
             cb.addEventListener('change', () => localStorage.setItem(cb.id, cb.checked));
         });
     </script>
+    <button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
+    <script>window.PAGENAV = { selector: '.checklist-section', labelMax: 6 };</script>
+    <script src="assets/js/pagenav.js"></script>
 </body>
 </html>

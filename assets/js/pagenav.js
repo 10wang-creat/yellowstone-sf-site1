@@ -19,8 +19,8 @@
     sec.classList.add('pn-sec');
     if(cfg.collapse !== false) sec.classList.add('pn-collapsed');
 
-    // 產生跳轉鈕（標籤取標題的中文片段）
-    if(bar){
+    // 產生跳轉鈕（標籤取標題的中文片段）；cfg.noChips=true 時只收合、不自動產生鈕
+    if(bar && !cfg.noChips){
       var raw = head.textContent.replace(/\s+/g,' ').trim();
       var mm = raw.match(/[㐀-鿿]{2,}/);
       var label = mm ? mm[0] : raw;
