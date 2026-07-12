@@ -36,6 +36,19 @@
             .phase-title .dates { margin-left: 0; }
             .schedule-item { flex-direction: column; gap: 5px; }
         }
+        /* ===== 手機快速導覽 ＋ 收合 ===== */
+        html { scroll-behavior: smooth; }
+        .jump-bar { position: sticky; top: 54px; z-index: 900; background: rgba(255,255,255,0.97); backdrop-filter: blur(6px); box-shadow: 0 3px 8px rgba(0,0,0,0.10); padding: 10px 12px; display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+        .jump-chip { flex: 0 0 auto; background: var(--secondary-color); color: var(--primary-color); padding: 7px 14px; border-radius: 18px; font-size: 0.9rem; font-weight: 700; text-decoration: none; border: none; cursor: pointer; font-family: inherit; }
+        .jump-chip.tool { background: var(--primary-color); color: #fff; }
+        .day-card.collapsible .day-header { cursor: pointer; user-select: none; }
+        .day-card.collapsible .day-header h3 { flex: 1; }
+        .day-card.collapsible .day-header::after { content: '▾'; margin-left: 8px; font-size: 1rem; opacity: 0.75; transition: transform 0.2s; }
+        .day-card.collapsed .day-header::after { transform: rotate(-90deg); }
+        .day-card.collapsed .day-content { display: none; }
+        .day-card { scroll-margin-top: 112px; }
+        .back-to-top { position: fixed; bottom: 20px; right: 20px; z-index: 950; background: var(--primary-color); color: #fff; border: none; width: 48px; height: 48px; border-radius: 50%; font-size: 1.4rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.28); display: none; }
+        .back-to-top.show { display: block; }
     </style>
 </head>
 <body>
@@ -60,6 +73,10 @@
     <div class="page-header">
         <h1>📋 每日行程 Daily Itinerary</h1>
         <p>15天14夜完整行程規劃</p>
+    </div>
+    <div class="jump-bar" id="jumpBar">
+        <button class="jump-chip tool" id="collapseAll">▲ 全部收合</button>
+        <button class="jump-chip tool" id="expandAll">▼ 全部展開</button>
     </div>
     <div class="container">
         <!-- 航班總覽 -->
@@ -360,6 +377,41 @@
         </div>
     </div>
     <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
+    <button class="back-to-top" id="backToTop" aria-label="回頂端" title="回頂端">↑</button>
     <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+    <script>
+    (function(){
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.day-card'));
+      var bar = document.getElementById('jumpBar');
+      cards.forEach(function(card, i){
+        var h3 = card.querySelector('.day-header h3');
+        if(!h3) return;
+        if(!card.id) card.id = 'card-' + i;
+        card.classList.add('collapsible','collapsed');
+        var header = card.querySelector('.day-header');
+        header.addEventListener('click', function(){ card.classList.toggle('collapsed'); });
+        var m = h3.textContent.match(/Day\s*\d+/);
+        if(bar && m){
+          var chip = document.createElement('a');
+          chip.href = '#' + card.id;
+          chip.className = 'jump-chip';
+          chip.textContent = m[0].replace(/\s+/g,'');
+          chip.addEventListener('click', function(e){
+            e.preventDefault();
+            card.classList.remove('collapsed');
+            card.scrollIntoView({behavior:'smooth', block:'start'});
+          });
+          bar.appendChild(chip);
+        }
+      });
+      var ea = document.getElementById('expandAll');
+      var ca = document.getElementById('collapseAll');
+      if(ea) ea.addEventListener('click', function(){ cards.forEach(function(c){ c.classList.remove('collapsed'); }); });
+      if(ca) ca.addEventListener('click', function(){ cards.forEach(function(c){ c.classList.add('collapsed'); }); window.scrollTo({top:0,behavior:'smooth'}); });
+      var btt = document.getElementById('backToTop');
+      window.addEventListener('scroll', function(){ (window.scrollY > 400) ? btt.classList.add('show') : btt.classList.remove('show'); });
+      btt.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+    })();
+    </script>
 </body>
 </html>
