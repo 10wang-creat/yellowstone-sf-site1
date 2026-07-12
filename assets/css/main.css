@@ -107,6 +107,9 @@ footer {
         background: var(--primary-color);
         flex-direction: column;
         padding: 20px;
+        max-height: calc(100vh - 56px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .nav-menu.active { display: flex; }
 }
