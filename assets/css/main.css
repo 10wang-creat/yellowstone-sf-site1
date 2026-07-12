@@ -106,10 +106,11 @@ footer {
         right: 0;
         background: var(--primary-color);
         flex-direction: column;
-        padding: 20px;
-        max-height: calc(100vh - 56px);
+        padding: 6px 0;
+        max-height: calc(100vh - 54px);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
+    .nav-menu a { padding: 12px 20px; }
     .nav-menu.active { display: flex; }
 }
