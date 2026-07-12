@@ -6,6 +6,7 @@
     <title>住宿資訊 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagenav.css">
     <style>
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         .location-section { margin-bottom: 50px; }
@@ -48,6 +49,10 @@
     <div class="page-header">
         <h1>🏨 住宿資訊 Accommodation</h1>
         <p>13晚住宿規劃（全部已確認預訂 ✅）</p>
+    </div>
+    <div class="pn-bar" id="pnBar">
+        <button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
+        <button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
     </div>
     <div class="container">
         <!-- 鹽湖城 -->
@@ -218,6 +223,9 @@
         </div>
     </div>
     <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 全部已確認預訂 ✅</p></footer>
+    <button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
     <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+    <script>window.PAGENAV = { selector: '.location-section', labelMax: 4 };</script>
+    <script src="assets/js/pagenav.js"></script>
 </body>
 </html>

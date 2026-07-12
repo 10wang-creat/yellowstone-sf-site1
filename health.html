@@ -6,6 +6,7 @@
 <title>長輩健康注意事項 | 2026 黃石公園 & 舊金山家庭旅遊</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagenav.css">
 <style>
 :root { --danger: #B85C6E; --warning: #CFA15E; --safe: #6FA287; }
 
@@ -111,6 +112,10 @@ nav, .hamburger, footer, .print-btn, .tabs { display: none !important; }
 <p>專為穩定冠心病家人（有高血壓、裝過支架、規律服藥控制）設計的完整指南：高海拔應對、抗血小板藥管理、寒冷防護、警訊辨識、緊急聯絡</p>
 </section>
 
+<div class="pn-bar" id="pnBar">
+<button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
+<button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
+</div>
 <div class="container">
 
 <div class="alert-box" style="background: #E3EEE7; border-left-color: var(--safe);">
@@ -551,5 +556,8 @@ function showTab(e, id) {
   e.currentTarget.classList.add('active');
 }
 </script>
+<button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
+<script>window.PAGENAV = { selector: '.section', labelMax: 6 };</script>
+<script src="assets/js/pagenav.js"></script>
 </body>
 </html>

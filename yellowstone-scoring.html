@@ -6,6 +6,7 @@
 <title>黃石景點分級建議 | 2026 黃石公園 & 舊金山家庭旅遊</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagenav.css">
 <style>
 :root { --grade-a: #6FA287; --grade-b: #CFA15E; --grade-c: #B85C6E; }
 
@@ -105,10 +106,15 @@ nav, .hamburger, footer, .filter-bar { display: none !important; }
 <p>針對有心血管慢性病長輩設計的景點評分。依「體能需求、海拔、步道型態、地熱強度」四維度，將景點分為 A/B/C 三級，讓現場能彈性調整。</p>
 </section>
 
+<div class="pn-bar" id="pnBar">
+<a class="pn-chip" href="#legend">分級說明</a>
+<a class="pn-chip" href="#spots">景點分級</a>
+<a class="pn-chip" href="#plan">推薦行程</a>
+</div>
 <div class="container">
 
 <!-- 評分標準說明 -->
-<div class="grading-legend">
+<div class="grading-legend pn-anchor" id="legend">
 <h2>📊 分級說明</h2>
 <div class="legend-grid">
 <div class="legend-item grade-a">
@@ -137,7 +143,7 @@ nav, .hamburger, footer, .filter-bar { display: none !important; }
 </div>
 
 <!-- 篩選 -->
-<div class="filter-bar">
+<div class="filter-bar pn-anchor" id="spots">
 <span style="font-weight: 600; color: var(--primary-color);">🔍 篩選：</span>
 <button class="filter-btn active" onclick="filterGrade('all')">全部</button>
 <button class="filter-btn" onclick="filterGrade('a')">🟢 A 級必去</button>
@@ -420,7 +426,7 @@ nav, .hamburger, footer, .filter-bar { display: none !important; }
 </div>
 
 <!-- 推薦行程 -->
-<div class="summary-box">
+<div class="summary-box pn-anchor" id="plan">
 <h2>🗓️ 推薦 5 天行程配置（對長輩友善版）</h2>
 <p>以下配置優先選 A 級，B 級視當天狀況，完全避開 C 級。<strong>把公園切四塊各攻一塊、回頭路最少</strong>；一天長程（Day 7）後接一天完全休息（Day 8），避免連續操勞。此表與<a href="itinerary.html" style="color: var(--accent-color);">每日行程</a>一致。</p>
 
@@ -510,6 +516,10 @@ function filterGrade(grade) {
     }
   });
 }
+</script>
+<button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
+<script>
+(function(){ var t=document.getElementById('pnTop'); if(!t) return; window.addEventListener('scroll',function(){ (window.scrollY>400)?t.classList.add('pn-show'):t.classList.remove('pn-show'); }); t.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); }); })();
 </script>
 </body>
 </html>

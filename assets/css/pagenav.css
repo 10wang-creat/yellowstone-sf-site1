@@ -1,0 +1,57 @@
+/* 手機快速導覽（跳轉列 + 收合 + 回頂端）共用樣式 */
+html { scroll-behavior: smooth; }
+
+.pn-bar {
+    position: sticky;
+    top: 54px;
+    z-index: 900;
+    background: rgba(255,255,255,0.97);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.10);
+    padding: 10px 12px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+.pn-chip {
+    flex: 0 0 auto;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 7px 14px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+.pn-chip.pn-tool { background: var(--primary-color); color: #fff; }
+
+[data-pn-head] { cursor: pointer; user-select: none; }
+.pn-arrow { display: inline-block; margin-left: 6px; font-size: 0.8em; opacity: 0.65; transition: transform 0.2s; }
+.pn-sec.pn-collapsed .pn-arrow { transform: rotate(-90deg); }
+.pn-sec, .pn-anchor { scroll-margin-top: 112px; }
+.pn-sec.pn-collapsed > :not([data-pn-head]) { display: none; }
+
+.pn-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 950;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.28);
+    display: none;
+}
+.pn-top.pn-show { display: block; }
