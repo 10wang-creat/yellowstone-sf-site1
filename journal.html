@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅遊記錄 & 遊記素材 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagenav.css">
+    <style>
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .note-section { background: white; border-radius: 15px; padding: 28px 30px; margin-bottom: 24px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .note-section h2 { color: var(--primary-color); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--secondary-color); }
+        .note-section p { margin-bottom: 12px; line-height: 1.75; }
+        .note-section ul { margin: 8px 0 12px 22px; }
+        .note-section ul li { margin-bottom: 6px; line-height: 1.7; }
+        .intro { background: linear-gradient(135deg, #E3EEE7 0%, #CBE0D3 100%); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+        .three { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 6px 0 4px; }
+        .three .card { background: #F4F3F7; border-radius: 12px; padding: 16px; border-top: 4px solid var(--primary-color); text-align: center; }
+        .three .card .big { font-size: 1.8rem; }
+        .three .card .t { font-weight: 700; color: var(--primary-color); margin: 6px 0 4px; }
+        .three .card .s { font-size: 0.85rem; color: #666; }
+        .example { background: #E7EFF8; border-left: 4px solid #6D93C8; padding: 12px 16px; border-radius: 8px; margin: 12px 0; font-size: 0.95rem; }
+        .tpl-box { position: relative; }
+        pre.tpl { background: #2b2f3a; color: #e6e9f0; padding: 18px 20px; border-radius: 12px; overflow-x: auto; line-height: 1.7; font-size: 0.95rem; white-space: pre-wrap; }
+        .copy-btn { background: var(--primary-color); color: #fff; border: none; padding: 9px 18px; border-radius: 20px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 10px; }
+        .copy-btn:active { transform: scale(0.97); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html">每日行程</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="packing.html">行李清單</a></li>
+                <li><a href="shopping.html">採買清單</a></li>
+                <li><a href="tips.html">旅遊須知</a></li>
+                <li><a href="health.html">健康注意</a></li>
+                <li><a href="yellowstone-scoring.html">景點分級</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+                <li><a href="journal.html" class="active">旅遊記錄</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>🧳 旅遊記錄 & 遊記素材</h1>
+        <p>不用勉強寫感想，維持你會做的兩件事＋每天 30 秒，回來我幫你寫遊記</p>
+    </div>
+    <div class="pn-bar" id="pnBar">
+        <button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
+        <button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
+    </div>
+    <div class="container">
+        <div class="intro">
+            <strong>結論：不用勉強寫感想。</strong>只要維持你本來就會做的兩件事（拍照、記帳），再加一個「每天 30 秒的關鍵字筆記」，回來後把這三樣丟給我，遊記我來幫你組稿。
+            <div class="three" style="margin-top:14px;">
+                <div class="card"><div class="big">📸</div><div class="t">拍照</div><div class="s">開定位，時間＋GPS 還原行程</div></div>
+                <div class="card"><div class="big">🧾</div><div class="t">記帳</div><div class="s">幣別 USD、備註寫清楚項目</div></div>
+                <div class="card"><div class="big">📝</div><div class="t">關鍵字筆記</div><div class="s">每天睡前一行就好</div></div>
+            </div>
+        </div>
+
+        <!-- 照片 -->
+        <div class="note-section">
+            <h2>📸 照片：正常拍，但開定位</h2>
+            <ul>
+                <li>用手機正常拍就好，<strong>記得開啟定位（GPS）</strong>。照片的時間與 GPS 就是最完整的行程紀錄，之後我可以靠這些還原「幾點在哪裡、順序是什麼」。</li>
+                <li>有特別想寫進遊記的瞬間（例如老忠實噴發、看到麋鹿），<strong>多拍一張或錄 10 秒影片</strong>當標記。</li>
+                <li>不用當下修圖或整理，回來一次丟給我即可。</li>
+            </ul>
+        </div>
+
+        <!-- 記帳 -->
+        <div class="note-section">
+            <h2>🧾 記帳：照原習慣，備註寫清楚</h2>
+            <ul>
+                <li>照你原本的記帳習慣就好，但<strong>幣別記 USD</strong>、<strong>備註寫清楚項目</strong>。</li>
+                <li>這些消費紀錄本身就是很好的遊記素材——在哪吃了什麼、買了什麼，比事後回想準確得多。</li>
+            </ul>
+            <div class="example">範例備註：「Food Roundup 採買」「Old Faithful Inn 午餐」「Grizzly & Wolf 中心門票 ×4」「Logan Angie's 午餐」</div>
+        </div>
+
+        <!-- 關鍵字筆記 -->
+        <div class="note-section">
+            <h2>📝 每天 30 秒關鍵字筆記</h2>
+            <ul>
+                <li>每天睡前在手機備忘錄<strong>打一行就好，不用成句</strong>。</li>
+                <li>這種零碎片段對我來說資訊量很夠，是照片和帳目補不到的「感受層」。</li>
+            </ul>
+            <div class="example">範例：「10/1 大稜鏡 風大 媽媽走上坡沒問題 晚餐牛排好吃 野牛擋路 20 分鐘」</div>
+        </div>
+
+        <!-- 模板 -->
+        <div class="note-section">
+            <h2>📋 每日備忘模板（出發前存進手機）</h2>
+            <p>複製到手機備忘錄，每天睡前填一格；填多填少都行，關鍵字即可。</p>
+            <div class="tpl-box">
+<pre class="tpl" id="tpl">【日期】＿／＿（＿）
+【天氣】
+【去了哪】
+【一句話／印象】
+【花費亮點】
+【想寫進遊記的畫面】</pre>
+                <button class="copy-btn" onclick="copyTpl()">📋 複製模板</button>
+            </div>
+            <div class="example" style="margin-top:14px;">已填範例：<br>
+                【日期】10/1（三）<br>
+                【天氣】晴、風大、早晚很冷<br>
+                【去了哪】大稜鏡 → Fairy Falls 觀景 → 小木屋休息<br>
+                【一句話】媽媽走上坡完全沒問題，色彩比想像震撼<br>
+                【花費亮點】晚餐牛排 $58／加油 $42<br>
+                【想寫進遊記的畫面】野牛擋路 20 分鐘、日落回程</div>
+        </div>
+
+        <!-- 回來之後 -->
+        <div class="note-section">
+            <h2>🏡 回來之後：交給我寫遊記</h2>
+            <ul>
+                <li>把三樣丟給我：<strong>照片</strong>（挑過的或全部）、<strong>記帳匯出</strong>、<strong>備忘錄關鍵字</strong>。</li>
+                <li>我依日期組稿成完整遊記，風格走溫暖敘事。</li>
+                <li>也可以做成網站新頁面掛在這個站上，跟現有行程頁串起來。</li>
+            </ul>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
+    <button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        function copyTpl() {
+            var t = document.getElementById('tpl').innerText;
+            navigator.clipboard.writeText(t).then(function(){
+                var b = document.querySelector('.copy-btn');
+                var o = b.textContent; b.textContent = '✅ 已複製';
+                setTimeout(function(){ b.textContent = o; }, 1500);
+            });
+        }
+    </script>
+    <script>window.PAGENAV = { selector: '.note-section', labelMax: 5 };</script>
+    <script src="assets/js/pagenav.js"></script>
+</body>
+</html>
