@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>旅遊記錄 & 遊記素材 | 2026 黃石公園 & 舊金山</title>
+    <title>旅遊記錄 | 2026 黃石公園 & 舊金山</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/pagenav.css">
     <style>
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        .note-section { background: white; border-radius: 15px; padding: 28px 30px; margin-bottom: 24px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
-        .note-section h2 { color: var(--primary-color); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--secondary-color); }
-        .note-section p { margin-bottom: 12px; line-height: 1.75; }
-        .note-section ul { margin: 8px 0 12px 22px; }
-        .note-section ul li { margin-bottom: 6px; line-height: 1.7; }
-        .intro { background: linear-gradient(135deg, #E3EEE7 0%, #CBE0D3 100%); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
-        .three { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 6px 0 4px; }
-        .three .card { background: #F4F3F7; border-radius: 12px; padding: 16px; border-top: 4px solid var(--primary-color); text-align: center; }
-        .three .card .big { font-size: 1.8rem; }
-        .three .card .t { font-weight: 700; color: var(--primary-color); margin: 6px 0 4px; }
-        .three .card .s { font-size: 0.85rem; color: #666; }
-        .example { background: #E7EFF8; border-left: 4px solid #6D93C8; padding: 12px 16px; border-radius: 8px; margin: 12px 0; font-size: 0.95rem; }
-        .tpl-box { position: relative; }
-        pre.tpl { background: #2b2f3a; color: #e6e9f0; padding: 18px 20px; border-radius: 12px; overflow-x: auto; line-height: 1.7; font-size: 0.95rem; white-space: pre-wrap; }
-        .copy-btn { background: var(--primary-color); color: #fff; border: none; padding: 9px 18px; border-radius: 20px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 10px; }
-        .copy-btn:active { transform: scale(0.97); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px 60px; }
+        .intro { background: linear-gradient(135deg, #E3EEE7 0%, #CBE0D3 100%); border-radius: 12px; padding: 18px 22px; margin-bottom: 18px; line-height: 1.7; }
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 20px; }
+        .act-btn { background: var(--primary-color); color: #fff; border: none; padding: 11px 18px; border-radius: 22px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 0.95rem; }
+        .act-btn.ghost { background: #fff; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .act-btn.danger { background: #fff; color: #B85C6E; border: 2px solid #B85C6E; }
+        .saved-hint { font-size: 0.85rem; color: #6FA287; align-self: center; }
+        .day-log { background: #fff; border-radius: 14px; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.07); overflow: hidden; scroll-margin-top: 120px; }
+        .day-log-head { background: var(--secondary-color); color: var(--primary-color); padding: 14px 18px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; font-weight: 700; }
+        .day-log-head .dnum { font-size: 1.05rem; }
+        .day-log-head .hint { font-weight: 400; font-size: 0.85rem; color: #46689A; }
+        .day-log-head .arrow { margin-left: auto; transition: transform 0.2s; }
+        .day-log.collapsed .day-log-head .arrow { transform: rotate(-90deg); }
+        .day-log.collapsed .day-log-body { display: none; }
+        .day-log.filled .day-log-head { background: #CBE0D3; }
+        .day-log-body { padding: 16px 18px; }
+        .field { margin-bottom: 12px; }
+        .field label { display: block; font-weight: 600; color: var(--primary-color); font-size: 0.9rem; margin-bottom: 5px; }
+        .field textarea { width: 100%; border: 1.5px solid #d7dbe3; border-radius: 8px; padding: 10px 12px; font-family: inherit; font-size: 1rem; line-height: 1.6; resize: vertical; min-height: 44px; }
+        .field textarea:focus { outline: none; border-color: var(--primary-color); }
+        details.guide { background: #fff; border-radius: 12px; padding: 4px 20px; margin-bottom: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+        details.guide summary { cursor: pointer; font-weight: 700; color: var(--primary-color); padding: 14px 0; }
+        details.guide ul { margin: 4px 0 16px 20px; line-height: 1.7; }
+        .example { background: #E7EFF8; border-left: 4px solid #6D93C8; padding: 10px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.92rem; }
     </style>
 </head>
 <body>
@@ -48,8 +55,8 @@
         </div>
     </nav>
     <div class="page-header">
-        <h1>🧳 旅遊記錄 & 遊記素材</h1>
-        <p>不用勉強寫感想，維持你會做的兩件事＋每天 30 秒，回來我幫你寫遊記</p>
+        <h1>🧳 旅遊記錄</h1>
+        <p>每天直接在這裡打幾行，自動存在手機瀏覽器；回來按「複製全部」丟給我寫遊記</p>
     </div>
     <div class="pn-bar" id="pnBar">
         <button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
@@ -57,90 +64,165 @@
     </div>
     <div class="container">
         <div class="intro">
-            <strong>結論：不用勉強寫感想。</strong>只要維持你本來就會做的兩件事（拍照、記帳），再加一個「每天 30 秒的關鍵字筆記」，回來後把這三樣丟給我，遊記我來幫你組稿。
-            <div class="three" style="margin-top:14px;">
-                <div class="card"><div class="big">📸</div><div class="t">拍照</div><div class="s">開定位，時間＋GPS 還原行程</div></div>
-                <div class="card"><div class="big">🧾</div><div class="t">記帳</div><div class="s">幣別 USD、備註寫清楚項目</div></div>
-                <div class="card"><div class="big">📝</div><div class="t">關鍵字筆記</div><div class="s">每天睡前一行就好</div></div>
-            </div>
+            📸 照片開定位、🧾 記帳記 USD＋清楚備註、📝 這頁每天打一行關鍵字就好（不用成句）。三樣回來一起給我，我依日期組稿成遊記。
         </div>
 
-        <!-- 照片 -->
-        <div class="note-section">
-            <h2>📸 照片：正常拍，但開定位</h2>
+        <div class="actions">
+            <button class="act-btn" onclick="copyAll()">📋 複製全部</button>
+            <button class="act-btn ghost" onclick="downloadAll()">⬇️ 下載 .txt</button>
+            <button class="act-btn danger" onclick="clearAll()">🗑️ 清除全部</button>
+            <span class="saved-hint" id="savedHint">✅ 自動儲存中</span>
+        </div>
+
+        <div id="logRoot"></div>
+
+        <details class="guide">
+            <summary>📸 拍照重點</summary>
             <ul>
-                <li>用手機正常拍就好，<strong>記得開啟定位（GPS）</strong>。照片的時間與 GPS 就是最完整的行程紀錄，之後我可以靠這些還原「幾點在哪裡、順序是什麼」。</li>
-                <li>有特別想寫進遊記的瞬間（例如老忠實噴發、看到麋鹿），<strong>多拍一張或錄 10 秒影片</strong>當標記。</li>
-                <li>不用當下修圖或整理，回來一次丟給我即可。</li>
+                <li>手機正常拍就好，<strong>記得開定位（GPS）</strong>；照片時間＋GPS 就能還原「幾點在哪」。</li>
+                <li>特別瞬間（老忠實噴發、看到麋鹿）多拍一張或錄 10 秒影片當標記。</li>
             </ul>
-        </div>
-
-        <!-- 記帳 -->
-        <div class="note-section">
-            <h2>🧾 記帳：照原習慣，備註寫清楚</h2>
+        </details>
+        <details class="guide">
+            <summary>🧾 記帳重點</summary>
             <ul>
-                <li>照你原本的記帳習慣就好，但<strong>幣別記 USD</strong>、<strong>備註寫清楚項目</strong>。</li>
-                <li>這些消費紀錄本身就是很好的遊記素材——在哪吃了什麼、買了什麼，比事後回想準確得多。</li>
+                <li>照原習慣記，但幣別記 <strong>USD</strong>、備註寫清楚項目。</li>
+                <li>範例：「Food Roundup 採買」「Old Faithful Inn 午餐」「Grizzly & Wolf 門票 ×4」。</li>
             </ul>
-            <div class="example">範例備註：「Food Roundup 採買」「Old Faithful Inn 午餐」「Grizzly & Wolf 中心門票 ×4」「Logan Angie's 午餐」</div>
-        </div>
-
-        <!-- 關鍵字筆記 -->
-        <div class="note-section">
-            <h2>📝 每天 30 秒關鍵字筆記</h2>
-            <ul>
-                <li>每天睡前在手機備忘錄<strong>打一行就好，不用成句</strong>。</li>
-                <li>這種零碎片段對我來說資訊量很夠，是照片和帳目補不到的「感受層」。</li>
-            </ul>
-            <div class="example">範例：「10/1 大稜鏡 風大 媽媽走上坡沒問題 晚餐牛排好吃 野牛擋路 20 分鐘」</div>
-        </div>
-
-        <!-- 模板 -->
-        <div class="note-section">
-            <h2>📋 每日備忘模板（出發前存進手機）</h2>
-            <p>複製到手機備忘錄，每天睡前填一格；填多填少都行，關鍵字即可。</p>
-            <div class="tpl-box">
-<pre class="tpl" id="tpl">【日期】＿／＿（＿）
-【天氣】
-【去了哪】
-【一句話／印象】
-【花費亮點】
-【想寫進遊記的畫面】</pre>
-                <button class="copy-btn" onclick="copyTpl()">📋 複製模板</button>
-            </div>
-            <div class="example" style="margin-top:14px;">已填範例：<br>
-                【日期】10/1（三）<br>
-                【天氣】晴、風大、早晚很冷<br>
-                【去了哪】大稜鏡 → Fairy Falls 觀景 → 小木屋休息<br>
-                【一句話】媽媽走上坡完全沒問題，色彩比想像震撼<br>
-                【花費亮點】晚餐牛排 $58／加油 $42<br>
-                【想寫進遊記的畫面】野牛擋路 20 分鐘、日落回程</div>
-        </div>
-
-        <!-- 回來之後 -->
-        <div class="note-section">
-            <h2>🏡 回來之後：交給我寫遊記</h2>
-            <ul>
-                <li>把三樣丟給我：<strong>照片</strong>（挑過的或全部）、<strong>記帳匯出</strong>、<strong>備忘錄關鍵字</strong>。</li>
-                <li>我依日期組稿成完整遊記，風格走溫暖敘事。</li>
-                <li>也可以做成網站新頁面掛在這個站上，跟現有行程頁串起來。</li>
-            </ul>
-        </div>
+        </details>
+        <details class="guide">
+            <summary>📝 關鍵字筆記範例</summary>
+            <div class="example">10/1 大稜鏡 風大 媽媽走上坡沒問題 晚餐牛排好吃 野牛擋路 20 分鐘</div>
+            <p style="margin:8px 0 14px; font-size:0.92rem; color:#666;">零碎片段就夠——這是照片和帳目補不到的「感受層」。</p>
+        </details>
     </div>
     <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
     <button class="pn-top" id="pnTop" aria-label="回頂端" title="回頂端">↑</button>
     <script>
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
-        function copyTpl() {
-            var t = document.getElementById('tpl').innerText;
-            navigator.clipboard.writeText(t).then(function(){
-                var b = document.querySelector('.copy-btn');
-                var o = b.textContent; b.textContent = '✅ 已複製';
-                setTimeout(function(){ b.textContent = o; }, 1500);
+    function toggleMenu(){ document.getElementById('navMenu').classList.toggle('active'); }
+
+    var DAYS = [
+        {t:'Day 1', d:'9/26（六）', h:'抵達 SLC'},
+        {t:'Day 2', d:'9/27（日）', h:'鹽湖城採買'},
+        {t:'Day 3', d:'9/28（一）', h:'→ 西黃石'},
+        {t:'Day 4', d:'9/29（二）', h:'間歇泉區'},
+        {t:'Day 5', d:'9/30（三）', h:'黃石湖區'},
+        {t:'Day 6', d:'10/1（四）', h:'黃石大峽谷'},
+        {t:'Day 7', d:'10/2（五）', h:'Lamar Valley'},
+        {t:'Day 8', d:'10/3（六）', h:'西黃石休息日'},
+        {t:'Day 9', d:'10/4（日）', h:'→ 大提頓'},
+        {t:'Day 10', d:'10/5（一）', h:'Jenny Lake・傑克遜'},
+        {t:'Day 11', d:'10/6（二）', h:'→ 鹽湖城'},
+        {t:'Day 12', d:'10/7（三）', h:'→ 舊金山'},
+        {t:'Day 13', d:'10/8（四）', h:'金門大橋・中國城'},
+        {t:'Day 14', d:'10/9（五）', h:'Pier 39 → 返程'},
+        {t:'Day 15', d:'10/10（六）', h:'抵達台灣'}
+    ];
+    var FIELDS = [['weather','天氣'],['place','去了哪'],['note','一句話・印象'],['cost','花費亮點'],['moment','想寫進遊記的畫面']];
+
+    var root = document.getElementById('logRoot');
+    DAYS.forEach(function(day, i){
+        var card = document.createElement('div');
+        card.className = 'day-log collapsed';
+        card.id = 'dlog-' + i;
+        var head = document.createElement('div');
+        head.className = 'day-log-head';
+        head.innerHTML = '<span class="dnum">'+day.t+' — '+day.d+'</span><span class="hint">'+day.h+'</span><span class="arrow">▾</span>';
+        head.addEventListener('click', function(){ card.classList.toggle('collapsed'); });
+        card.appendChild(head);
+        var body = document.createElement('div');
+        body.className = 'day-log-body';
+        FIELDS.forEach(function(f){
+            var key = 'jrnl-'+i+'-'+f[0];
+            var wrap = document.createElement('div');
+            wrap.className = 'field';
+            var lab = document.createElement('label');
+            lab.textContent = f[1];
+            var ta = document.createElement('textarea');
+            ta.rows = 1;
+            ta.value = localStorage.getItem(key) || '';
+            ta.addEventListener('input', function(){
+                localStorage.setItem(key, ta.value);
+                markFilled(card, i);
+                flashSaved();
             });
-        }
+            lab.appendChild(ta);
+            wrap.appendChild(lab);
+            body.appendChild(wrap);
+        });
+        card.appendChild(body);
+        root.appendChild(card);
+        markFilled(card, i);
+    });
+
+    function markFilled(card, i){
+        var any = FIELDS.some(function(f){ return (localStorage.getItem('jrnl-'+i+'-'+f[0])||'').trim(); });
+        card.classList.toggle('filled', any);
+    }
+    var hintTimer;
+    function flashSaved(){
+        var h = document.getElementById('savedHint');
+        h.textContent = '✅ 已儲存';
+        clearTimeout(hintTimer);
+        hintTimer = setTimeout(function(){ h.textContent = '✅ 自動儲存中'; }, 1200);
+    }
+
+    function buildText(){
+        var out = ['# 2026 黃石 & 舊金山 旅遊記錄\n'];
+        DAYS.forEach(function(day, i){
+            var lines = [];
+            FIELDS.forEach(function(f){
+                var v = (localStorage.getItem('jrnl-'+i+'-'+f[0])||'').trim();
+                if(v) lines.push(f[1]+'：'+v);
+            });
+            if(lines.length){
+                out.push(day.t+' — '+day.d+'（'+day.h+'）');
+                out.push(lines.join('\n'));
+                out.push('');
+            }
+        });
+        if(out.length === 1) return '';
+        return out.join('\n');
+    }
+
+    function copyAll(){
+        var txt = buildText();
+        if(!txt){ alert('還沒有任何內容可複製'); return; }
+        navigator.clipboard.writeText(txt).then(function(){ alert('已複製全部筆記，貼給 Claude 即可 ✅'); },
+            function(){ prompt('複製失敗，請長按下方文字自行複製：', txt); });
+    }
+    function downloadAll(){
+        var txt = buildText();
+        if(!txt){ alert('還沒有任何內容可下載'); return; }
+        var blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = '旅遊記錄_2026黃石舊金山.txt';
+        a.click();
+        URL.revokeObjectURL(a.href);
+    }
+    function clearAll(){
+        if(!confirm('確定清除全部筆記？此動作無法復原。')) return;
+        DAYS.forEach(function(day, i){ FIELDS.forEach(function(f){ localStorage.removeItem('jrnl-'+i+'-'+f[0]); }); });
+        document.querySelectorAll('.day-log-body textarea').forEach(function(t){ t.value=''; });
+        document.querySelectorAll('.day-log').forEach(function(c){ c.classList.remove('filled'); });
+    }
+
+    // 跳轉列：每天一個鈕 + 全部收合/展開 + 回頂端
+    (function(){
+        var bar = document.getElementById('pnBar');
+        DAYS.forEach(function(day, i){
+            var chip = document.createElement('a');
+            chip.href = '#dlog-'+i; chip.className='pn-chip'; chip.textContent = day.t.replace('Day ','D');
+            chip.addEventListener('click', function(e){ e.preventDefault(); var c=document.getElementById('dlog-'+i); c.classList.remove('collapsed'); c.scrollIntoView({behavior:'smooth', block:'start'}); });
+            bar.appendChild(chip);
+        });
+        document.getElementById('pnExpand').addEventListener('click', function(){ document.querySelectorAll('.day-log').forEach(function(c){ c.classList.remove('collapsed'); }); });
+        document.getElementById('pnCollapse').addEventListener('click', function(){ document.querySelectorAll('.day-log').forEach(function(c){ c.classList.add('collapsed'); }); window.scrollTo({top:0,behavior:'smooth'}); });
+        var top = document.getElementById('pnTop');
+        window.addEventListener('scroll', function(){ (window.scrollY>400)?top.classList.add('pn-show'):top.classList.remove('pn-show'); });
+        top.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+    })();
     </script>
-    <script>window.PAGENAV = { selector: '.note-section', labelMax: 5 };</script>
-    <script src="assets/js/pagenav.js"></script>
 </body>
 </html>
