@@ -15,6 +15,7 @@
         .reset-btn:hover { background: var(--secondary-color); }
         .stage-title { color: var(--primary-color); font-size: 1.5rem; margin: 40px 0 15px; padding-left: 12px; border-left: 5px solid var(--secondary-color); }
         .stage-title:first-of-type { margin-top: 0; }
+        .sub-title { color: var(--primary-color); font-size: 1.12rem; margin: 28px 0 12px; font-weight: 700; }
         .checklist-section { background: white; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
         .section-header { background: var(--primary-color); color: white; padding: 15px 25px; display: flex; align-items: center; gap: 12px; }
         .section-header .icon { font-size: 1.5rem; }
@@ -27,6 +28,22 @@
         .checklist-item label { flex: 1; cursor: pointer; }
         .checklist-item input:checked + label { color: #999; text-decoration: line-through; }
         .info-box { background: var(--tint-blue); border-left: 4px solid var(--accent-color); padding: 15px 20px; margin: 15px 0 25px; border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+        .warn-box { background: #FDECE8; border-left: 4px solid #C0563A; padding: 15px 20px; margin: 15px 0 25px; border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+        .warn-box strong { color: #A8402A; }
+        .qty { color: #B04A32; font-weight: 700; }
+        .tagx { display: inline-block; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
+        .tagx.rt { background: #E8F0E4; color: #3F6B45; }
+        .tagx.ch { background: #E3F0F7; color: #23607A; }
+        .tagx.fz { background: #E7E8F7; color: #3B3F8C; }
+        .table-wrap { overflow-x: auto; margin: 12px 0 8px; }
+        .meal-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 620px; }
+        .meal-table th, .meal-table td { border: 1px solid #e6e6e6; padding: 8px 10px; text-align: left; }
+        .meal-table th { background: var(--primary-color); color: #fff; font-weight: 600; white-space: nowrap; }
+        .meal-table td.d { white-space: nowrap; font-weight: 600; }
+        .meal-table td.cook { background: #FFF4DE; font-weight: 700; color: #8A5A12; }
+        .meal-table td.box { background: #EAF3E6; font-weight: 700; color: #3F6B45; }
+        .meal-table tr.dim td { color: #999; }
+        .legend { font-size: 0.85rem; color: #777; margin-top: 4px; }
     </style>
 </head>
 <body>
@@ -51,14 +68,16 @@
     </nav>
     <div class="page-header">
         <h1>🛒 採買清單 Shopping List</h1>
-        <p>會所酒店只有微波爐＋小冰箱＋自備小萬用鍋，採買以能微波、泡熱水的食材為主</p>
+        <p>西黃石 6 晚＋傑克遜 2 晚都能開伙（設施相同：微波爐＋小冰箱，自備旅行萬用鍋與飛碟鍋）；實際約 5–8 頓晚餐 + 4 份園區便當</p>
     </div>
     <div class="pn-bar" id="pnBar">
         <button class="pn-chip pn-tool" id="pnCollapse">▲ 全部收合</button>
         <button class="pn-chip pn-tool" id="pnExpand">▼ 全部展開</button>
+        <a class="pn-chip" href="#s-plan">自炊盤點</a>
         <a class="pn-chip" href="#s-slc">鹽湖城</a>
         <a class="pn-chip" href="#s-asian">中國超市</a>
         <a class="pn-chip" href="#s-wy">西黃石</a>
+        <a class="pn-chip" href="#s-jh">傑克遜</a>
         <a class="pn-chip" href="#s-return">回程採買</a>
         <a class="pn-chip" href="#s-gift">伴手禮</a>
     </div>
@@ -69,83 +88,131 @@
             <span style="color:#888; font-size:0.9rem;">勾選進度會自動儲存在這台裝置</span>
         </div>
 
+        <h2 class="stage-title pn-anchor" id="s-plan">🍽️ 先算清楚：到底有幾餐要自己準備</h2>
+        <div class="info-box">
+            <strong>4 家飯店全部含早餐</strong>（6:30–9:30 供應），園區與鎮上也都有餐廳。<strong>西黃石 6 晚與傑克遜 2 晚的房內設施相同</strong>（微波爐＋小冰箱、無爐台、不附鍋碗餐具），我們自備<strong>旅行萬用鍋＋煎煮飛碟鍋＋餐具</strong>，所以<strong>兩站都能開伙</strong>。先把餐數算出來，採買量才不會失控。
+        </div>
+        <div class="table-wrap">
+            <table class="meal-table">
+                <tr><th>日期</th><th>早餐</th><th>午餐</th><th>晚餐</th></tr>
+                <tr><td class="d">Day 3｜9/28</td><td>凱悅早餐</td><td>Idaho Falls 外食</td><td class="cook">小木屋自炊 ①（或鎮上）</td></tr>
+                <tr><td class="d">Day 4｜9/29</td><td>會所酒店</td><td>Old Faithful 餐廳／便當</td><td class="cook">自炊 ②</td></tr>
+                <tr><td class="d">Day 5｜9/30</td><td>會所酒店</td><td class="box">便當 ①（Fishing Bridge 野餐）</td><td class="cook">自炊 ③</td></tr>
+                <tr><td class="d">Day 6｜10/1</td><td>會所酒店</td><td>Canyon Village 餐廳</td><td class="cook">自炊 ④</td></tr>
+                <tr><td class="d">Day 7｜10/2</td><td>會所酒店</td><td class="box">便當 ②（Mammoth）</td><td class="box">便當 ③（Lamar 車上，需保溫）</td></tr>
+                <tr><td class="d">Day 8｜10/3</td><td>會所酒店</td><td class="cook">自炊 ⑤（小木屋）</td><td class="cook">自炊 ⑥（或鎮上）</td></tr>
+                <tr><td class="d">Day 9｜10/4</td><td>會所酒店（最後一次）</td><td>Signal Mountain Lodge</td><td>傑克遜 Gather／StillWest<br><span style="font-size:0.85em;color:#8A5A12;">（想省一頓也可自炊 ⑦）</span></td></tr>
+                <tr><td class="d">Day 10｜10/5</td><td>49’er 早餐</td><td>Town Square 外食</td><td>Gather／StillWest<br><span style="font-size:0.85em;color:#8A5A12;">（想省一頓也可自炊 ⑧）</span></td></tr>
+                <tr class="dim"><td class="d">Day 11–15</td><td>飯店早餐</td><td colspan="2">全程外食（Logan、鹽湖城、舊金山）</td></tr>
+            </table>
+        </div>
+        <p class="legend">🟡 自炊＝房內開伙（萬用鍋／飛碟鍋／微波）　🟢 便當＝前一晚或當天早上做好帶進園區</p>
+        <div class="info-box">
+            📌 <strong>結論：晚餐自炊 4–6 頓（傑克遜再加 0–2 頓）、園區便當 3–4 份、午餐自炊 1 頓。</strong>換算成 4 人份，主食大約 <span class="qty">10–12 餐份</span>就夠——不是 8 天 24 餐。傑克遜那兩晚鎮上餐廳很值得吃，自炊當備案就好（累了、不想排隊、或想吃碗熱麵線時）。
+        </div>
+        <div class="warn-box">
+            🧊 <strong>小冰箱的真實容量：</strong>飯店 mini fridge 約 50–70 公升，西黃石的冷凍格只有 <strong>3–5 公升</strong>（差不多兩包冷凍水餃的空間）；<strong>傑克遜 49’er 的冰箱旅館已確認「沒有冷凍格」</strong>，需要冷凍的東西要請櫃台代冰。所以：<br>
+            ・<strong>冷凍微波餐（Stouffer's、Lean Cuisine 這類）不要買</strong>：4 人一餐就要 4 盒，冷凍格放不下，而且 Day 2 在鹽湖城買也撐不過隔天 5–6 小時車程。<br>
+            ・要吃微波食品，改買<strong>常溫的微波調理包</strong>（retort pouch：日式咖哩、義大利麵醬、麻婆豆腐、微波白飯）——室溫可放、不佔冰箱、撕開就微波，才是這趟最適合的主力。
+        </div>
+        <div class="warn-box">
+            🗓️ <strong>三條清空死線（採買量照這個抓）</strong><br>
+            <strong>① 10/3 晚餐前 — 冷凍品全部吃完。</strong>傑克遜 49’er 的冰箱<strong>沒有冷凍格</strong>，水餃、包子、冷凍麵點帶過去就化了（真的需要冷凍可請櫃台代冰，但別依賴）。<br>
+            <strong>② 10/6 中午前 — 冷藏品全部吃完。</strong>冷藏食材可以帶去傑克遜繼續煮，但 10/4 那天整天在車上跑大提頓，<strong>一定要用保冷袋＋冰塊</strong>；10/6 早上就要退房開回鹽湖城了。<br>
+            <strong>③ 10/6 還車前 — 車上全部清空。</strong>常溫乾貨、調理包、茶包、零食可以一路帶到這裡；剩下的帶上飛機前記得檢查（<strong>肉類製品不能帶回台灣</strong>）。
+        </div>
+        <div class="info-box">
+            ⚖️ <strong>4 人份量基準（照上表餐數抓，寧可少買、西黃石可補）</strong><br>
+            ・微波白飯 <span class="qty">14–18 盒</span>　或　白米 <span class="qty">2–3 lb</span>（燜燒罐燜飯＋萬用鍋煮粥兩用）<br>
+            ・常溫微波調理包／即食粥 <span class="qty">10–12 包</span>　・麵線／烏龍麵／米粉 <span class="qty">共 2–3 包</span><br>
+            ・冷凍水餃或包子 <span class="qty">最多 2 包</span>（冷凍格上限）　・鮮肉 <span class="qty">分 2 次買、每次 1–1.5 lb</span><br>
+            ・雞蛋 <span class="qty">半打</span>　・吐司 <span class="qty">分 2 次買、每次 1 條</span>（6 天會發霉）　・瓶裝水 <span class="qty">2 箱</span>
+        </div>
+        <div class="info-box">
+            🚱 <strong>兩站房內都沒有水槽，只有浴室洗手台。</strong>洗鍋洗碗很克難，所以採買原則是<strong>「一鍋煮完、少洗一件」</strong>：多用微波、燜燒罐、免洗餐具，少買需要瀝水、多道工序的食材。<strong>飛碟鍋雖然能煎</strong>，但房內空間密閉，建議<strong>薄片肉、少油、開窗</strong>，別煎厚肉排，以免油煙觸發偵煙器。
+        </div>
+
         <h2 class="stage-title pn-anchor" id="s-slc">📍 Day 2（9/27）鹽湖城採買（常溫乾貨）— Walmart / Target</h2>
         <div class="info-box">💡 Walmart 24 小時營業、不需會員卡，選擇多又便宜；Target 品質稍好，適合買日用品。黃石園區內物資選擇少且貴，常溫乾貨與日用品在鹽湖城一次買齊最省！</div>
-        <div class="info-box">🧊 <strong>Day 2 只買常溫可放的！</strong>採買隔天要開 5–6 小時車到西黃石，途中沒有冷藏——肉、蛋、奶、生菜、豆腐等<strong>需冷藏冷凍的鮮食一律到西黃石再買</strong>；西黃石只有小冰箱，鮮食少量多買、隨買隨煮。</div>
-        <div class="info-box">🍳 <strong>會所酒店廚房設備有限：</strong>房內只有微波爐＋小冰箱，無爐台烤箱；自備旅行萬用鍋不大（萬用電壓，插上直接用）。採買請以<strong>能微波、泡熱水、或小份量鍋煮</strong>的食材為主，冷凍鮮食少量買（小冰箱冷凍格有限）。</div>
-        <div class="info-box">🥐 <strong>全程 4 家飯店都附早餐</strong>（西黃石歐陸早餐、其餘含早餐或自助早餐），早餐食材幾乎免買；採買以<strong>進黃石帶的午餐（三明治、行動糧）和晚餐自炊</strong>為主。早出發那幾天可帶點麵包／能量棒當車上早餐。</div>
+        <div class="warn-box">🧊 <strong>Day 2 只買常溫可放的！</strong>採買隔天要開 5–6 小時車到西黃石，途中沒有冷藏——肉、蛋、奶、生菜、豆腐、<strong>以及所有冷凍食品</strong>一律到西黃石再買（唯一例外：中國超市的冷凍水餃包子，西黃石買不到，需搭配保冷袋＋冰塊）。</div>
+        <div class="info-box">🍳 <strong>西黃石會所酒店與傑克遜 49’er 的房內設備相同：</strong><strong>微波爐＋小冰箱</strong>（會所酒店另有咖啡機），無爐台、無烤箱、無水槽、不附鍋碗餐具。我們自備<strong>旅行萬用鍋＋煎煮飛碟鍋＋餐具</strong>（萬用電壓，插上直接用），所以<strong>兩站都能煮</strong>，只是鍋子小、一次煮一道。採買請以<strong>能微波、泡熱水、或一鍋煮／一鍋煎</strong>的食材為主。<strong>唯一差別：傑克遜的冰箱沒有冷凍格。</strong></div>
+        <div class="info-box">🥐 <strong>4 家飯店都附早餐（6:30–9:30）</strong>，西黃石是歐陸式（優格、煎餅、水果、咖啡）。早餐食材幾乎不用買；早出發那幾天，前一晚順手把麵包、水果打包當車上早餐即可。</div>
+        <div class="warn-box">⛔ <strong>這幾樣不用買（飯店早餐都有，買了會浪費）：</strong>鮮奶、優格、麥片、咖啡、果汁、培根香腸。真要買就買最小包，或留到西黃石看情況再說。</div>
         <div class="info-box">👵 <strong>長輩飲食：</strong>以溫食、好咀嚼、好消化為原則；旅途容易便祕，記得多補水、纖維與水果，生冷沙拉少一點，多用微波做溫熱蔬菜與粥品。</div>
         <div class="info-box">🥢 <strong>Walmart 之後再繞一趟中國超市！</strong>米、麵線、粥包、肉鬆、薑茶、冷凍水餃這些長輩吃得慣的東西，只有鹽湖城買得到，西黃石完全沒有 → <a href="#s-asian" style="color:var(--primary-color); font-weight:700;">看中國超市清單</a></div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🥦</span><h3>蔬果（常溫可放）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="s2i3"><label for="s2i3">洋蔥、大蒜、馬鈴薯</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s2i4"><label for="s2i4">香蕉、蘋果、橘子（車上零食）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s2i5"><label for="s2i5">酪梨（未熟常溫放）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i3"><label for="s2i3">洋蔥、大蒜（少量，調味用）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i6"><label for="s2i6">馬鈴薯 2–3 顆（<strong>微波 8 分鐘就熟</strong>，不必用萬用鍋久煮）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i4"><label for="s2i4">香蕉、蘋果、橘子（車上零食，10 月常溫放得住）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s2i5"><label for="s2i5">酪梨 2–3 顆（未熟常溫催熟，抹三明治）<span class="tagx rt">常溫</span></label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🍞</span><h3>主食 & 碳水</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🍞</span><h3>主食 & 碳水（這趟的主力）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="s3i1"><label for="s3i1">吐司麵包（三明治用）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s3i2"><label for="s3i2">義大利麵 Pasta + 紅醬（萬用鍋煮小份）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s3i3"><label for="s3i3">微波白飯（最方便）／小包白米萬用鍋煮</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s3i4"><label for="s3i4">泡麵 / 杯麵（備用糧食）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s3i5"><label for="s3i5">Tortilla 墨西哥薄餅</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s3i6"><label for="s3i6">微波即食調理包、冷凍微波食品（咖哩、義大利麵、炒飯）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i3"><label for="s3i3">⭐ <strong>微波白飯 12–16 盒</strong>（常溫保存、微波 2 分鐘，配一道菜就是一餐）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i6"><label for="s3i6">⭐ <strong>常溫微波調理包 8–10 包</strong>：日式咖哩、義大利麵醬、燉牛肉、白醬雞肉（retort pouch，<strong>不需冷藏</strong>，撕開微波）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i2"><label for="s3i2">短麵（通心粉／筆管麵）+ 紅醬（<strong>萬用鍋一鍋煮不用瀝水</strong>，比長條義大利麵好處理）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i1"><label for="s3i1">吐司麵包 1 條（三明治用；<strong>6 天會發霉，10/3 在西黃石再買一條</strong>）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i5"><label for="s3i5">Tortilla 墨西哥薄餅（不怕壓、捲起來就是便當）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="s3i4"><label for="s3i4">泡麵／杯麵（備用糧，行程延誤或懶得煮時用）<span class="tagx rt">常溫</span></label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🥫</span><h3>調味料 & 醬料</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🥫</span><h3>調味料 & 醬料（一律買最小瓶）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="s4i1"><label for="s4i1">鹽、胡椒、食用油</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s4i2"><label for="s4i2">醬油（小瓶）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s4i3"><label for="s4i3">番茄醬 Ketchup、美乃滋</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s4i4"><label for="s4i4">花生醬（高熱量，登山好夥伴）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s4i5"><label for="s4i5">蜂蜜或果醬</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i1"><label for="s4i1">鹽、胡椒、食用油（小罐；只煮 6 天，別買家庭號）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i3"><label for="s4i3">番茄醬、美乃滋（<strong>買隨手包</strong>更省空間、不用冷藏開封後煩惱）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i4"><label for="s4i4">花生醬小罐（高熱量，抹吐司當行動糧）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i5"><label for="s4i5">果醬或蜂蜜小罐</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s4i2"><label for="s4i2">醬油 — <strong>留到中國超市買台式小瓶</strong>，這裡可略過</label></div>
             </div>
         </div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🥤</span><h3>飲料 & 水</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="s5i1"><label for="s5i1">瓶裝水 × 2 箱（園區內買很貴）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s5i2"><label for="s5i2">運動飲料 Gatorade</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s5i3"><label for="s5i3">咖啡（飯店附早餐有咖啡＋房內咖啡機，可少買）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s5i4"><label for="s5i4">茶包</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s5i6"><label for="s5i6">果汁（飯店早餐有，可少買）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i1"><label for="s5i1">⭐ 瓶裝水 × 2 箱（4 人 × 6 天含進園區；園區內買很貴）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i2"><label for="s5i2">運動飲料 Gatorade（高海拔乾燥，補電解質）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i4"><label for="s5i4">茶包（房內咖啡機的熱水就能泡）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s5i3"><label for="s5i3">咖啡、果汁 — <strong>飯店早餐＋房內咖啡機都有，建議不買</strong></label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🍫</span><h3>零食 & 能量補給</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🍫</span><h3>零食 & 能量補給（進園區必備）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="s6i1"><label for="s6i1">能量棒 Granola Bar / Clif Bar</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s6i1"><label for="s6i1">能量棒 Granola Bar / Clif Bar（早出發日的車上早餐）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s6i2"><label for="s6i2">堅果 Trail Mix</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s6i3"><label for="s6i3">巧克力</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s6i4"><label for="s6i4">餅乾、洋芋片</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s6i5"><label for="s6i5">果乾（藍莓、蔓越莓）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s6i5"><label for="s6i5">果乾（藍莓、蔓越莓；幫助長輩排便）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s6i6"><label for="s6i6">口香糖（開車提神）</label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">👵</span><h3>長輩友善（溫食・好咀嚼・好消化）</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">👵</span><h3>長輩友善（Walmart 只補這幾樣，主力在中國超市）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="e1"><label for="e1">燕麥片／即食麥片（微波熱粥，軟好入口）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="e2"><label for="e2">即食粥／稀飯（微波，好消化）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="e4"><label for="e4">味噌湯／即食湯包（泡熱水，暖胃）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="e5"><label for="e5">薑茶／黑糖薑茶包（早晚暖身）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="e6"><label for="e6">香蕉、木瓜、蒸地瓜（好消化、幫助排便）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="e1"><label for="e1">燕麥片小包 1 袋（Day 9 早出發吃不到早餐時備用；平日飯店有）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="e4"><label for="e4">即食濃湯包（泡熱水就暖胃；中式湯包在中國超市買）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="e6"><label for="e6">地瓜 2–3 條（<strong>微波 5 分鐘</strong>，好消化、幫助排便）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="e7"><label for="e7">香蕉（同上方蔬果區，每天一根最實際）<span class="tagx rt">常溫</span></label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🧻</span><h3>日用品</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🧻</span><h3>日用品 & 自炊消耗品（房內沒水槽，這區很關鍵）</h3><span class="count" data-count></span></div>
             <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="s7i8"><label for="s7i8">⭐ <strong>保冷袋 ＋ 冰磚／冰塊</strong>（<strong>每天進園區帶便當都要用</strong>，不只是為了冷凍品；也用於 10/4 車上）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i9"><label for="s7i9">⭐ <strong>紙盤、紙碗、免洗餐具</strong>（房內只有洗手台，能少洗一件是一件）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s7i1"><label for="s7i1">廚房紙巾 Paper Towel</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s7i2"><label for="s7i2">保鮮膜 / 夾鏈袋 Ziploc</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s7i3"><label for="s7i3">垃圾袋</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i2"><label for="s7i2">夾鏈袋 Ziploc + 保鮮膜（做便當、分裝剩食）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s7i4"><label for="s7i4">洗碗精（小瓶）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s7i5"><label for="s7i5">海綿</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s7i6"><label for="s7i6">鋁箔紙（烤肉用）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i5"><label for="s7i5">海綿菜瓜布</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i10"><label for="s7i10">小塑膠洗碗盆（選配，$3 左右；在洗手台洗鍋會方便很多）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i6"><label for="s7i6">鋁箔紙（<strong>包便當、墊萬用鍋用</strong>；園區禁止生火烤肉，不是烤肉用）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i3"><label for="s7i3">垃圾袋</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s7i7"><label for="s7i7">濕紙巾</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s7i11"><label for="s7i11">便宜砧板＋小刀（$5 內；不想從台灣託運刀具就在這裡買）</label></div>
             </div>
         </div>
         <div class="checklist-section">
@@ -153,14 +220,16 @@
             <div class="section-content">
                 <div class="checklist-item"><input type="checkbox" id="s8i1"><label for="s8i1">防曬乳 SPF50+</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s8i2"><label for="s8i2">護唇膏（高海拔乾燥）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s8i3"><label for="s8i3">防熊噴霧 Bear Spray（REI 或 Walmart 購買）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="s8i4"><label for="s8i4">暖暖包（10月早晚很冷）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s8i3"><label for="s8i3">防熊噴霧 Bear Spray（REI 或 Walmart；<strong>不能帶上飛機</strong>，用不完最後送人或依規定丟棄）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="s8i4"><label for="s8i4">暖暖包（10 月早晚 −5°C）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="s8i5"><label for="s8i5">OK 繃、基本藥品</label></div>
             </div>
         </div>
+        <div class="warn-box">🐻 <strong>園區食物規定：</strong>食物、飲料、垃圾都<strong>不可留在車外或營區桌面</strong>，野餐後立刻收回車內密封。保冷袋離開車子時一定要收好，這是黃石的硬規定。</div>
 
         <h2 class="stage-title pn-anchor" id="s-asian">🥢 Day 2 加碼：鹽湖城中國超市（長輩吃得慣的味道）</h2>
         <div class="info-box">👵 <strong>為什麼值得繞這一趟：</strong>黃石要住 6 晚，房內只有微波爐＋小冰箱＋自備小萬用鍋。長輩連吃六天美式冷食容易沒胃口、也不好消化；一鍋熱粥配肉鬆、一碗麵線、一杯薑茶，比什麼都有效。這些東西<strong>西黃石完全買不到</strong>，只有鹽湖城這一次機會。</div>
+        <div class="warn-box">⚖️ <strong>但這一站最容易失控。</strong>下面每一類挑 2–3 樣就好，總量請對照上方<a href="#s-plan" style="color:#A8402A;font-weight:700;">自炊盤點</a>——實際只有約 <strong>10 餐</strong>要煮，而且<strong>冷藏冷凍的東西 10/3 前必須清空</strong>。乾貨、茶包、調理包可以多帶一點，回程還能繼續吃。</div>
         <div class="info-box">⭐ <strong>首推：Chinatown Supermarket 中國城超市</strong><br>
         📍 3390 S State St #11, South Salt Lake, UT 84115｜☎️ (801) 906-8788<br>
         🕗 週一–四 8:00–22:00、週五六 8:00–23:00、週日 8:00–22:00（全年無休）<br>
@@ -169,30 +238,30 @@
         ・<strong>H Mart 西喬丹店</strong>｜1442 W 9000 S, West Jordan — 韓系連鎖，10 萬平方呎超大，中日台商品也很齊<br>
         ・<strong>Ocean Mart 大中超級市場</strong>｜115 W 9000 S, Sandy｜8:30–20:30（五六至 21:00）— 有燒臘、包子饅頭熟食區<br>
         ・<strong>Asian City</strong>｜1653 W 9000 S, West Jordan｜9:30–20:30 — 東南亞商品較多</div>
-        <div class="info-box">🧊 <strong>一樣守「Day 2 只買常溫」的原則。</strong>隔天要開 5–6 小時到西黃石，車上沒冷藏。真的想帶冷凍水餃、包子，就<strong>順手買保冷袋＋冰塊</strong>（超市結帳區有賣），冷凍品塞緊實可以撐過車程——這類品項在西黃石買不到，值得帶。</div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🍚</span><h3>主食・米麵（常溫，微波或萬用鍋煮）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="cn1"><label for="cn1">台梗米／珍珠米（小包 2–5 lb，萬用鍋煮飯煮粥兩用）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn2"><label for="cn2">微波即食白飯（最省事，配一道菜就是一餐）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn3"><label for="cn3">即食白粥／廣東粥調理包（撕開微波，長輩早晚餐首選）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn4"><label for="cn4">麵線、細麵、關廟麵（好煮好咬，5 分鐘一碗熱湯麵）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn5"><label for="cn5">常溫烏龍麵（沖熱水就軟，超適合小萬用鍋）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn6"><label for="cn6">米粉、冬粉（泡軟就能煮，超輕不佔行李）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn7"><label for="cn7">泡麵／杯麵（統一肉燥、維力炸醬、辛拉麵等，備用糧）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn1"><label for="cn1">台梗米／珍珠米 <strong>2–5 lb 小包</strong>（燜燒罐燜飯、萬用鍋煮粥兩用）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn2"><label for="cn2">微波即食白飯（若 Walmart 已買夠可略）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn3"><label for="cn3">⭐ 即食白粥／廣東粥調理包（撕開微波，長輩晚餐首選）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn47"><label for="cn47">⭐ 常溫調理包：麻婆豆腐、滷肉、咖哩、宮保雞丁（<strong>不佔冰箱的救命主力</strong>）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn4"><label for="cn4">麵線、細麵、關廟麵（好煮好咬，5 分鐘一碗熱湯麵）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn5"><label for="cn5">常溫烏龍麵（沖熱水就軟，最適合小萬用鍋）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn6"><label for="cn6">米粉、冬粉（泡軟就能煮，超輕不佔行李）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn7"><label for="cn7">泡麵／杯麵（備用糧）<span class="tagx rt">常溫</span></label></div>
             </div>
         </div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🍲</span><h3>湯品・沖泡（泡熱水就好，暖胃第一名）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="cn8"><label for="cn8">味噌（常溫可放，配豆腐＋海帶芽＝三分鐘味噌湯）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn9"><label for="cn9">雞湯塊／高湯粉／柴魚粉（煮麵煮粥的味道來源）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn10"><label for="cn10">即食濃湯、酸辣湯、紫菜蛋花湯包</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn11"><label for="cn11">黑糖薑茶／薑母茶（黃石 10 月早晚 0–5°C，暖身用）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn12"><label for="cn12">桂圓紅棗茶包（甜溫順口，長輩睡前不刺激）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn13"><label for="cn13">枸杞（丟保溫瓶泡水，一路喝到黃石）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn14"><label for="cn14">芝麻糊、杏仁茶、藕粉、燕麥糊（沖泡即食，好消化）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn15"><label for="cn15">烏龍茶／普洱茶包（美式餐吃多，解油膩）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn8"><label for="cn8">味噌（常溫可放，配豆腐＋海帶芽＝三分鐘味噌湯）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn9"><label for="cn9">雞湯塊／高湯粉／柴魚粉（煮麵煮粥的味道來源）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn10"><label for="cn10">即食濃湯、酸辣湯、紫菜蛋花湯包<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn11"><label for="cn11">⭐ 黑糖薑茶／薑母茶（黃石 10 月早晚 0–5°C，保溫瓶帶著喝）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn12"><label for="cn12">桂圓紅棗茶包（甜溫順口，長輩睡前不刺激）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn13"><label for="cn13">枸杞（丟保溫瓶泡水，一路喝到黃石）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn14"><label for="cn14">芝麻糊、杏仁茶、藕粉、燕麥糊（沖泡即食，好消化）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn15"><label for="cn15">烏龍茶／普洱茶包（美式餐吃多，解油膩）<span class="tagx rt">常溫</span></label></div>
             </div>
         </div>
         <div class="checklist-section">
@@ -200,38 +269,39 @@
             <div class="section-content">
                 <div class="checklist-item"><input type="checkbox" id="cn16"><label for="cn16">醬油小瓶（金蘭／龜甲萬）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cn17"><label for="cn17">香油、烏醋（一滴就有家的味道）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn18"><label for="cn18">蠔油、沙茶醬（萬用鍋炒什麼都好吃）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn18"><label for="cn18">蠔油、沙茶醬（萬用鍋煮什麼都好吃）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cn19"><label for="cn19">老干媽／辣豆瓣醬（重口味長輩救星）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn20"><label for="cn20">米酒／料理酒、味醂（去腥提味）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cn21"><label for="cn21">白胡椒粉、五香粉</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn22"><label for="cn22">肉鬆、魚鬆（配白粥的靈魂）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn23"><label for="cn23">罐頭配粥三寶：花瓜、脆瓜、麵筋（豆腐乳也可）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn22"><label for="cn22">⭐ 肉鬆、魚鬆（配白粥的靈魂；<strong>回台不能帶，10/9 前吃完</strong>）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn23"><label for="cn23">罐頭配粥三寶：花瓜、脆瓜、麵筋（豆腐乳也可；<strong>開罐後要冷藏，買小罐</strong>）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cn24"><label for="cn24">海苔（配粥、配飯糰）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn20"><label for="cn20">米酒／料理酒 — <strong>用得到的機會不高，可略</strong></label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🍄</span><h3>乾貨（輕、耐放、不佔位，最適合帶進黃石）</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🍄</span><h3>乾貨（輕、耐放、不佔冰箱，最適合帶進黃石）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="cn25"><label for="cn25">乾香菇、黑木耳（泡開就能煮湯煮粥，增添風味與纖維）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn26"><label for="cn26">蝦米、小魚乾（提鮮）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn27"><label for="cn27">海帶芽、紫菜（沖熱水就是一碗湯）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn28"><label for="cn28">紅棗、桂圓乾（煮甜湯、泡茶，味道溫甜）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn29"><label for="cn29">白木耳、蓮子（萬用鍋燉一鍋甜湯，長輩好入口）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn30"><label for="cn30">黃耆、當歸片（想燉雞湯可買一小包；長輩若有在服藥或慢性病，先問過醫師再用）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn31"><label for="cn31">腐皮、素肉、豆干（真空包，常溫可放的蛋白質）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn25"><label for="cn25">乾香菇、黑木耳（泡開就能煮湯煮粥，增添風味與纖維）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn27"><label for="cn27">海帶芽、紫菜（沖熱水就是一碗湯）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn28"><label for="cn28">紅棗、桂圓乾（煮甜湯、泡茶，味道溫甜）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn29"><label for="cn29">白木耳、蓮子（萬用鍋燉一鍋甜湯，長輩好入口）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn31"><label for="cn31">腐皮、素肉、豆干真空包（<strong>常溫可放的蛋白質，不佔冰箱</strong>）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn26"><label for="cn26">蝦米、小魚乾（提鮮，一小包就夠）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn30"><label for="cn30">黃耆、當歸片（想燉雞湯可買一小包；長輩若有在服藥或慢性病，先問過醫師再用）<span class="tagx rt">常溫</span></label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🧊</span><h3>冷凍・冷藏（買了就要一起買保冷袋＋冰塊）</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🧊</span><h3>冷凍・冷藏（總量上限：2 包，冷凍格只有這麼大）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="cn32"><label for="cn32">保冷袋＋冰塊／冰磚（先買這個，才有下面幾樣）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn33"><label for="cn33">冷凍水餃、小籠包（萬用鍋水煮，最省事的一餐）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn34"><label for="cn34">冷凍包子、饅頭（微波 1 分鐘就是早餐或宵夜）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn35"><label for="cn35">冷凍蔥油餅、抓餅（萬用鍋乾煎）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn36"><label for="cn36">貢丸、魚丸（丟進湯麵就有料）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn37"><label for="cn37">板豆腐／嫩豆腐（味噌湯用；西黃石超市也買得到，可晚點買）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn32"><label for="cn32">⭐ 保冷袋＋冰塊／冰磚（<strong>先買這個，才有下面幾樣</strong>；結帳區就有）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn33"><label for="cn33">冷凍水餃或小籠包 <strong>1 包</strong>（萬用鍋水煮，最省事的一餐）<span class="tagx fz">冷凍</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn34"><label for="cn34">冷凍包子／饅頭 <strong>1 包</strong>（微波 1 分鐘就是早餐或宵夜）<span class="tagx fz">冷凍</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn35"><label for="cn35">冷凍蔥油餅、抓餅（想帶的話就取代上面其中一包，<strong>不要三樣都買</strong>）<span class="tagx fz">冷凍</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn36"><label for="cn36">貢丸、魚丸 — 冷凍格塞不下，<strong>建議略過</strong>（湯麵改用乾貨提味）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn37"><label for="cn37">板豆腐／嫩豆腐 — <strong>不要在這裡買</strong>，西黃石超市也有，到當地再買最新鮮<span class="tagx ch">冷藏</span></label></div>
             </div>
         </div>
+        <div class="warn-box">🧊 <strong>冷凍品的操作方式：</strong>結帳時一起買保冷袋＋冰塊，冷凍品塞緊實可以撐過隔天 5–6 小時車程。<strong>抵達西黃石 16:00 入住後的第一件事，就是把冷凍品放進冷凍格</strong>；容量只有 3–5 公升，超過 2 包就放不下了。</div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🍪</span><h3>零食・車上補給</h3><span class="count" data-count></span></div>
             <div class="section-content">
@@ -239,46 +309,85 @@
                 <div class="checklist-item"><input type="checkbox" id="cn39"><label for="cn39">蘇打餅、消化餅（不甜膩，墊胃用）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cn40"><label for="cn40">話梅、蜜餞（山路多彎，開胃解暈）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cn41"><label for="cn41">堅果、瓜子</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn42"><label for="cn42">三合一奶茶／即溶咖啡（沖泡包，房內熱水就能喝）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn42"><label for="cn42">三合一奶茶／即溶咖啡（房內熱水就能喝）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="cn43"><label for="cn43">亞洲梨、哈密瓜、橘子（常溫放得住的水果）</label></div>
             </div>
         </div>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🍱</span><h3>熟食區（當天晚餐 or 隔天車上午餐）</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🍱</span><h3>熟食區（當天 9/27 晚餐 or 隔天車上午餐）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="cn44"><label for="cn44">燒臘便當、烤鴨、油雞（採買完直接當晚餐，不用另外找餐廳）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn45"><label for="cn45">港式點心、叉燒包、蘿蔔糕</label></div>
-                <div class="checklist-item"><input type="checkbox" id="cn46"><label for="cn46">85°C 麵包（同商場，隔天車上早餐）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn44"><label for="cn44">燒臘便當、烤鴨、油雞（<strong>採買完直接當今晚晚餐</strong>，不用另外找餐廳）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn45"><label for="cn45">港式點心、叉燒包、蘿蔔糕（當晚吃完，別留到明天車上）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="cn46"><label for="cn46">85°C 麵包（同商場，<strong>9/28 車上早餐</strong>）</label></div>
             </div>
         </div>
-        <div class="info-box">✈️ <strong>提醒：</strong>吃不完的<strong>肉類製品（肉鬆、真空滷味、含肉調理包）不能帶回台灣</strong>，也不能帶上回程班機的隨身行李；規劃份量時算好，最後一天前吃完或丟棄。乾貨、茶包、餅乾等加工封裝品沒問題。</div>
+        <div class="warn-box">✈️ <strong>回程提醒：</strong>吃不完的<strong>肉類製品（肉鬆、真空滷味、含肉調理包）不能帶回台灣</strong>，也不能帶上回程班機的隨身行李；規劃份量時算好，10/9 前吃完或丟棄。乾貨、茶包、餅乾等加工封裝品沒問題。</div>
 
-        <h2 class="stage-title pn-anchor" id="s-wy">📍 Day 3（9/28）西黃石買鮮食（冷藏類全在此買）</h2>
-        <div class="info-box">💡 兩家超市：<strong>Food Roundup</strong>（107 Dunraven St, 7AM–10PM）、<strong>Market Place</strong>（22 Madison Ave, 7AM–8PM）。<strong>所有需冷藏冷凍的鮮食都在這裡買</strong>；價格比城市貴 30–40%，但小冰箱容量有限，<strong>少量多買、隨買隨煮</strong>最實際。</div>
+        <h2 class="stage-title pn-anchor" id="s-wy">📍 西黃石買鮮食（冷藏冷凍全在此買，分兩次）</h2>
+        <div class="info-box">💡 兩家超市：<strong>Food Roundup</strong>（107 Dunraven St, 7AM–10PM）、<strong>Market Place</strong>（22 Madison Ave, 7AM–8PM），走路或開車都很近。價格比城市貴 30–40%，但<strong>小冰箱只放得下 2–3 天的鮮食</strong>，分兩次買反而更省、更不浪費。</div>
+        <div class="info-box">🗓️ <strong>為什麼分兩次：</strong>第一次 Day 3（9/28 下午 14:00 抵達、入住前）先抓 3 天份；第二次 Day 8（10/3 休息日，行程本來就排了「自炊補貨」）再補到 10/3 晚餐為止。這樣冰箱不會爆、也不會有吃不完的鮮食被迫丟掉。</div>
+
+        <h3 class="sub-title">🛒 第一次：Day 3（9/28）— 抓 9/28～9/30 三天份</h3>
         <div class="checklist-section">
-            <div class="section-header"><span class="icon">🥛</span><h3>冷藏鮮食（少量多買，小冰箱容量有限）</h3><span class="count" data-count></span></div>
+            <div class="section-header"><span class="icon">🥛</span><h3>冷藏鮮食（第一批）</h3><span class="count" data-count></span></div>
             <div class="section-content">
-                <div class="checklist-item"><input type="checkbox" id="wyi1"><label for="wyi1">現切鮮肉：牛排／雞胸／雞腿（少量，萬用鍋煎煮）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi2"><label for="wyi2">培根、香腸（早餐或自炊）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi3"><label for="wyi3">雞蛋（自炊用；早餐飯店有）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi4"><label for="wyi4">火腿片／火雞肉片（三明治用）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi5"><label for="wyi5">鮮奶（飯店早餐有，可少買）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi6"><label for="wyi6">優格（飯店早餐有，可少買）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi7"><label for="wyi7">嫩豆腐（長輩好入口的蛋白質）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi8"><label for="wyi8">生菜、小番茄、小黃瓜</label></div>
-                <div class="checklist-item"><input type="checkbox" id="wyi9"><label for="wyi9">軟質蔬菜（微波溫蔬菜，長輩友善）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi1"><label for="wyi1">鮮肉 1–1.5 lb：<strong>薄切肉片／絞肉／雞胸丁</strong>（<strong>避免厚牛排</strong>——萬用鍋煎大塊肉油煙大，容易觸發房內偵煙器）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi3"><label for="wyi3">雞蛋 半打（萬用鍋煎蛋、煮蛋花湯；早餐飯店已有）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi4"><label for="wyi4">火腿片／火雞肉片＋起司片（三明治、便當用）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi7"><label for="wyi7">嫩豆腐 1 盒（味噌湯；長輩好入口的蛋白質）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi9"><label for="wyi9">⭐ 軟質蔬菜：花椰菜、菠菜、蘑菇、紅蘿蔔（<strong>微波 3 分鐘就是溫蔬菜</strong>，長輩友善又補纖維）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi8"><label for="wyi8">小番茄 1 小盒（便當配色、免切；<strong>生菜沙拉少買</strong>，長輩生冷吃不多又佔冰箱）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi10"><label for="wyi10">奶油或抹醬 小盒（抹吐司、萬用鍋煎蛋用）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wyi5"><label for="wyi5">鮮奶、優格、培根香腸 — <strong>飯店早餐都有，建議不買</strong></label></div>
+            </div>
+        </div>
+
+        <h3 class="sub-title">🛒 第二次：Day 8（10/3 休息日）— 只補到 10/3 晚餐為止</h3>
+        <div class="warn-box">⏰ <strong>這次的死線分兩層：冷凍品今晚吃完、冷藏品只留帶得走的量。</strong>傑克遜可以繼續煮（設施相同），但<strong>冰箱沒有冷凍格</strong>，冷凍水餃包子今晚要清掉；冷藏的肉、蔬菜、豆腐可以留一點帶過去，前提是 10/4 全天用保冷袋＋冰塊撐住。順便清點冰箱，把快過期的先排進今晚菜單。</div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🔁</span><h3>補貨（第二批）</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="wy2a"><label for="wy2a">鮮肉再 1 lb（10/1–10/3 用完）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wy2b"><label for="wy2b">吐司麵包 1 條（第一條這時差不多吃完或發霉了）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wy2c"><label for="wy2c">蔬菜、水果補一次（軟質可微波的優先）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="wy2d"><label for="wy2d">雞蛋、豆腐視剩量補</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wy2e"><label for="wy2e">⭐ 冰塊／冰磚（<strong>10/4 全天車上保冷，帶去傑克遜的關鍵</strong>；10/4 早上再買最保險）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wy2f"><label for="wy2f">🧹 <strong>清冰箱盤點</strong>：冷凍品今晚全部煮掉；冷藏品分成「帶去傑克遜」與「今晚吃掉」兩堆</label></div>
+                <div class="checklist-item"><input type="checkbox" id="wy2g"><label for="wy2g">Huckleberry 野莓果醬／軟糖（鎮上伴手禮，休息日順手買）</label></div>
+            </div>
+        </div>
+
+        <h2 class="stage-title pn-anchor" id="s-jh">📍 Day 9–10（10/4–10/6）傑克遜（想自炊才補，多半外食）</h2>
+        <div class="info-box">🍳 <strong>49’er 房內設施和西黃石一樣</strong>：微波爐＋小冰箱、無爐台、不附鍋碗餐具。自備萬用鍋＋飛碟鍋＋餐具就能照常煮，<strong>唯一差別是冰箱沒有冷凍格</strong>（需要冷凍可請櫃台代冰）。</div>
+        <div class="info-box">🍽️ <strong>但這兩晚建議以外食為主。</strong>傑克遜是度假小鎮，Town Square 走路可到，Gather、StillWest 都很值得吃（10/5 週日 Local 公休）。自炊留作備案：走累了不想排隊、長輩想吃碗熱的、或當宵夜與早餐。</div>
+        <div class="info-box">🛒 <strong>鎮上兩家大超市，開車幾分鐘：</strong><br>
+        ・<strong>Albertsons</strong>｜105 Buffalo Way, Jackson WY<br>
+        ・<strong>Smith’s Food &amp; Drug</strong>｜1425 S Hwy 89, Jackson WY<br>
+        物價比西黃石合理很多，缺什麼在這裡補最划算。</div>
+        <div class="warn-box">⏰ <strong>只買這 2 晚吃得完的量。</strong>10/6 早上就要退房開 4.5–5 小時回鹽湖城，之後全程外食，帶不走的鮮食一樣是丟掉。</div>
+        <div class="checklist-section">
+            <div class="section-header"><span class="icon">🏔️</span><h3>傑克遜補貨（想自炊才買）</h3><span class="count" data-count></span></div>
+            <div class="section-content">
+                <div class="checklist-item"><input type="checkbox" id="jh1"><label for="jh1">🌙 <strong>一碗熱的組合</strong>：麵線／烏龍麵 ＋ 雞湯塊 ＋ 蛋（萬用鍋 10 分鐘；從西黃石帶過來的乾貨就夠，多半不用再買）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="jh2"><label for="jh2">鮮食少量：肉片、蛋、軟質蔬菜（<strong>只買 1–2 餐份</strong>）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="jh3"><label for="jh3">水果、優格（車上零食、長輩補纖維）<span class="tagx ch">冷藏</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="jh4"><label for="jh4">麵包或吐司（10/6 車上早餐；當天 8:00 就出發）<span class="tagx rt">常溫</span></label></div>
+                <div class="checklist-item"><input type="checkbox" id="jh5"><label for="jh5">冰塊（換掉保冷袋裡化掉的；10/6 車上再用一次）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="jh6"><label for="jh6">瓶裝水補一箱（10/6 回鹽湖城 4.5–5 小時車程）</label></div>
+                <div class="checklist-item"><input type="checkbox" id="jh7"><label for="jh7">🧊 <strong>入住當天先確認</strong>：冰箱沒有冷凍格，需要冷凍的東西拿去櫃台代冰</label></div>
             </div>
         </div>
 
         <h2 class="stage-title pn-anchor" id="s-return">📍 Day 11（10/6）回鹽湖城採買 — 還車前</h2>
-        <div class="info-box">💡 猶他州稅約 7.75% 比加州便宜，趁還有車先買大件！大型家電拆掉原廠紙箱、用衣物包進行李箱省空間。目標 16:00 前還車。</div>
+        <div class="info-box">💡 猶他州稅約 7.75% 比加州便宜，趁還有車先買大件！大型家電拆掉原廠紙箱、用衣物包進行李箱省空間。目標 16:00 前還車。<strong>食材已經不用再買</strong>——10/6 之後全程外食或飯店早餐。還車前記得把車上剩餘食物、保冷袋、垃圾清乾淨。</div>
         <div class="checklist-section">
             <div class="section-header"><span class="icon">🍨</span><h3>回程採買</h3><span class="count" data-count></span></div>
             <div class="section-content">
                 <div class="checklist-item"><input type="checkbox" id="d11i1"><label for="d11i1">Ninja Creami（美規 120V 台灣可直接用，先用 app 查庫存或下單店取）</label></div>
                 <div class="checklist-item"><input type="checkbox" id="d11i2"><label for="d11i2">伴手禮（堅果、巧克力、維他命）</label></div>
-                <div class="checklist-item"><input type="checkbox" id="d11i3"><label for="d11i3">回程零食</label></div>
+                <div class="checklist-item"><input type="checkbox" id="d11i3"><label for="d11i3">回程零食、機上乾糧</label></div>
                 <div class="checklist-item"><input type="checkbox" id="d11i4"><label for="d11i4">缺漏的日用品最後補齊</label></div>
+                <div class="checklist-item"><input type="checkbox" id="d11i5"><label for="d11i5">🚗 <strong>還車前清空車內</strong>：剩餘食物、保冷袋、垃圾、防熊噴霧都要處理掉</label></div>
             </div>
         </div>
 
