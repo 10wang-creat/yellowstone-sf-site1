@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日行程 | 2026 黃石公園 & 舊金山</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .phase { margin-bottom: 50px; }
+        .phase-title { background: linear-gradient(135deg, var(--primary-color) 0%, #6D93C8 100%); color: white; padding: 20px 30px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .phase-title .emoji { font-size: 2rem; }
+        .phase-title .dates { margin-left: auto; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; }
+        .day-card { background: white; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .day-header { background: var(--secondary-color); color: var(--primary-color); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .day-content { padding: 25px; }
+        .day-route { background: #E3EEE7; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .schedule-item { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+        .schedule-item:last-child { border-bottom: none; }
+        .schedule-time { min-width: 80px; color: var(--accent-color); font-weight: 600; }
+        .schedule-activity h4 { color: var(--primary-color); margin-bottom: 5px; }
+        .schedule-activity p { color: #666; font-size: 0.95rem; }
+        .schedule-activity .tips { background: #E7EFF8; padding: 10px 15px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; border-left: 3px solid var(--secondary-color); }
+        .highlight-box { background: linear-gradient(135deg, #E3EEE7 0%, #CBE0D3 100%); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .highlight-box h4 { color: var(--primary-color); margin-bottom: 10px; }
+        .highlight-box ul { margin-left: 20px; }
+        .driving-info { background: #E7EFF8; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .driving-info .icon { font-size: 2rem; }
+        .driving-info .distance { font-weight: 600; color: var(--primary-color); }
+        .flight-info { background: #E7EFF8; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #6D93C8; }
+        .flight-info h4 { color: #46689A; margin-bottom: 10px; }
+        .flight-info .airline { display: inline-block; background: #6D93C8; color: white; padding: 2px 10px; border-radius: 5px; font-size: 0.85rem; margin-bottom: 10px; }
+        @media (max-width: 768px) {
+            .phase-title { flex-direction: column; text-align: center; }
+            .phase-title .dates { margin-left: 0; }
+            .schedule-item { flex-direction: column; gap: 5px; }
+        }
+        /* ===== 手機快速導覽 ＋ 收合 ===== */
+        html { scroll-behavior: smooth; }
+        .jump-bar { position: sticky; top: 54px; z-index: 900; background: rgba(255,255,255,0.97); backdrop-filter: blur(6px); box-shadow: 0 3px 8px rgba(0,0,0,0.10); padding: 10px 12px; display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+        .jump-chip { flex: 0 0 auto; background: var(--secondary-color); color: var(--primary-color); padding: 7px 14px; border-radius: 18px; font-size: 0.9rem; font-weight: 700; text-decoration: none; border: none; cursor: pointer; font-family: inherit; }
+        .jump-chip.tool { background: var(--primary-color); color: #fff; }
+        .day-card.collapsible .day-header { cursor: pointer; user-select: none; }
+        .day-card.collapsible .day-header h3 { flex: 1; }
+        .day-card.collapsible .day-header::after { content: '▾'; margin-left: 8px; font-size: 1rem; opacity: 0.75; transition: transform 0.2s; }
+        .day-card.collapsed .day-header::after { transform: rotate(-90deg); }
+        .day-card.collapsed .day-content { display: none; }
+        .day-card { scroll-margin-top: 112px; }
+        .back-to-top { position: fixed; bottom: 20px; right: 20px; z-index: 950; background: var(--primary-color); color: #fff; border: none; width: 48px; height: 48px; border-radius: 50%; font-size: 1.4rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.28); display: none; }
+        .back-to-top.show { display: block; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🦬 黃石 & 舊金山 2026</a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="itinerary.html" class="active">每日行程</a></li>
+                <li><a href="accommodation.html">住宿資訊</a></li>
+                <li><a href="budget.html">預算規劃</a></li>
+                <li><a href="packing.html">行李清單</a></li>
+                <li><a href="shopping.html">採買清單</a></li>
+                <li><a href="tips.html">旅遊須知</a></li>
+<li><a href="health.html">健康注意</a></li>
+<li><a href="yellowstone-scoring.html">景點分級</a></li>
+                <li><a href="map.html">互動地圖</a></li>
+                <li><a href="journal.html">旅遊記錄</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>📋 每日行程 Daily Itinerary</h1>
+        <p>15天14夜完整行程規劃</p>
+    </div>
+    <div class="jump-bar" id="jumpBar">
+        <button class="jump-chip tool" id="collapseAll">▲ 全部收合</button>
+        <button class="jump-chip tool" id="expandAll">▼ 全部展開</button>
+    </div>
+    <div class="container">
+        <!-- 航班總覽 -->
+        <div class="phase">
+            <div class="phase-title"><span class="emoji">✈️</span><div><h2>航班總覽</h2><p>United Airlines 聯合航空</p></div></div>
+            <div class="day-card">
+                <div class="day-header"><h3>所有航班資訊</h3></div>
+                <div class="day-content">
+                    <table style="width:100%; border-collapse: collapse;">
+                        <tr style="background: #6D93C8; color: white;"><th style="padding: 12px; text-align: left;">航段</th><th style="padding: 12px;">日期</th><th style="padding: 12px;">航班</th><th style="padding: 12px;">時間</th></tr>
+                        <tr style="border-bottom: 1px solid #eee;"><td style="padding: 12px;">去程 1</td><td style="padding: 12px; text-align: center;">9/26（六）</td><td style="padding: 12px; text-align: center;">UA852</td><td style="padding: 12px;">TPE 14:30 → SFO 11:15</td></tr>
+                        <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;"><td style="padding: 12px;">去程 2</td><td style="padding: 12px; text-align: center;">9/26（六）</td><td style="padding: 12px; text-align: center;">UA5590（天西航空承運）</td><td style="padding: 12px;">SFO 18:45 → SLC 21:51</td></tr>
+                        <tr style="border-bottom: 1px solid #eee;"><td style="padding: 12px;">回程 1</td><td style="padding: 12px; text-align: center;">10/7（三）</td><td style="padding: 12px; text-align: center;">UA1225</td><td style="padding: 12px;">SLC 16:20 → SFO 17:25</td></tr>
+                        <tr style="background: #E7EFF8;"><td style="padding: 12px;">回程 2</td><td style="padding: 12px; text-align: center;">10/9（五）</td><td style="padding: 12px; text-align: center;">UA871</td><td style="padding: 12px;">SFO 14:25 → TPE 18:45+1</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第一階段：鹽湖城 -->
+        <div class="phase">
+            <div class="phase-title"><span class="emoji">🏙️</span><div><h2>第一階段：抵達鹽湖城</h2><p>Arrival & Shopping in Salt Lake City</p></div><span class="dates">Day 1-2 | 9/26-27</span></div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 1 - 抵達鹽湖城</h3><span>9/26（週六）</span></div>
+                <div class="day-content">
+                    <div class="flight-info">
+                        <span class="airline">UNITED 聯合航空</span>
+                        <h4>✈️ 航班資訊</h4>
+                        <p><strong>UA852：</strong>TPE 14:30 → SFO 11:15（11小時45分鐘，直飛）</p>
+                        <p><strong>UA5590：</strong>SFO 18:45 → SLC 21:51（2小時6分鐘，天西航空承運）</p>
+                        <p style="margin-top: 10px; color: #46689A;">💡 轉機約 7 小時 30 分，且是入境美國第一站。11:15 落地後要過移民、提行李、海關、重新掛行李（入境約 1.5–2 小時，約 13:00 前完成）→ 過 T3 安檢 → 在 T3 坐下吃午餐、讓長輩休息 → 下午在 T3 喝咖啡、逛 SFO Museum 展覽、E 登機廊免費瑜伽室伸展 → 18:45 起飛、約 18:10 開始登機（UA5590 由 T3 出發）。</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>🍽️ T3 候機午餐選擇（都在過安檢後）</h4>
+                        <ul>
+                            <li><strong>Union Street Gastropub／Mission Bar &amp; Grill</strong>（E 登機廊）：坐下式桌邊服務，早午晚餐、本地啤酒葡萄酒，想悠閒吃一頓首選</li>
+                            <li><strong>Yankee Pier</strong>（F 登機廊）：新鮮海鮮，感受舊金山味</li>
+                            <li><strong>Sankaku</strong>（E 登機廊）：壽司、拉麵、照燒、便當，長輩想吃清淡好入口的亞洲餐</li>
+                            <li><strong>San Francisco Giants Club House</strong>：巨人隊主題球場美食，氣氛活潑輕鬆</li>
+                        </ul>
+                        <p style="margin-top:8px;">💡 帶長輩建議選 Sankaku 或 Union Street Gastropub 坐下慢慢吃；下午喝咖啡、逛 SFO Museum 展覽也都在 T3。</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">21:51</span><div class="schedule-activity"><h4>抵達鹽湖城機場</h4><p>提領行李，搭旅館接駁車或 Uber 前往旅館</p><div class="tips">💡 第二天再取車，省一天租車費！機場附近旅館多有免費接駁車</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">22:45</span><div class="schedule-activity"><h4>入住旅館</h4><p>機場附近旅館，深夜抵達直接休息調整時差</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 2 - 鹽湖城購物 & 採買</h3><span>9/27（週日）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box">
+                        <h4>🛒 一整天從容採買！</h4>
+                        <p>不用趕行程，好好調時差、採買食材、輕鬆逛免費景點</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">上午</span><div class="schedule-activity"><h4>睡到自然醒</h4><p>調整時差，旅館早餐</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>機場取車（建議 SUV）</h4><p>搭旅館接駁車到機場租車中心取車</p><div class="tips">💡 第二天取車省一天租車費！取車後直接開去購物</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">10:00</span><div class="schedule-activity"><h4>Utah State Capitol 州議會大廈</h4><p>免費參觀，新古典圓頂建築，居高俯瞰鹽湖城與周邊山景</p><div class="tips">💡 戶外裝備（外套、鞋子）改到西黃石在地戶外店買，今天不趕買裝備，輕鬆逛免費景點就好</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:30</span><div class="schedule-activity"><h4>Memory Grove Park</h4><p>議會大廈山腳的免費綠地，沿溪散步、賞秋色</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐（市中心）</h4><p>Memory Grove 下來就在市中心一帶。推薦 <strong>P.F. Chang's</strong>（City Creek Center 內，亞洲風味、長輩好入口、商場停車方便，且緊鄰 Temple Square，首推）、<strong>STRADA by Matteo</strong>（手工義大利麵、上菜快）、<strong>Avenues Proper</strong>（離 Memory Grove 最近的 Avenues 區、美式餐酒館）</p><div class="tips">💡 City Creek Center 是室內商場、好停車，午餐後也方便先逛；離下午的 Temple Square 走路可到，動線順</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:30</span><div class="schedule-activity"><h4>Temple Square 鹽湖城聖殿廣場</h4><p>鹽湖城最著名地標，免費參觀；就在午餐的 City Creek 旁、走路可到，和市中心一起走</p></div></div>
+                                        <div class="schedule-item"><span class="schedule-time">15:00</span><div class="schedule-activity"><h4>🥢 Chinatown Supermarket 中國城超市（<strong>一站買齊，不再跑 Walmart</strong>）</h4><p>3390 S State St #11, South Salt Lake｜週日 8:00–22:00｜(801) 906-8788。鹽湖城最大的亞洲超市（約 3.5 萬平方呎），米、麵線、即食粥、常溫調理包、肉鬆、薑茶、冷凍水餃包子<strong>只有這裡買得到</strong>，另有生鮮蔬果、日用品、瓶裝水，黃石 6 晚的食材與消耗品一次買足。離 Temple Square 約 10 分鐘車程，逛完市區順路過來、買完直接回機場旅館。</p><div class="tips">💡 同商場有 85°C 烘焙坊與麵店，可直接解決晚餐、順手買隔天車上的麵包。旅館都只有 mini fridge，<strong>這趟不買冷凍品</strong>，今天全是常溫乾貨、調理包、罐頭與日用品，路上不用擔心退冰；但<strong>保冷袋＋冰磚要買</strong>，之後每天帶便當進園區、10/4 帶冷藏食材去傑克遜都要用。<br>🏔️ 這裡買不到的：<strong>防熊噴霧改在西黃石鎮上買或租</strong>（本來就不能帶上飛機）；防曬乳、護唇膏、暖暖包、常備藥從台灣帶。<br>備選：H Mart 西喬丹（1442 W 9000 S）、Ocean Mart 大中（115 W 9000 S, Sandy），都在南邊 20–25 分鐘、較不順路 → <a href="shopping.html#s-slc" style="color:var(--primary-color); font-weight:700;">Day 2 採買清單</a></div></div></div>
+
+                    <!-- 採買清單 -->
+                    <div class="highlight-box">
+                        <h4>📋 採買清單已獨立成頁</h4>
+                        <p>8 大類品項、可勾選追蹤進度，含西黃石補貨與 Day 11 回程採買 → <a href="shopping.html" style="color: var(--primary-color); font-weight: 700;">前往採買清單</a></p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">17:30</span><div class="schedule-activity"><h4>晚餐 & 整理行李</h4><p>晚餐就在同商場的 85°C／麵店解決，省去另外找餐廳；回旅館打包明天出發的物資</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二階段：前往黃石 -->
+        <div class="phase">
+            <div class="phase-title"><span class="emoji">🚗</span><div><h2>第二階段：前往黃石</h2><p>Drive to Yellowstone</p></div><span class="dates">Day 3 | 9/28</span></div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 3 - 鹽湖城 → 西黃石</h3><span>9/28（週一）</span></div>
+                <div class="day-content">
+                    <div class="driving-info"><span class="icon">🚗</span><div><p class="distance">鹽湖城 → 西黃石：約 320 英里（515 公里）</p><p>預估車程：5-6 小時</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">07:00</span><div class="schedule-activity"><h4>🍳 旅館早餐</h4><p>凱悦 Hyatt Place 含免費早餐，吃飽再出發（長輩不用趕）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>出發北上</h4><p>沿 I-15 北上，經 Pocatello</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ Idaho Falls 午餐</h4><p>休息用餐、補充油料。推薦 <strong>The SnakeBite</strong>（市中心在地名店，新美式，牛排／海鮮／素食，首推）、<strong>MacKenzie River Pizza, Grill &amp; Pub</strong>（披薩三明治、菜色多、闔家方便）、<strong>Krung Thep Thai</strong>（泰式＋壽司，想吃清淡亞洲餐）。市中心 River Walk、日本友誼庭園可順道散步伸展</p><div class="tips">💡 途經 Rexburg 可順路去 Bear World 近距離看熊（約停留 1 小時），適合家庭旅遊</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:00</span><div class="schedule-activity"><h4>抵達西黃石</h4><p>會所酒店 16:00 才可入住，先去超市補貨、熟悉環境</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>熟悉環境 & 超市補貨</h4><p>逛西黃石小鎮，去 Food Roundup 或 Market Place 補充鮮奶、雞蛋、蔬果等容易壞的食材</p><div class="tips">💡 西黃石鎮上有兩家超市：<strong>Food Roundup</strong>（107 Dunraven St, 7AM-10PM）和 <strong>Market Place</strong>（22 Madison Ave, 7AM-8PM），選擇齊全但價格比城市貴 30-40%</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">16:00</span><div class="schedule-activity"><h4>入住會所酒店</h4><p>連住 6 晚，行李一次搬進房</p><div class="tips">🍳 會所酒店含免費早餐，每天 <strong>6:30–9:30</strong> 供應。以下每天已依此時段安排；只有 Day 9 若選「方案 A 追日出」會早於 6:30 出發、吃不到，記得前一晚備好早餐帶車上</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐</h4><p>小木屋自炊，或到鎮上（見下方外食選擇）</p></div></div>
+                    <div class="highlight-box">
+                        <h4>🍽️ 偶爾外食選擇（西黃石鎮上，走路可到）</h4>
+                        <ul>
+                            <li><strong>The Buffalo Bar</strong>：野牛漢堡、肉餅、燉牛肉等美式家常菜，份量足、家庭友善（當地特色首推）</li>
+                            <li><strong>Hanks Chop Shop</strong>：蒙大拿牛排館，野牛肋眼，想吃好一點（偏貴）</li>
+                            <li><strong>Slippery Otter Pub</strong>：漢堡、披薩、有素食，輕鬆家庭一餐</li>
+                            <li><strong>Running Bear Pancake House</strong>：美式早餐名店，鬆餅、蛋料理（僅 6AM–13:00）</li>
+                        </ul>
+                        <p style="margin-top:8px;">💡 帶長輩挑燉牛肉、肉餅、湯品好入口；熱門店晚餐會排隊，早點去或先訂位。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三階段：黃石 -->
+        <div class="phase">
+            <div class="phase-title"><span class="emoji">🦬</span><div><h2>第三階段：黃石國家公園</h2><p>Yellowstone National Park</p></div><span class="dates">Day 4-8 | 9/29 - 10/3</span></div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 4 - 間歇泉區</h3><span>9/29（週二）</span></div>
+                <div class="day-content">
+                    <div class="day-route"><span>🗺️</span><span>Upper Geyser Basin → Midway Geyser Basin</span></div>
+                    <div class="schedule-item"><span class="schedule-time">07:30–08:00</span><div class="schedule-activity"><h4>🍳 會所酒店早餐</h4><p>今天不趕頭班噴發，睡飽、吃完早餐再出門</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>出發前往園區</h4><p>西黃石 → Old Faithful 約 30 英里，含西入口約 45–60 分鐘車程</p><div class="tips">💡 老忠實約每 90 分鐘噴發一次、整天都有，不必趕頭班；抵達後先到遊客中心看下一次預測時間。油箱低於 50% 先在西黃石加滿</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>Old Faithful 老忠實間歇泉</h4><p>依遊客中心預測時間觀賞噴發（約每 90 分鐘一次）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">10:30</span><div class="schedule-activity"><h4>Upper Geyser Basin 步道</h4><p>探索各種間歇泉，如 Morning Glory Pool</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐（Old Faithful 區）</h4><p>Old Faithful 遊客區有餐廳（Old Faithful Lodge 自助餐廳等），或帶的便當在野餐區解決</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:00</span><div class="schedule-activity"><h4>Grand Prismatic Spring 大稜鏡溫泉</h4><p>黃石最著名的彩色溫泉</p><div class="tips">💡 10月氣溫低，早上水氣重會遮蔽色彩。中午至下午 2 點前往 Fairy Falls Trail 觀景台俯瞰，陽光最充足、顏色最震撼——午餐後 13:00 正好</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">15:00</span><div class="schedule-activity"><h4>返回小木屋休息</h4><p>今日行程輕鬆，下午回小木屋休息</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐（小木屋自炊）</h4></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 5 - 黃石湖 & West Thumb</h3><span>9/30（週三）</span></div>
+                <div class="day-content">
+                    <div class="schedule-item"><span class="schedule-time">07:00–08:00</span><div class="schedule-activity"><h4>🍳 會所酒店早餐</h4><p>今日較晚出發，早餐可從容慢慢吃</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:15</span><div class="schedule-activity"><h4>出發前往 West Thumb</h4><p>西黃石 → West Thumb 約 40 英里、約 1.25 小時（經 Madison → Old Faithful）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:30</span><div class="schedule-activity"><h4>West Thumb Geyser Basin</h4><p>黃石湖畔的地熱區</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:00</span><div class="schedule-activity"><h4>Yellowstone Lake 黃石湖</h4><p>北美最大高山湖泊</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐（Lake Village／Fishing Bridge 一帶）</h4><p>湖區附近用餐；10 月部分湖區餐飲已收季，建議帶便當在 Fishing Bridge 一帶野餐最保險</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:30</span><div class="schedule-activity"><h4>Fishing Bridge / Bridge Bay</h4><p>散步觀景</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">16:00</span><div class="schedule-activity"><h4>返回小木屋</h4></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐（小木屋自炊）</h4></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 6 - 黃石大峽谷 → 海登山谷 → 泥火山（Canyon 一帶）</h3><span>10/1（週四）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box"><h4>🗺️ 今日路線：Canyon 一帶</h4><p>西黃石 → Grand Canyon（大峽谷）→ 午餐 → 下午往南 Hayden Valley／泥火山 → 回西黃石。步調中等、午後就回，好好休息。</p></div>
+                    <div class="schedule-item"><span class="schedule-time">07:00–07:45</span><div class="schedule-activity"><h4>🍳 會所酒店早餐</h4><p>吃飽再出門</p><div class="tips">⛽ 出發前在西黃石加滿油，園區內油站少</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>出發前往 Canyon</h4><p>西黃石 → Canyon 約 45 英里、約 1.5 小時（經 Madison → Norris）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:30</span><div class="schedule-activity"><h4>Grand Canyon of Yellowstone 黃石大峽谷</h4><p>Artist Point 觀景台欣賞 Lower Falls 瀑布（必拍！）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ Canyon Village 午餐</h4><p>峽谷區遊客中心附近用餐（Canyon Village 有餐廳與商店）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:00</span><div class="schedule-activity"><h4>Hayden Valley 海登山谷</h4><p>午餐後往南，放慢車速留意野生動物，看到就賺到、不強求</p><div class="tips">💡 帶望遠鏡；野牛、麋鹿常出沒。保持安全距離（野牛 25 碼、熊與狼 100 碼）。爸媽若累，這段可略過直接回程</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:45</span><div class="schedule-activity"><h4>Mud Volcano 泥火山區</h4><p>Dragon's Mouth Spring（就在 Hayden Valley 旁邊，順路）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:15</span><div class="schedule-activity"><h4>返回小木屋</h4><p>約 16:00–16:30 到，好好休息</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐（小木屋自炊）</h4></div></div>
+                    <div class="schedule-activity"><div class="tips">🚧 <strong>道路注意：</strong>10 月起黃石部分道路可能因降雪隨時關閉（Dunraven Pass 通常 10 月中關閉），出發前查看 <a href="https://www.nps.gov/yell/planyourvisit/roads.htm" target="_blank" style="color: var(--accent-color);">NPS 即時道路狀況</a><br>🦬 <strong>Buffalo Jam：</strong>野牛擋路可能塞 30–60 分鐘，預留緩衝<br>⛽ <strong>加油規則：</strong>黃石內油站很少，油箱低於 50% 就加！</div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 7 - 猛獁溫泉 & Norris + 傍晚 Lamar Valley</h3><span>10/2（週五）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box"><h4>🎯 今日重點：一路往東北，不折返</h4><p>上午 Norris+Mammoth → 中午 Mammoth 一帶午餐＋休息（<strong>不回小木屋</strong>，省下 Mammoth–西黃石來回 3 小時）→ 下午續開 Lamar Valley 看傍晚動物 → 天黑後開回西黃石。今日車程較長、約 21:00 到家，是全程唯一晚歸日（隔天 Day 8 排休息恢復）。</p></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>🍳 會所酒店早餐</h4><p>不用趕早：上午的 Norris、Mammoth 是地熱景觀，任何時間看都一樣，這天長度是被傍晚的 Lamar 決定的</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>出發（帶午餐＋晚餐）</h4><p>今日在外整天、約 21:00 才回，午餐和晚餐兩份便當都帶上，保冷袋＋足夠飲水</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:45</span><div class="schedule-activity"><h4>Norris Geyser Basin</h4><p>黃石最熱、最古老的間歇泉區</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:15</span><div class="schedule-activity"><h4>Mammoth Hot Springs 猛獁溫泉</h4><p>獨特的石灰岩梯田地形</p><div class="tips">💡 10月正值美洲馬鹿（Elk）發情期！Mammoth 和 Madison 區域常能聽到壯觀的求偶鳴叫聲，但請保持 25 碼以上距離</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐（帶的便當）</h4><p>Mammoth 一帶找景觀野餐區吃便當</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:00</span><div class="schedule-activity"><h4>Mammoth 一帶休息（不回小木屋）</h4><p>Albright 遊客中心、Mammoth 梯田平緩步道慢走，或在車上/野餐區讓爸媽補眠</p><div class="tips">💡 今天不折返西黃石，就近休息養精蓄銳，為下午 Lamar 保留體力</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:30</span><div class="schedule-activity"><h4>🦬 續開往 Lamar Valley 拉馬山谷</h4><p>Mammoth → Tower → Lamar，約 1–1.25 小時</p><div class="tips">📸 途經 Tower Junction，Tower Fall 瀑布就在路邊（Junction 南側約 2.5 英里），可快速停留拍照約 10–15 分鐘再續往 Lamar，順路不繞遠</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">15:45</span><div class="schedule-activity"><h4>Lamar Valley 看傍晚動物</h4><p>日落前的黃金時段：野牛、麋鹿、狼</p><div class="tips">💡 帶望遠鏡！日落約 18:45，這段約 3 小時動物最活躍、成功率最高。保持安全距離：熊和狼 100 碼、野牛 25 碼</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐（帶的便當，觀景點／車上吃）</h4><p>趁天還沒全黑，在 Lamar 觀景點吃帶來的晚餐，回程不用餓肚子、到家能直接休息</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:45</span><div class="schedule-activity"><h4>日落後啟程回西黃石</h4><p>約 2–2.5 小時車程</p><div class="tips">⚠️ 夜間園區無路燈、動物會上路，放慢車速、備妥暖衣與飲水；油箱出發前先加滿</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">21:00</span><div class="schedule-activity"><h4>回小木屋、休息</h4><p>今日午、晚餐都在外解決，回來直接洗漱休息</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 8 - 西黃石休息日（Day 7 晚歸後恢復）</h3><span>10/3（週六）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box"><h4>😴 今日刻意排休息，讓爸媽恢復體力</h4><p>昨天（Day 7）Lamar 長程、約 21:00 才到家，今天不進園區、不趕早，睡到自然醒。也兼作全程的天氣／體力備案日；<strong>今晚打包，明天 Day 9 前往大提頓</strong>。</p>
+                        <ul style="margin-left:20px;margin-top:8px;">
+                            <li>完全休息 — 小木屋補眠、洗衣、自炊補貨</li>
+                            <li>鎮上半日遊（皆離會所酒店約 5 分鐘、皆需門票）：<strong>灰熊與狼保育中心</strong>（成人約 US$15、長輩 $14、5–12 歲 $10、5 歲以下免費；門票 2 天有效、全年開放）、<strong>黃石歷史中心</strong>（現名 Museum of the Yellowstone，成人約 US$6、長輩 $5、學生 $3；約 5 月中～10 月中營運，建議先電話 406-646-7461 或看官網確認）</li>
+                            <li>想輕鬆出遊，也可就近重遊大稜鏡（約 45 分鐘、晴天無風色彩最美）</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">睡到自然醒</span><div class="schedule-activity"><h4>🍳 會所酒店早餐</h4><p>不設鬧鐘，早餐 6:30–9:30 之間慢慢吃</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐（約 12:00）</h4><p>小木屋自炊最輕鬆；出門則在西黃石鎮上（The Buffalo Bar、Slippery Otter Pub 等）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>休息或鎮上半日遊</h4><p>依體力：全休，或去灰熊與狼中心／博物館、逛西黃石小鎮</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐（小木屋自炊或鎮上）＋打包行李</h4></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第四階段：大提頓 -->
+        <div class="phase">
+            <div class="phase-title"><span class="emoji">🏔️</span><div><h2>第四階段：大提頓國家公園</h2><p>Grand Teton National Park</p></div><span class="dates">Day 9-10 | 10/4-5</span></div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 9 - 大提頓北段（Oxbow Bend）</h3><span>10/4（週日）</span></div>
+                <div class="day-content">
+                    <div class="driving-info"><span class="icon">🚗</span><div><p class="distance">西黃石 → 大提頓：約 60 英里（經南門）</p></div></div>
+                    <div class="highlight-box">
+                        <h4>🍳 今日以「方案 B：吃完早餐再出發」為主（對長輩友善）</h4>
+                        <p>在會所酒店從容吃早餐、退房後再開往大提頓，不趕日出；下午行程照常。</p>
+                        <p style="margin-top:8px;">🌅 <strong>替代方案 A（追日出）：</strong>想拍 Oxbow Bend 日出金光倒影者，改 05:30 退房出發（前一晚打包、備早餐帶車上）→ 約 07:15 Oxbow Bend 日出 → 08:30 於 Jackson Lake Lodge 早餐，之後接回下午行程。代價是極早起、吃不到旅館早餐。</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">06:30–07:30</span><div class="schedule-activity"><h4>🍳 會所酒店早餐</h4><p>最後一個早晨，從容吃、用到含早餐</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:30</span><div class="schedule-activity"><h4>退房、出發前往大提頓</h4><p>11:00 前退房、帶所有行李離開西黃石；西黃石 → 大提頓約 2 小時（經黃石南門）</p><div class="tips">⛽ 出發前在西黃石加滿油，園區內油站少</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">10:30</span><div class="schedule-activity"><h4>Oxbow Bend 觀景拍照</h4><p>大提頓最經典的河灣倒影點，白天光線也很美</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:15</span><div class="schedule-activity"><h4>Jackson Lake</h4><p>大提頓最大湖泊，Willow Flats／Colter Bay 觀景點賞湖與提頓山脈</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐：Signal Mountain Lodge — Trapper Grill</h4><p>湖邊美式輕食（漢堡、三明治、沙拉），家庭友善。吃完直接接下午上山，一路往南不走回頭路</p><div class="tips">💡 這家是園區內最晚關的（約 10/18），10/4 最保險。想換口味也可回 Jackson Lake Lodge 吃；最穩當是自備野餐在 Willow Flats／Colter Bay 觀景點解決。Colter Bay、Leeks Pizzeria 一帶多半 9 月底就收，別繞過去</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:00</span><div class="schedule-activity"><h4>Signal Mountain</h4><p>開車上山俯瞰提頓山脈全景</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">16:00 後</span><div class="schedule-activity"><h4>入住傑克遜 49'er 酒店</h4><p>49'er 16:00 起可入住；Signal Mountain 下來約 16:00 到傑克遜，剛好 check-in</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐（傑克遜 Town Square 一帶）</h4><p>Gather 或 StillWest（見下方選擇），走路可到、先訂位</p></div></div>
+                    <div class="highlight-box">
+                        <h4>🍽️ 偶爾外食選擇（傑克遜 Town Square 一帶）</h4>
+                        <ul>
+                            <li><strong>Gather</strong>：精緻美式，鹿肉義大利麵、野牛胸肉、豬排，適合好好吃一頓（5–9PM，首推）</li>
+                            <li><strong>Local Restaurant & Bar</strong>：牛排館、野牛漢堡，Town Square 上（⚠️ 週日公休，10/5 那晚改別家）</li>
+                            <li><strong>StillWest Brewery & Grill</strong>：釀酒廠餐廳、景觀好、天天開到 22:00（週日也能去）</li>
+                        </ul>
+                        <p style="margin-top:8px;">💡 10/5（週日）晚餐避開公休的 Local，選 Gather 或 StillWest；熱門店建議先訂位。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 10 - Jenny Lake & Mormon Row & 傑克遜</h3><span>10/5（週一）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box">
+                        <h4>🍳 今日以「吃完早餐再出發」為主（對長輩友善）</h4>
+                        <p>在 49'er 旅館吃完早餐再出門，白天走 Jenny Lake 與 Mormon Row（穀倉配提頓山，白天也很好拍）。</p>
+                        <p style="margin-top:8px;">🌅 <strong>替代方案 A（追日出）：</strong>想拍 Mormon Row 日出金光者，改約 05:50 出發（日出約 7:20，提前到場架好相機）→ 回鎮上吃早餐 → 再接 Jenny Lake。代價是早起、旅館早餐可能還沒開餐。</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">07:30</span><div class="schedule-activity"><h4>🍳 旅館早餐</h4><p>49'er 含早餐，吃飽再出門</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>出發前往 Jenny Lake</h4><p>傑克遜 → Jenny Lake 約 30–40 分鐘車程</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:45</span><div class="schedule-activity"><h4>Jenny Lake</h4><p>South Jenny Lake 湖畔平緩步道、遊客中心</p><div class="tips">⚠️ Jenny Lake 遊船 2026 年只營運到 9/30，10/5 到訪時已收季。沿湖畔平緩步道散步賞湖景即可，不需環湖</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">10:30</span><div class="schedule-activity"><h4>Mormon Row 歷史穀倉</h4><p>T.A. Moulton 穀倉配提頓山脈，是大提頓最經典的畫面，白天光線也好拍</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐（傑克遜 Town Square 一帶）</h4><p>約 11:30 從 Jenny Lake 折返傑克遜鎮（約 20 分鐘），12:00 在 Town Square 周邊午餐</p><div class="tips">💡 10/5（週日）Local Restaurant 公休；想坐下吃可選 StillWest（週日照常）或鎮上咖啡館、輕食</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:30</span><div class="schedule-activity"><h4>傑克遜小鎮</h4><p>鹿角拱門廣場、藝廊街購物</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐（傑克遜 Town Square 一帶）</h4><p>續住 49'er；晚餐可選 Gather、StillWest（10/5 週日 Local 公休）</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第五階段：返回鹽湖城 -->
+        <div class="phase">
+            <div class="phase-title"><span class="emoji">🚗</span><div><h2>第五階段：返回鹽湖城</h2><p>Return to Salt Lake City</p></div><span class="dates">Day 11 | 10/6</span></div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 11 - 傑克遜 → 鹽湖城</h3><span>10/6（週二）</span></div>
+                <div class="day-content">
+                    <div class="driving-info"><span class="icon">🚗</span><div><p class="distance">傑克遜 → 鹽湖城：約 280 英里（4.5-5 小時）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">07:00</span><div class="schedule-activity"><h4>🍳 旅館早餐</h4><p>49'er 含早餐，吃飽退房再上路（長輩不用趕）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>出發南下</h4><p>沿 US-89 南下，經 Star Valley</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐：Logan（猶他州）</h4><p>沿 US-89 經 Star Valley 南下約中午到 Logan，正好 12:00 午餐。推薦 <strong>Angie's Restaurant</strong>（在地老牌美式餐館，份量足、平價、長輩好點餐、停車方便，首推）、<strong>The Crepery</strong>（鹹甜可麗餅、輕鬆氛圍）、<strong>Herm's Inn</strong>（老宅早午餐名店，但只收現金、假日要等）</p><div class="tips">💡 想順吃甜點，更早經過的 Bear Lake／Garden City（約 11:00–11:15）可停一下喝當地知名的覆盆子奶昔。Logan 距鹽湖城約 1.5 小時，午餐後續開約 14:30 到 SLC</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:30</span><div class="schedule-activity"><h4>抵達鹽湖城 → 還車前先去 Walmart / Target</h4><p>採購 Ninja Creami（美規 120V 台灣可直接用）與最後補貨</p><div class="tips">💡 猶他州稅約 7.75% 比加州便宜，趁還有車先買大件！拆掉原廠紙箱、用衣物包進行李箱省空間（主機約 6 公斤）。怕缺貨可提前用 Walmart app 下單店取</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">15:30</span><div class="schedule-activity"><h4>還車</h4><p>鹽湖城機場還車後搭旅館接駁車</p><div class="tips">💡 目標 16:00–17:00 前還車，租約訂到 17:00 當緩衝（路況延誤、採買拖延都不怕，提早還不加價）。若想早點還車，Logan 午餐可簡單快吃、或改在 Bear Lake 邊喝奶昔邊補食</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">16:00 後</span><div class="schedule-activity"><h4>入住鹽湖城凱悦</h4><p>凱悦 15:00 起可入住；還車後搭接駁車回旅館 check-in</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">下午</span><div class="schedule-activity"><h4>彈性行程</h4><p>鹽湖城市區觀光、Temple Square（若 Day 2 未去）、整理行李</p><div class="tips">💡 隔天下午 16:35 的班機，早上還有時間可以逛</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><div class="schedule-activity"><h4>🍽️ 晚餐</h4><p>凱悦機場旅館附近或市區用餐，早點回房整理行李</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第六階段：舊金山 -->
+        <div class="phase">
+            <div class="phase-title"><span class="emoji">🌉</span><div><h2>第六階段：舊金山探索</h2><p>San Francisco</p></div><span class="dates">Day 12-14 | 10/7-9</span></div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 12 - 鹽湖城半日 & 飛往舊金山</h3><span>10/7（週三）</span></div>
+                <div class="day-content">
+                    <div class="schedule-item"><span class="schedule-time">10:00 前</span><div class="schedule-activity"><h4>退房、寄放行李</h4><p>凱悦酒店退房 10:00 前；退房後行李寄放櫃台，搭接駁車去機場前再取</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">上午</span><div class="schedule-activity"><h4>飯店輕鬆休息</h4><p>吃飽飯店早餐、泡室內泳池或健身房放鬆；沒車就不特地進城，中午再解決午餐（見下）</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:00</span><div class="schedule-activity"><h4>🍽️ 午餐後搭接駁車前往機場</h4><p>午餐選擇多：飯店 Gallery 買三明治／沙拉（最方便）、或走去附近餐廳坐下吃（Roberts Restaurant & Deli 約 900m、Garden Grille／Wingtips 約 1.1km）、機場航廈也有；12:00 用完午餐搭接駁去機場從容過安檢（航班 16:20）</p></div></div>
+                    <div class="flight-info">
+                        <span class="airline">UA1225 聯合航空</span>
+                        <h4>✈️ 航班資訊</h4>
+                        <p><strong>SLC 16:20 → SFO 17:25</strong>（2小時5分鐘）</p>
+                        <p style="margin-top: 10px; color: #46689A;">💡 班表可能再調整，出發前以 United App 顯示時間為準</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">17:25</span><div class="schedule-activity"><h4>抵達 SFO、提行李</h4><p>提完行李跟指標到航廈外的 Ride Share 上車區（Uber／Lyft 在停車場樓層，跟著指標走），叫 <strong>Uber XL</strong>（4 人＋大行李）</p><div class="tips">💡 艦隊週期間叫車可能加價，Uber 和 Lyft 兩邊比價；若大家已經很累，也可在機場先買晚餐帶走（SFO 餐飲選擇多）</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:15</span><div class="schedule-activity"><h4>🚗 Uber 到飯店入住</h4><p>走 US-101 約 35–45 分鐘到 Riu Plaza Fisherman's Wharf（2500 Mason St）入住、放行李（海鮮大餐留到 Day 13）。之後三天市區移動只靠 Big Bus、叮噹車和走路，不再叫車</p><div class="tips">💡 明天叮噹車、Big Bus 都在飯店步行 5 分鐘內，今晚把 Big Bus App 車票先加好</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">19:15</span><div class="schedule-activity"><h4>🍔 In-N-Out 漁人碼頭店晚餐</h4><p>333 Jefferson St，飯店步行約 5 分鐘。加州最有名的平價漢堡，點餐快、有座位，適合剛下飛機的第一晚。點任一種漢堡後跟店員說「Animal Style」：肉排用黃芥末煎、加醃黃瓜、烤洋蔥和特製醬；薯條是現切馬鈴薯現炸</p><div class="tips">💡 吃完早點回飯店休息調時差；有精神的話，隔壁 Pier 45 的機械玩具博物館 Musée Mécanique 開到晚上（免費入場、投幣玩），也可留到 Day 13 下午再逛</div></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 13 - 叮噹車・唐人街・Big Bus 金門大橋・海獅</h3><span>10/8（週四）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box">
+                        <h4>🚌 Big Bus 觀光巴士（已購票）</h4>
+                        <p>Booking.com 確認碼 <strong>BK175631341476325</strong>｜3 位成人｜24 小時票，<strong>只能搭紅線 Red Route</strong>（不含黃線、夜遊線）</p>
+                        <p>紅線 10:00 從 1 號站（99 Jefferson St）發首班，末班 17:00，每 15 分鐘一班，一圈約 2 小時</p>
+                        <p>今天只要記 4 個站：<strong>6 號 Union Square South 上車</strong> → <strong>12 號 North Vista Point 下車</strong>（金門大橋）→ <strong>13 號 Palace of Fine Arts 下車</strong>（藝術宮）→ <strong>17 號 Pier 39 下車</strong>（終點）</p>
+                        <p style="margin-top: 10px; color: #46689A;">💡 出發前先下載 Big Bus Tours App →「Add Booking」輸入訂單編號（輸入不了就用確認信 PDF 票券上的編號）；當天第一次上車前按「Activate」，上車給司機看。車上不能吃東西，可帶旋蓋瓶裝飲料；上層風大，帶外套</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">08:00</span><div class="schedule-activity"><h4>飯店早餐</h4><p>飯店早餐吃飽再出門，今天是叮噹車＋步行＋Big Bus 觀光巴士，長輩大部分時間坐在車上</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:00</span><div class="schedule-activity"><h4>🚋 搭叮噹車 Cable Car（Powell-Mason 線）</h4><p>從飯店步行約 5 分鐘到 Taylor & Bay 叮噹車總站，在起站上車比較有座位；搭到 Powell & Washington／Jackson 一帶下車，車程約 20 分鐘</p><div class="tips">💡 單程 US$9／人（不分年齡，白天無敬老優惠）。08:00–17:00 在總站要先買好票再上車：售票亭、MuniMobile App 或 Clipper 都可以。越早排隊人越少；長輩請坐車廂內座位，不要站車外踏板。<strong>想順便看九曲花街</strong>：改走 12 分鐘到 Hyde & Beach 總站搭 Powell-Hyde 線，電車爬到 Hyde & Lombard 路口時從車上往下看花街 8 個彎，一樣在 Powell & Jackson 下車，多花約 10 分鐘</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:45</span><div class="schedule-activity"><h4>唐人街散步 Chinatown</h4><p>下車後往東下坡走 2 個街口到 Grant Ave，沿街一路往南散步：金門餅食公司 Golden Gate Fortune Cookies（56 Ross Alley，08:00–18:00，親眼看幸運餅現做，幸運餅其實是舊金山發明的）、Waverly Place 小巷、天后古廟、花園角廣場，最後走到龍門 Dragon Gate 牌樓拍照</p><div class="tips">💡 唐人街別只逛 Grant Ave 主街，都板街與市德頓街之間的小巷（Ross Alley、Waverly Pl）觀光味淡、比較有味道。花園角往東走 2 個街口就是泛美金字塔 Transamerica Pyramid（600 Montgomery St），想拍照可順道；富國銀行歷史博物館已於 2024 年底關閉，不用去。Powell St 走到 Grant Ave 這段是下坡，扶著牆邊慢慢走；也可以在叮噹車上多坐一站到 Powell & Clay 再下，坡短一點</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:30</span><div class="schedule-activity"><h4>唐人街午餐（港式飲茶／粵菜）</h4><p>City View 推車飲茶（適合長輩，週四只到 14:00）、Hong Kong Clay Pot 煲仔飯合菜（親民）、R&G Lounge 名店海鮮（建議訂位）</p><div class="tips">💡 唐人街粵菜館多保留「茶芥費」規矩，桌上小菜和濕紙巾不是免費的，取用前先問；部分小館只收現金</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">12:45</span><div class="schedule-activity"><h4>唐人街買伴手禮</h4><p>飯後在 Grant Ave／Stockton St 採買伴手禮、茶葉、糕餅</p><div class="tips">💡 伴手禮今天買齊，晚上回飯店就能打包，最後一天不用趕</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:30</span><div class="schedule-activity"><h4>🚌 走到 Big Bus 6 號站上車</h4><p>從龍門牌樓沿 Grant Ave 往南走 3 個街口到聯合廣場，<strong>6 號站 Union Square South</strong>（280 Geary St，Macy&#39;s 對面），約 8 分鐘平路。上車前在廣場看一眼舊金山最有名的心形雕塑（Hearts in San Francisco 募款藝術）和中央的杜威紀念柱，Levi's 專賣店也在廣場邊。在 App 啟用車票，搭 13:41 那班</p><div class="tips">💡 每 15 分鐘一班（:11／:26／:41／:56），趕不上就等下一班，後面時間往後推 15 分鐘即可</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">13:41</span><div class="schedule-activity"><h4>坐車遊市區、過金門大橋</h4><p>7～11 號站不下車：Hilton、市政中心 Civic Center、Nob Hill（Van Ness）、Marina 一路坐著看，接著開上金門大橋過橋。上層視野最好，長輩坐下層也可以</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">14:30</span><div class="schedule-activity"><h4>🌉 12 號站 North Vista Point 下車拍金門大橋</h4><p>在大橋北端（Sausalito 這側）觀景台下車，這裡是金門大橋連舊金山市區的經典全景，停留約 30 分鐘，15:00 搭下一班車</p><div class="tips">💡 橋頭風很大、體感偏冷，防風外套要穿好；遇到起霧看不到橋就不要下車，直接坐到藝術宮</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">15:10</span><div class="schedule-activity"><h4>🏛️ 13 號站 Palace of Fine Arts 下車逛藝術宮</h4><p>圓頂與柱廊倒映在湖面，繞湖一圈都是平路，沿途有長椅可休息，停留約 40 分鐘，15:55 搭車</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">15:55</span><div class="schedule-activity"><h4>坐車回漁人碼頭</h4><p>14～16 號站不下車：Marina、Lombard St、Pier 35</p><div class="tips">💡 15 號站 Lombard Street 的站牌在 Gough 路口，不是彎彎曲曲的花街那段，不用下車</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">16:10</span><div class="schedule-activity"><h4>🦭 17 號站 Pier 39 下車看海獅、逛漁人碼頭</h4><p>Big Bus 終點。先走到 Pier 39 尾端的 K-Dock 看加州海獅，幾百隻擠在浮板上曬太陽、吼叫，看台免費，停留約 20 分鐘。再沿 Jefferson St 往飯店方向散步：Boudin 酸種麵包旗艦店（隔著玻璃看麵包製作，酸麵包 1849 年隨淘金客來到舊金山，49 人隊吉祥物就叫 Sourdough Sam）、Jefferson & Taylor 路口的螃蟹招牌和路邊螃蟹攤、Pier 45 機械玩具博物館 Musée Mécanique（300 多台古早遊戲機，免費入場、投幣玩，帶點零錢或用機器換幣）</p><div class="tips">💡 這週是艦隊週 Fleet Week（10/4–12），碼頭會有活動與人潮，巴士也可能誤點；週四下午可能看到藍天使特技小組在海灣上空練習，聲音很大，先跟長輩說一聲</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">17:00</span><div class="schedule-activity"><h4>漁人碼頭海鮮餐廳晚餐</h4><p>Fog Harbor Fish House（Pier 39 二樓，窗邊可看海獅與海景、家庭友善）、Scoma's（老牌精緻、cioppino，需訂位）、Crab House（招牌蒜香烤蟹 Killer Crab）。必點：丹金尼斯大螃蟹 Dungeness Crab（清蒸或奶油起士焗烤）、酸麵包碗蛤蜊濃湯 Clam Chowder in Sourdough Bowl</p><div class="tips">💡 Big Bus 終點就在 Pier 39，吃完走路回飯店約 10 分鐘；熱門餐廳先訂位，長輩才能準時吃、不用等。10 月還不是本地丹金尼斯蟹產季（商業捕撈通常 11 月中才開），餐廳和路邊攤多用冷凍或外地蟹，價格與鮮度先問清楚；路邊攤便宜但要站著吃</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">18:30</span><div class="schedule-activity"><h4>🍫 飯後散步到吉拉德里廣場</h4><p>沿 Jefferson St、Beach St 往西平路走約 20 分鐘到吉拉德里廣場 Ghirardelli Square（900 North Point St）：1852 年創立、全美最老的巧克力製造商，舊廠房改成露天購物中心，中庭美人魚噴水池。廣場上有三家店，最大的是 Ghirardelli Marketplace，最有看頭的是門口旁小巧的創始店 Original Chocolate Shop，可看製作巧克力的機具，招牌熱焦糖聖代三人分一杯當甜點；巧克力伴手禮各種濃度、口味都有，今晚一次買齊。走回飯店約 12 分鐘</p><div class="tips">💡 巧克力店晚上都還開著；路上會經過紅磚的罐頭工廠廣場 The Cannery（1907 年的水蜜桃製罐廠，現在店家不多，看外觀就好）和對面海事博物館的白色郵輪造型建築（Aquatic Park，晚上只看外觀）。長輩累了就直接回飯店，巧克力留到 Day 14 早上在 Pier 39 附近的分店買</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">備案</span><div class="schedule-activity"><h4>🔄 視體力與天氣調整</h4><p><strong>長輩累了</strong>：12、13 號站都不下車，一路坐到 17 號站 Pier 39（6 號站到 17 號站約 1 小時 15 分）<br><strong>叮噹車排隊太長</strong>：改走到 1 號站（99 Jefferson St，飯店步行 5 分鐘）搭 10:00 首班，坐到 3 號站 North Beach/Chinatown（329 Columbus Ave，10:07 到）下車逛唐人街，午餐後照原時間到 6 號站上車<br><strong>唐人街逛不完</strong>：最晚 15:26 在 6 號站上車，仍趕得上金門大橋（12 號站最後一班約 18:15 經過）<br><strong>想逛渡輪大廈</strong>：週四剛好有農夫市集（10:00–14:00，建築前街道擺攤）。唐人街縮短、12:00 前從花園角沿 Clay St 一路下坡走約 1.3 公里（20 分鐘）到 Ferry Building（1 Ferry Building；不想走可在 Sacramento & Grant 搭 Muni 1 號公車到終點 Drumm St，付現或 MuniMobile），在裡面的美食市集吃午餐（肉販的牛肉三明治、藍瓶咖啡發源店），改在 <strong>5 號站 Ferry Building</strong>（30 Steuart St）上車，後面行程不變，伴手禮改在渡輪大廈買（橄欖油、果醬、巧克力）</p></div></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header"><h3>Day 14 - Pier 39 海獅 & 返程</h3><span>10/9（週五）</span></div>
+                <div class="day-content">
+                    <div class="highlight-box">
+                        <h4>✈️ 下午航班，早上還有時間逛！</h4>
+                        <p>航班 14:25 起飛，建議 11:30 前抵達機場，11:00 從飯店叫 Uber 出發</p>
+                    </div>
+                    <div class="schedule-item"><span class="schedule-time">07:30</span><div class="schedule-activity"><h4>🍳 飯店／附近早餐</h4><p>先在飯店吃早餐，行李收好留房間</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">08:15</span><div class="schedule-activity"><h4>🦭 Pier 39 K-Dock 再看一次海獅</h4><p>飯店步行約 10 分鐘。早上遊客少、海獅剛醒最熱鬧，慢慢看、拍照，也是這趟旅程最後一個景點</p><div class="tips">💡 艦隊週早上碼頭會開始聚集人潮，09:15 前看完往回走比較從容；Pier 39 裡也有 Ghirardelli 分店，昨晚沒買到的巧克力可以在這補</div></div></div>
+                    <div class="schedule-item"><span class="schedule-time">09:15</span><div class="schedule-activity"><h4>沿 Jefferson St 慢慢走回飯店</h4><p>昨天沒逛到的補一下：Boudin 看麵包製作、Pier 45 機械玩具博物館 Musée Mécanique（10:00 開）、螃蟹招牌拍照，全程平路約 15 分鐘</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">10:15</span><div class="schedule-activity"><h4>回飯店退房、帶行李</h4><p>逛完直接回飯店整理行李、退房（退房期限 12:00，不用寄放），在大廳等車</p></div></div>
+                    <div class="schedule-item"><span class="schedule-time">11:00</span><div class="schedule-activity"><h4>🚗 Uber XL 前往 SFO 機場</h4><p>飯店門口叫車，走 US-101 約 35–45 分鐘到國際航廈 G 區（United），提前 3 小時到達</p><div class="tips">💡 艦隊週船艦遊行 Parade of Ships 10:30–12:00 就在海濱，碼頭周邊人車多、叫車可能等比較久也可能加價，10:45 就先叫車、Uber 和 Lyft 兩邊比價，不要拖延</div></div></div>
+                    <div class="flight-info">
+                        <span class="airline">UA871 聯合航空</span>
+                        <h4>✈️ 回程航班</h4>
+                        <p><strong>SFO 14:25 → TPE 18:45+1</strong>（13小時20分鐘）</p>
+                        <p style="margin-top: 10px;">🛬 <strong>10/10（六）18:45</strong> 抵達台北桃園機場</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><p>🦬 2026 黃石公園 & 舊金山家庭旅遊 | 2026/9/26 - 10/10 | 15天14夜</p></footer>
+    <button class="back-to-top" id="backToTop" aria-label="回頂端" title="回頂端">↑</button>
+    <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+    <script>
+    (function(){
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.day-card'));
+      var bar = document.getElementById('jumpBar');
+      cards.forEach(function(card, i){
+        var h3 = card.querySelector('.day-header h3');
+        if(!h3) return;
+        if(!card.id) card.id = 'card-' + i;
+        card.classList.add('collapsible','collapsed');
+        var header = card.querySelector('.day-header');
+        header.addEventListener('click', function(){ card.classList.toggle('collapsed'); });
+        var m = h3.textContent.match(/Day\s*\d+/);
+        if(bar && m){
+          var chip = document.createElement('a');
+          chip.href = '#' + card.id;
+          chip.className = 'jump-chip';
+          chip.textContent = m[0].replace(/\s+/g,'');
+          chip.addEventListener('click', function(e){
+            e.preventDefault();
+            card.classList.remove('collapsed');
+            card.scrollIntoView({behavior:'smooth', block:'start'});
+          });
+          bar.appendChild(chip);
+        }
+      });
+      var ea = document.getElementById('expandAll');
+      var ca = document.getElementById('collapseAll');
+      if(ea) ea.addEventListener('click', function(){ cards.forEach(function(c){ c.classList.remove('collapsed'); }); });
+      if(ca) ca.addEventListener('click', function(){ cards.forEach(function(c){ c.classList.add('collapsed'); }); window.scrollTo({top:0,behavior:'smooth'}); });
+      var btt = document.getElementById('backToTop');
+      window.addEventListener('scroll', function(){ (window.scrollY > 400) ? btt.classList.add('show') : btt.classList.remove('show'); });
+      btt.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+    })();
+    </script>
+</body>
+</html>
