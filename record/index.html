@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}</style>
+<title>2026 黃石舊金山家族遊記</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500&display=swap">
+<style>
+/* Layout: one calm column like a printed photo journal; summer-cool palette (lavender, mist blue, sage, pearl white, navy). */
+:root{
+  --bg:#f3f2f6; --fg:#34435e; --muted:#6f7890; --rule:#d9d7e3;
+  --accent:#6d93c8; --accent2:#8981c2; --sage:#9db6a8; --card:#ffffff;
+  --display:"Noto Serif TC",Georgia,"PMingLiU",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+:root{color-scheme:light}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.8;padding-block:0 64px;padding-inline:16px}
+.wrap{max-width:760px;margin:0 auto}
+a.back{display:inline-block;font-size:13px;color:var(--accent2);text-decoration:none;margin-bottom:18px}
+header{padding-block:40px 24px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,6vw,42px);line-height:1.3;margin:8px 0 12px;text-wrap:balance}
+.lead{color:var(--muted);margin:0;max-width:40em}
+.hero{margin:24px 0 0;border-radius:10px;overflow:hidden}
+.hero img{display:block;width:100%;height:auto}
+.hero figcaption{font-size:13px;color:var(--muted);padding-top:6px}
+.route{display:flex;flex-wrap:wrap;gap:8px 18px;padding:18px 0;border-bottom:1px solid var(--rule);font-size:14px;color:var(--muted)}
+.route b{color:var(--fg);font-weight:500}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;padding:18px 0 8px}
+nav.toc a{font-size:13px;color:var(--accent2);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:3px 12px;background:var(--card)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--accent2);outline:none}
+section.day{padding-block:40px;border-bottom:1px solid var(--rule)}
+.date{display:flex;align-items:baseline;gap:12px;font-family:var(--display);color:var(--accent2)}
+.date .num{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums}
+.date .wk{font-size:14px;color:var(--muted)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(22px,4.5vw,28px);margin:4px 0 2px;text-wrap:balance}
+.meta{font-size:14px;color:var(--muted);margin:0 0 16px}
+.meta span+span::before{content:"·";margin:0 8px}
+.prose p{margin:0 0 12px;max-width:38em}
+.facts{background:var(--card);border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:18px;font-size:14.5px;line-height:1.75}
+.facts h3{font-family:var(--display);font-size:15px;font-weight:700;color:var(--accent2);margin:0 0 8px;letter-spacing:.04em}
+.facts ul{margin:0;padding-left:1.2em}
+.facts li+li{margin-top:6px}
+.grid{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.row{display:flex;gap:12px;align-items:flex-start}
+.row figure{margin:0;min-width:0}
+.row.single figure{flex:1 1 auto}
+.row.single.tall figure{max-width:62%;margin:0 auto}
+.grid img,.grid video{display:block;width:100%;height:auto;border-radius:8px;background:var(--rule);cursor:zoom-in}
+.grid video{cursor:default}
+.grid figcaption{font-size:13px;color:var(--muted);line-height:1.5;padding-top:6px}
+@media (max-width:480px){.row{flex-direction:column;gap:14px}.row figure{flex:none!important;width:100%}.row.single.tall figure{max-width:100%}}
+.lb{position:fixed;inset:0;background:rgba(52,67,94,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:100%;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.lb p{position:absolute;left:0;right:0;bottom:16px;text-align:center;color:#fff;font-size:14px;margin:0;padding:0 16px}
+.cost{padding-block:40px;border-bottom:1px solid var(--rule)}
+.cost table{width:100%;border-collapse:collapse;font-size:15px;margin-top:14px;font-variant-numeric:tabular-nums}
+.cost th,.cost td{text-align:left;padding:8px 0;border-bottom:1px solid var(--rule)}
+.cost td:last-child,.cost th:last-child{text-align:right}
+.cost .bar{height:6px;border-radius:3px;background:var(--accent);opacity:.75}
+.cost .total td{font-weight:500;border-bottom:none}
+.cost .note{font-size:13px;color:var(--muted);margin-top:10px}
+footer{padding-top:28px;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="back" href="../index.html">← 回「黃石 & 舊金山 2026」網站首頁</a>
+  <div class="eyebrow">2026.9.26 – 10.10 · 15 天 14 夜</div>
+  <h1>黃石、大提頓與舊金山<br>我們一家的美國自駕遊記</h1>
+  <p class="lead">從鹽湖城出發，在西黃石住了六晚、傑克遜兩晚，再飛舊金山。幾乎天天晴朗，看了噴泉、瀑布、野牛、大提頓山和海獅，曬傷也值得。</p>
+  <figure class="hero"><img src="photos/20260929_151544.jpg" alt="大稜鏡溫泉觀景台"><figcaption>9/29 大稜鏡溫泉，這趟旅行最漂亮的一眼</figcaption></figure>
+</header>
+<div class="route">
+  <span><b>鹽湖城</b> 9/26–28</span><span><b>西黃石</b> 9/28–10/4</span><span><b>傑克遜</b> 10/4–6</span><span><b>鹽湖城</b> 10/6–7</span><span><b>舊金山</b> 10/7–9</span>
+</div>
+<nav class="toc">
+<a href="#d1">9/26 抵達鹽湖城</a>
+<a href="#d2">9/27 鹽湖城散步日</a>
+<a href="#d3">9/28 北上西黃石</a>
+<a href="#d4">9/29 黃石第一天：間歇泉區</a>
+<a href="#d5">9/30 黃石大峽谷與 Hayden Valley</a>
+<a href="#d6">10/1 Norris 與猛獁溫泉</a>
+<a href="#d7">10/2 Lamar Valley 看動物</a>
+<a href="#d8">10/3 黃石湖畔野餐</a>
+<a href="#d9">10/4 往大提頓、傑克遜</a>
+<a href="#d10">10/5 大提頓一日</a>
+<a href="#d11">10/6 熊湖、羅根峽谷、回鹽湖城</a>
+<a href="#d12">10/7 飛往舊金山</a>
+<a href="#d13">10/8 叮噹車、唐人街、艦隊週</a>
+<a href="#d14">10/9–10 回家</a>
+<a href="#cost">花費</a></nav>
+<section class="day" id="d1">
+<div class="date"><span class="num">9/26</span><span class="wk">週六 · Day 1</span></div>
+<h2>抵達鹽湖城</h2>
+<p class="meta"><span>台北 → 舊金山 → 鹽湖城</span></p><div class="prose">
+<p>凌晨從桃園出發，UA852 飛了十一個多小時到舊金山。機場櫃檯給了一張轉機流程圖：先過移民關，領出託運行李，過海關，再把行李放到「Baggage Re-Check」的轉盤重新託運，接著走到國內線航廈過安檢，等 UA5590 飛鹽湖城。流程圖在手上，我們還是小小迷了路，問了地勤人員才找到安檢門在哪裡。</p>
+<p>落地已經晚上快十點。一路上最難忘的，是和熱情的機師合影。走出鹽湖城機場那條藍色光廊時，大家雖然累，還是笑著拍了好幾張。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>舊金山（SFO）是美國西岸進出亞洲的大門之一，從台北直飛約 11 小時。入境美國一律在第一個落地的機場辦移民關和海關，所以行李要先領出來再重新託運。</li><li>鹽湖城是猶他州首府，海拔約 1,300 公尺，1847 年由摩門教徒建城，城市街道以聖殿為中心呈方格狀。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20260926_135632.jpg" alt="舊金山機場，載我們飛越太平洋的聯合航空 777" width="1200" height="1600" loading="lazy"><figcaption>舊金山機場，載我們飛越太平洋的聯合航空 777</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260926_115057.jpg" alt="機場櫃檯給的轉機流程圖：移民關 → 領行李 → 海關 → 重新託運 → 國內線航廈" width="1200" height="1600" loading="lazy"><figcaption>機場櫃檯給的轉機流程圖：移民關 → 領行李 → 海關 → 重新託運 → 國內線航廈</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260926_214524.jpg" alt="鹽湖城機場的藍色光廊，終於落地了" width="1200" height="1600" loading="lazy"><figcaption>鹽湖城機場的藍色光廊，終於落地了</figcaption></figure></div>
+<div class="row single tall"><figure style="flex:0.750 1 0"><img src="photos/20260926_214608.jpg" alt="與熱情的機師合影，Day 1 最好的紀念" width="1200" height="1600" loading="lazy"><figcaption>與熱情的機師合影，Day 1 最好的紀念</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d2">
+<div class="date"><span class="num">9/27</span><span class="wk">週日 · Day 2</span></div>
+<h2>鹽湖城散步日</h2>
+<p class="meta"><span>議會大廈・聖殿廣場・採買</span><span>天氣很好</span></p><div class="prose">
+<p>早上到機場取車，是一台白色的 Jeep Wagoneer，接下來十天就靠它了。爸爸坐進後座說，這很像商務艙。</p>
+<p>先去猶他州議會大廈，白色圓頂配上藍天白雲，非常漂亮，大廳裡還有一座自由鐘的複製品。下午到聖殿廣場，剛好趕上大禮拜堂的管風琴演奏，坐下來聽了一場。</p>
+<p>輕鬆悠閒的一天。午餐吃了牛肉米粉，順便去超市買當天晚上要煮的食材，也先看了在台灣就決定要買的冰淇淋機，確認價錢和尺寸，回程再帶。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>猶他州議會大廈 1916 年落成，外牆用的是鹽湖城附近峽谷的花崗岩；地板上的蜂巢圖案和「INDUSTRY」字樣是猶他州的州徽，象徵勤勞，1847 是摩門先驅抵達的年份。</li><li>鹽湖城聖殿從 1853 年動工，蓋了整整 40 年才完成。旁邊橢圓形的大禮拜堂以音響效果聞名，那座管風琴有一萬一千多根音管，平日中午有免費演奏。</li><li>Jeep Wagoneer 是美國家庭常見的大型 SUV，七人座、行李空間大，很適合我們四個人加四個行李箱。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20260927_110813.jpg" alt="猶他州議會大廈，藍天白雲" width="1200" height="1600" loading="lazy"><figcaption>猶他州議會大廈，藍天白雲</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260927_115001.jpg" alt="議會大廈裡的自由鐘複製品" width="1200" height="1600" loading="lazy"><figcaption>議會大廈裡的自由鐘複製品</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260927_131717.jpg" alt="鹽湖城聖殿" width="1200" height="1600" loading="lazy"><figcaption>鹽湖城聖殿</figcaption></figure></div>
+<div class="row"><figure style="flex:1.333 1 0"><img src="photos/20260927_135924.jpg" alt="大禮拜堂，聽了一場管風琴演奏" width="1600" height="1200" loading="lazy"><figcaption>大禮拜堂，聽了一場管風琴演奏</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260930_082219.jpg" alt="我們的座駕：Jeep Wagoneer，在黃石的清晨" width="1200" height="1600" loading="lazy"><figcaption>我們的座駕：Jeep Wagoneer，在黃石的清晨</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260927_160125.jpg" alt="在台灣就決定要買的冰淇淋機，先來看一眼" width="1200" height="1600" loading="lazy"><figcaption>在台灣就決定要買的冰淇淋機，先來看一眼</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d3">
+<div class="date"><span class="num">9/28</span><span class="wk">週一 · Day 3</span></div>
+<h2>北上西黃石</h2>
+<p class="meta"><span>鹽湖城 → 愛達荷瀑布 → 西黃石</span><span>鹽湖城下大雨，到愛達荷瀑布後放晴</span></p><div class="prose">
+<p>出發時鹽湖城下著大雨，沿 I-15 一路往北，開到愛達荷瀑布天就晴了。一路上爸爸一直說美國的車都好大台，路上一堆皮卡車；進了黃石之後又變成一直看到露營車，爸爸說下次應該開露營車來體驗體驗。</p>
+<p>在河岸邊吃午餐，吃完沿著 Snake River 繞了一個小時，對岸是白色的愛達荷瀑布聖殿，秋天的樹開始轉黃。</p>
+<p>傍晚抵達西黃石的 ClubHouse Inn，接下來要連住六晚。房間有微波爐和小冰箱，加上我們從台灣帶來的萬用旅行鍋和旅行用電磁爐，黃石和大提頓這幾天的晚餐都能自己煮。午餐的神器則是悶燒罐：媽媽前一晚先煮好粥放進去，隔天中午在湖邊或停車場打開，就是熱騰騰的粥配台灣帶來的罐頭。這趟除了早餐是飯店附的，另外兩餐都盡量配合爸媽的飲食習慣，吃得習慣，才走得遠。早餐六點半就開始供應，很適合早出門的我們。鎮上的 Market Place 超市離旅館很近，接下來六天每天回程都會繞過去買當晚的菜，成了西黃石每天必去的地方。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>愛達荷瀑布這座城市是以 Snake River（蛇河）上的瀑布命名的。蛇河全長約 1,700 公里，從黃石南邊發源，流過大提頓、傑克遜，再轉向西進入愛達荷，是哥倫比亞河最大的支流。我們 10/4 在大提頓看的 Snake River Overlook，就是這條河的上游。</li><li>河岸那道寬寬的瀑布其實有一部分是 1911 年為了水力發電築的堰，整條河岸步道叫 Idaho Falls River Walk，對岸白色尖塔是愛達荷瀑布聖殿。</li><li>西黃石（West Yellowstone）是蒙大拿州的小鎮，就在黃石公園西門外，是進出園區最方便的住宿地點。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20260928_134630.jpg" alt="愛達荷瀑布，午餐後沿河散步" width="1200" height="1600" loading="lazy"><figcaption>愛達荷瀑布，午餐後沿河散步</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260928_133725.jpg" alt="Snake River 對岸的愛達荷瀑布聖殿" width="1200" height="1600" loading="lazy"><figcaption>Snake River 對岸的愛達荷瀑布聖殿</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260928_171409.jpg" alt="ClubHouse Inn 的房間，接下來六晚的家" width="1200" height="1600" loading="lazy"><figcaption>ClubHouse Inn 的房間，接下來六晚的家</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261001_174046.jpg" alt="ClubHouse Inn 的木屋招牌" width="1200" height="1600" loading="lazy"><figcaption>ClubHouse Inn 的木屋招牌</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/marketplace.jpg" alt="Market Place 超市，西黃石每天必去的地方" width="1108" height="1477" loading="lazy"><figcaption>Market Place 超市，西黃石每天必去的地方</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d4">
+<div class="date"><span class="num">9/29</span><span class="wk">週二 · Day 4</span></div>
+<h2>黃石第一天：間歇泉區</h2>
+<p class="meta"><span>老忠實・大稜鏡・Firehole</span><span>天氣很好</span></p><div class="prose">
+<p>早上七點吃早餐，八點出發，進園前買了非居民年票。進園的路上有濃霧，車燈照出去只看得到前面幾棵樹，到了老忠實卻是大晴天。</p>
+<p>等老忠實噴發的時候，爸媽在招牌前拍了合照。噴發的瞬間水柱衝上藍天，全場都在歡呼。</p>
+<p>下午繞到大稜鏡溫泉，先從下面的木棧道走一圈，再爬上觀景台往下看。那一圈橘紅色邊緣配上藍綠色的水，真的很漂亮，是這一天的第一名。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>黃石是全世界第一座國家公園，1872 年成立，面積約 9,000 平方公里，比四個台北市加起來還大很多。整個公園坐落在一座超級火山的火山口上，地底的岩漿讓這裡有超過一萬處溫泉、噴泉和泥泉，全世界一半以上的間歇泉都在這裡。</li><li>老忠實噴泉的名字來自 1870 年的探險隊，因為它噴發很準時：平均每 90 分鐘左右一次，水柱可達 30 到 55 公尺高，持續 1.5 到 5 分鐘。</li><li>大稜鏡溫泉是美國最大的溫泉，直徑約 110 公尺、深約 50 公尺。中間深藍色是接近沸騰的清水，外圍的橘紅、黃、綠是耐熱細菌形成的菌毯，溫度越低顏色越偏紅，所以看起來像一道彩虹。</li><li>非居民年票 250 美元，一台車裡所有人都能用，黃石和大提頓都通用。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20260929_084643.jpg" alt="清晨進園的濃霧" width="1200" height="1600" loading="lazy"><figcaption>清晨進園的濃霧</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260929_095814.jpg" alt="老忠實噴泉招牌前的合照" width="1200" height="1600" loading="lazy"><figcaption>老忠實噴泉招牌前的合照</figcaption></figure><figure style="flex:0.563 1 0"><img src="photos/20260929_113040.jpg" alt="老忠實噴發了" width="901" height="1600" loading="lazy"><figcaption>老忠實噴發了</figcaption></figure></div>
+<div class="row"><figure style="flex:0.563 1 0"><img src="photos/20260929_113056.jpg" alt="噴發的水霧裡出現一道彩虹" width="901" height="1600" loading="lazy"><figcaption>噴發的水霧裡出現一道彩虹</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260929_151544.jpg" alt="大稜鏡溫泉，從觀景台往下看" width="1200" height="1600" loading="lazy"><figcaption>大稜鏡溫泉，從觀景台往下看</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260929_120123.jpg" alt="上間歇泉盆地的藍色水池" width="1200" height="1600" loading="lazy"><figcaption>上間歇泉盆地的藍色水池</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20260929_143109.jpg" alt="Firehole 河邊，溫泉水冒著煙流進河裡" width="1200" height="1600" loading="lazy"><figcaption>Firehole 河邊，溫泉水冒著煙流進河裡</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260929_155810.jpg" alt="Black Sand Basin 的藍色溫泉" width="1200" height="1600" loading="lazy"><figcaption>Black Sand Basin 的藍色溫泉</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260929_084910.jpg" alt="非居民年票，進黃石和大提頓都靠它" width="1200" height="1600" loading="lazy"><figcaption>非居民年票，進黃石和大提頓都靠它</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d5">
+<div class="date"><span class="num">9/30</span><span class="wk">週三 · Day 5</span></div>
+<h2>黃石大峽谷與 Hayden Valley</h2>
+<p class="meta"><span>Artist Point・下瀑布・野牛・黃石湖</span><span>天氣很好</span></p><div class="prose">
+<p>清晨開進園區，河面上升起一層薄霧，太陽剛好從樹梢出來。</p>
+<p>黃石大峽谷的下瀑布很壯麗，從 Artist Point 看是一幅畫，走到 Brink of the Upper Falls 則是站在瀑布頂端聽水聲轟隆。</p>
+<p>下午經過 Hayden Valley，整群野牛就在路邊吃草，近到可以看清楚牠們的鬍子。接著去泥火山，最後在黃石湖邊走走，湖水藍得像海。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>黃石大峽谷長約 32 公里、最深約 365 公尺，岩壁的黃色不是硫磺，而是火山岩裡的鐵質被熱水氧化的顏色，「黃石」這個名字就是這麼來的。</li><li>下瀑布高 94 公尺，差不多是尼加拉瓜瀑布的兩倍高；上瀑布 33 公尺。Artist Point 這個名字是因為畫家 Thomas Moran 在這一帶作畫，他的畫作當年送到國會，促成了黃石國家公園的成立。</li><li>Hayden Valley 以前是黃石湖的湖底，土壤留不住樹，所以變成大草原，是看野牛最好的地方。黃石的野牛群是北美唯一從史前時代一直沒間斷存在的野牛，現在約有四、五千頭；成年公牛可重達 900 公斤，跑起來時速 55 公里，所以要離牠們 25 公尺以上。</li><li>黃石湖海拔 2,357 公尺，是北美洲最大的高山湖泊，面積約 350 平方公里，差不多是日月潭的 45 倍。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20260930_082102.jpg" alt="清晨的 Madison River，薄霧和陽光" width="1200" height="1600" loading="lazy"><figcaption>清晨的 Madison River，薄霧和陽光</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260930_094815.jpg" alt="Artist Point 看黃石大峽谷下瀑布" width="1200" height="1600" loading="lazy"><figcaption>Artist Point 看黃石大峽谷下瀑布</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260930_094932.jpg" alt="天太藍，白天也看得到月亮" width="1200" height="1600" loading="lazy"><figcaption>天太藍，白天也看得到月亮</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20260930_103813.jpg" alt="Brink of the Upper Falls，站在瀑布頂端" width="1200" height="1600" loading="lazy"><figcaption>Brink of the Upper Falls，站在瀑布頂端</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260930_135840.jpg" alt="Hayden Valley 的野牛群" width="1200" height="1600" loading="lazy"><figcaption>Hayden Valley 的野牛群</figcaption></figure><figure style="flex:0.563 1 0"><img src="photos/20260930_135927.jpg" alt="野牛就在車旁邊" width="901" height="1600" loading="lazy"><figcaption>野牛就在車旁邊</figcaption></figure></div>
+<div class="row"><figure style="flex:0.563 1 0"><img src="photos/20260930_143240.jpg" alt="泥火山區，蒸氣和硫磺味" width="901" height="1600" loading="lazy"><figcaption>泥火山區，蒸氣和硫磺味</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20260930_152303.jpg" alt="黃石湖，藍得像海" width="1200" height="1600" loading="lazy"><figcaption>黃石湖，藍得像海</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d6">
+<div class="date"><span class="num">10/1</span><span class="wk">週四 · Day 6</span></div>
+<h2>Norris 與猛獁溫泉</h2>
+<p class="meta"><span>Norris・Mammoth・北門</span><span>很晴朗，早晚溫差大</span></p><div class="prose">
+<p>早上先去 Norris 間歇泉盆地，是園區裡最熱、最活躍的一區，整片地面都在冒煙，走在木棧道上像走進雲裡。</p>
+<p>中午到猛獁溫泉，白色的石灰梯田一層一層往下流，像結凍的瀑布，很美。</p>
+<p>下午特地開到北門的羅斯福拱門，在「Leaving Yellowstone」的招牌前拍照。回程買了野牛肉乾當零食。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>Norris 是黃石最熱、最老、變化最快的地熱區，地下水溫超過 200°C。這裡的 Steamboat Geyser 是全世界現存最高的間歇泉，噴發可達 90 公尺以上，不過沒有固定週期，能遇到要很有運氣。</li><li>猛獁溫泉和其他地熱區不同，熱水流過地底的石灰岩，把碳酸鈣帶上來沉積，每天大約堆出兩噸的石灰華，所以梯田的形狀年年都在變。</li><li>羅斯福拱門在北門外的 Gardiner 小鎮，1903 年由老羅斯福總統親自奠基，上面刻著「為了人民的福祉與享受」，是黃石最早的入口。</li></ul></aside>
+<div class="grid">
+<div class="row single"><figure><video controls preload="metadata" playsinline poster="photos/20261001_103432.jpg" width="1280" height="720"><source src="photos/norris.mp4" type="video/mp4">你的瀏覽器無法播放影片。</video><figcaption>Norris 的蒸氣，煙霧真的好大</figcaption></figure></div>
+<div class="row"><figure style="flex:0.563 1 0"><img src="photos/20261001_103432.jpg" alt="Norris 間歇泉盆地，整片地都在冒煙" width="901" height="1600" loading="lazy"><figcaption>Norris 間歇泉盆地，整片地都在冒煙</figcaption></figure><figure style="flex:1.333 1 0"><img src="photos/20261001_105243.jpg" alt="Norris 的 Porcelain Basin" width="1600" height="1200" loading="lazy"><figcaption>Norris 的 Porcelain Basin</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261001_115700.jpg" alt="猛獁溫泉的石灰梯田" width="1200" height="1600" loading="lazy"><figcaption>猛獁溫泉的石灰梯田</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261001_115943.jpg" alt="梯田前的合照" width="1200" height="1600" loading="lazy"><figcaption>梯田前的合照</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261001_141724.jpg" alt="北門的羅斯福拱門" width="1200" height="1600" loading="lazy"><figcaption>北門的羅斯福拱門</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261001_141830.jpg" alt="Leaving Yellowstone，但我們明天還會回來" width="1200" height="1600" loading="lazy"><figcaption>Leaving Yellowstone，但我們明天還會回來</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d7">
+<div class="date"><span class="num">10/2</span><span class="wk">週五 · Day 7</span></div>
+<h2>Lamar Valley 看動物</h2>
+<p class="meta"><span>拉馬山谷・Tower Fall</span><span>清晨很冷，白天很熱</span></p><div class="prose">
+<p>六點多出門，開兩個小時到拉馬山谷。山谷很大，大到野牛和鹿都要用望遠鏡才看得清楚。</p>
+<p>路邊有幾棵金黃色的白楊，整棵樹像在發光，大家下車在樹下拍了好久。</p>
+<p>回程經過 Tower Fall，瀑布藏在石柱間，很特別。今天清晨很冷、中午很熱，一天要穿脫好幾次。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>Lamar Valley 有「美國的塞倫蓋蒂」之稱，是黃石看野生動物最好的山谷。1995 年黃石從加拿大引進了 31 隻灰狼，讓消失七十年的狼群重回公園，現在清晨常有人架著望遠鏡在這裡等狼。</li><li>路邊發光的那幾棵是白楊（cottonwood），每年十月初剛好轉成金黃色，我們來的時間正好。</li><li>Tower Fall 高 40 公尺，瀑布兩側那些像塔一樣的石柱是火山岩被侵蝕留下的，1870 年探險隊因此取名「塔瀑布」。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261002_091054.jpg" alt="拉馬山谷的野牛群" width="1200" height="1600" loading="lazy"><figcaption>拉馬山谷的野牛群</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261002_123452.jpg" alt="草原上遠遠的鹿" width="1200" height="1600" loading="lazy"><figcaption>草原上遠遠的鹿</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261002_121649.jpg" alt="路邊發光的金黃白楊" width="1200" height="1600" loading="lazy"><figcaption>路邊發光的金黃白楊</figcaption></figure></div>
+<div class="row single tall"><figure style="flex:0.750 1 0"><img src="photos/20261002_134013.jpg" alt="Tower Fall" width="1200" height="1600" loading="lazy"><figcaption>Tower Fall</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d8">
+<div class="date"><span class="num">10/3</span><span class="wk">週六 · Day 8</span></div>
+<h2>黃石湖畔野餐</h2>
+<p class="meta"><span>West Thumb・Black Sand Basin</span><span>天氣晴朗</span></p><div class="prose">
+<p>黃石的最後一天走得輕鬆。West Thumb 的木棧道平坦好走，深藍色的 Abyss Pool 和黑色的湖邊溫泉就在黃石湖旁邊。</p>
+<p>中午在湖邊野餐，湖面上有人划獨木舟。下午順路去 Black Sand Basin，橘色的水流進白色的地面。</p>
+<p>傍晚回旅館洗衣服、打包，明天要往大提頓出發了。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>West Thumb 是黃石湖西邊一個圓形的湖灣，大約 17 萬年前一次火山爆發炸出來的，等於是大火山口裡的小火山口。這裡的溫泉就在湖邊，有的甚至在湖裡。</li><li>Abyss Pool 深約 16 公尺，是黃石最深的溫泉之一，所以藍得特別深。</li><li>Black Sand Basin 的黑沙是黑曜石碎成的細沙，黑曜石是火山玻璃，以前的原住民拿它做箭頭。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261003_102527.jpg" alt="West Thumb 的 Abyss Pool" width="1200" height="1600" loading="lazy"><figcaption>West Thumb 的 Abyss Pool</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261003_102456.jpg" alt="West Thumb 木棧道上" width="1200" height="1600" loading="lazy"><figcaption>West Thumb 木棧道上</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261003_100804.jpg" alt="黃石湖上的獨木舟" width="1200" height="1600" loading="lazy"><figcaption>黃石湖上的獨木舟</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261003_111046.jpg" alt="湖邊野餐，黃石湖像海一樣" width="1200" height="1600" loading="lazy"><figcaption>湖邊野餐，黃石湖像海一樣</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261003_153021.jpg" alt="Black Sand Basin，橘色的溫泉水" width="1200" height="1600" loading="lazy"><figcaption>Black Sand Basin，橘色的溫泉水</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d9">
+<div class="date"><span class="num">10/4</span><span class="wk">週日 · Day 9</span></div>
+<h2>往大提頓、傑克遜</h2>
+<p class="meta"><span>Lewis Falls・Colter Bay・Jackson Lake・Snake River Overlook</span><span>很晴朗</span></p><div class="prose">
+<p>從黃石南門出去就是大提頓。先在 Lewis Falls 停一下，再到 Colter Bay，發現湖水退得很遠，乾涸的湖床長滿了整片草地，碼頭都擱在草上。停車場旁剛好遇到一團準備要騎馬的活動，幾匹馬從拖車上牽下來，爸媽看得很有興趣。</p>
+<p>大提頓山在藍天下像一道牆，Jackson Lake 湖面倒影很完整。傍晚在 Snake River Overlook 看蜿蜒的河。</p>
+<p>晚上住進傑克遜的 49&#x27;er Inn，鎮上廣場有四座鹿角拱門。晚餐在 Glorietta Trattoria 吃野牛排和鹿肉醬義大利麵，那種短短胖胖的麵體看起來很像蟲蛹，味道倒是很好。回旅館前順路到 Albertsons 超市買了炸雞，爸爸吃得很開心。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>大提頓山脈很年輕，不到一千萬年，是地殼沿斷層一邊抬升、一邊下陷形成的，所以山前沒有丘陵，從平原直接拔起兩千公尺，看起來像一道牆。最高峰 Grand Teton 海拔 4,199 公尺。「Teton」是當年法國毛皮獵人取的名字。</li><li>Colter Bay 的名字來自 John Colter，他是 1807 年第一個進入黃石和大提頓一帶的白人探險家。湖水退得那麼遠，是因為 Jackson Lake 雖是天然湖，但 1916 年築了水壩調節灌溉用水，秋天放水後水位就降了。</li><li>Lewis Falls 在黃石南門內，高約 9 公尺，Lewis River 之後也會匯入蛇河。</li><li>傑克遜廣場那四座拱門是用真的麋鹿角做的，每座約兩千支。鎮外的國家麋鹿保護區每年冬天有好幾千頭麋鹿來過冬，春天掉落的鹿角由當地童軍撿拾拍賣，所得用來買乾草餵麋鹿。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261004_102042.jpg" alt="Lewis Falls" width="1200" height="1600" loading="lazy"><figcaption>Lewis Falls</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261004_114516.jpg" alt="Colter Bay，碼頭擱在乾涸的湖床上" width="1200" height="1600" loading="lazy"><figcaption>Colter Bay，碼頭擱在乾涸的湖床上</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261004_113726.jpg" alt="Colter Bay 的相框，框住大提頓山" width="1200" height="1600" loading="lazy"><figcaption>Colter Bay 的相框，框住大提頓山</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261004_120246.jpg" alt="遇到準備要騎馬的活動" width="1200" height="1600" loading="lazy"><figcaption>遇到準備要騎馬的活動</figcaption></figure><figure style="flex:1.333 1 0"><img src="photos/20261004_142023.jpg" alt="Jackson Lake 的倒影" width="1600" height="1200" loading="lazy"><figcaption>Jackson Lake 的倒影</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261004_161612.jpg" alt="Snake River Overlook" width="1200" height="1600" loading="lazy"><figcaption>Snake River Overlook</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261004_173743.jpg" alt="傑克遜廣場的鹿角拱門" width="1200" height="1600" loading="lazy"><figcaption>傑克遜廣場的鹿角拱門</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261004_185832.jpg" alt="傑克遜的 49&#x27;er Inn，住兩晚" width="1200" height="1600" loading="lazy"><figcaption>傑克遜的 49&#x27;er Inn，住兩晚</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261004_181759.jpg" alt="鹿肉醬義大利麵，麵體看起來很像蟲蛹" width="1200" height="1600" loading="lazy"><figcaption>鹿肉醬義大利麵，麵體看起來很像蟲蛹</figcaption></figure></div>
+<div class="row single tall"><figure style="flex:0.750 1 0"><img src="photos/20261004_181802.jpg" alt="Glorietta 的野牛排" width="1200" height="1600" loading="lazy"><figcaption>Glorietta 的野牛排</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d10">
+<div class="date"><span class="num">10/5</span><span class="wk">週一 · Day 10</span></div>
+<h2>大提頓一日</h2>
+<p class="meta"><span>Mormon Row・Schwabacher・Jenny Lake</span><span>天氣很熱</span></p><div class="prose">
+<p>一早去 Mormon Row 看老穀倉，爸媽站在草原上，背後是大提頓山。Schwabacher Landing 的水面像鏡子，山和黃葉都映在裡面。</p>
+<p>變容小教堂的窗戶正對著大提頓主峰，坐在裡面往外看就是一幅畫。中午在 Jenny Lake 湖邊走走，湖水清澈見底。在湖邊遇到一位從台灣移民過來的長輩，年紀和爸媽差不多，還會講台語，在異鄉聽到台語特別親切。</p>
+<p>下午回傑克遜的路上，終於在路邊看到鹿了，一家三口慢慢地過馬路。晚上在星巴克門口和木雕熊合照。</p>
+<p>晚餐又去 Albertsons 買熟食回旅館吃，壽司、糖醋雞和烤鮭魚爸媽都讚不絕口，說超市熟食比餐廳還好吃；媽媽買了玉米回去用旅行鍋煮，一邊吃一邊說美國的玉米怎麼這麼便宜。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>Mormon Row 是 1890 年代摩門教徒的農莊聚落，Moulton 家的穀倉因為背後正對大提頓山，被稱為「全美國被拍最多次的穀倉」。</li><li>Schwabacher Landing 水面之所以像鏡子，是因為河狸築壩把蛇河的支流攔成一池池靜水。</li><li>變容小教堂 1925 年建成，是給附近牧場的人做禮拜用的，設計時刻意把祭壇後面的窗戶正對著大提頓主峰。</li><li>Jenny Lake 是冰河挖出來的湖，名字來自 1870 年代一位嚮導的妻子 Jenny，她是休休尼族原住民。</li><li>路邊那一家是騾鹿（mule deer），耳朵大得像騾子，是落磯山區最常見的鹿。</li></ul></aside>
+<div class="grid">
+<div class="row single"><figure style="flex:1.333 1 0"><img src="photos/20261005_085145.jpg" alt="Mormon Row，背後是大提頓山" width="1600" height="1200" loading="lazy"><figcaption>Mormon Row，背後是大提頓山</figcaption></figure></div>
+<div class="row"><figure style="flex:1.333 1 0"><img src="photos/20261005_091843.jpg" alt="Moulton Barn 老穀倉" width="1600" height="1200" loading="lazy"><figcaption>Moulton Barn 老穀倉</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261005_094101.jpg" alt="Schwabacher Landing 的倒影" width="1200" height="1600" loading="lazy"><figcaption>Schwabacher Landing 的倒影</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261005_103855.jpg" alt="變容小教堂的窗景" width="1200" height="1600" loading="lazy"><figcaption>變容小教堂的窗景</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261005_111245.jpg" alt="Jenny Lake" width="1200" height="1600" loading="lazy"><figcaption>Jenny Lake</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261005_150323.jpg" alt="路邊的鹿一家" width="1200" height="1600" loading="lazy"><figcaption>路邊的鹿一家</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261005_172338.jpg" alt="傑克遜的木雕熊" width="1200" height="1600" loading="lazy"><figcaption>傑克遜的木雕熊</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d11">
+<div class="date"><span class="num">10/6</span><span class="wk">週二 · Day 11</span></div>
+<h2>熊湖、羅根峽谷、回鹽湖城</h2>
+<p class="meta"><span>Bear Lake・Logan Canyon・羚羊島</span></p><div class="prose">
+<p>離開傑克遜走 US-89 風景路。中午在熊湖觀景台野餐，湖水是少見的土耳其藍。觀景台的地圖上有一條紅線，就是我們從黃石一路開到鹽湖城的路。</p>
+<p>羅根峽谷很漂亮，紅色的岩壁和轉黃的樹，很有秋天的感覺。下午到羚羊島看大鹽湖，湖面退得很遠，一片白色鹽灘。</p>
+<p>晚上在鹽湖城吃台菜 Drunken Kitchen，牛肉麵、滷肉飯、麻婆豆腐都很下飯，是這趟最想念的一餐。回鹽湖城的路上去了 Walmart，把在台灣就決定要買的那台冰淇淋機搬回來，幾乎把行李箱塞滿。吃完到機場還車，十天開了一千多英里，Wagoneer 辛苦了。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>熊湖橫跨猶他和愛達荷兩州，湖水的土耳其藍來自水中懸浮的碳酸鈣微粒反射陽光，被稱為「洛磯山脈的加勒比海」。</li><li>羅根峽谷這段 US-89 是猶他州的景觀公路，秋天楓樹和白楊變色，是當地人看紅葉的路線。</li><li>大鹽湖是西半球最大的鹹水湖，鹽度比海水高好幾倍，人躺在水裡會浮起來。但近年因為乾旱和用水，湖面大幅縮小，所以我們看到一大片白色鹽灘。羚羊島是湖裡最大的島，島上有一群 1893 年引進、現在約六七百頭的野牛。</li></ul></aside>
+<div class="grid">
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261006_125842.jpg" alt="熊湖觀景台，土耳其藍的湖水" width="1200" height="1600" loading="lazy"><figcaption>熊湖觀景台，土耳其藍的湖水</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261006_130434.jpg" alt="地圖上的紅線：從黃石一路開到鹽湖城" width="1200" height="1600" loading="lazy"><figcaption>地圖上的紅線：從黃石一路開到鹽湖城</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261006_134522.jpg" alt="羅根峽谷的秋色" width="1200" height="1600" loading="lazy"><figcaption>羅根峽谷的秋色</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261006_162850.jpg" alt="羚羊島的鹿雕像與大鹽湖" width="1200" height="1600" loading="lazy"><figcaption>羚羊島的鹿雕像與大鹽湖</figcaption></figure><figure style="flex:1.333 1 0"><img src="photos/20261006_165249.jpg" alt="羚羊島遊客中心" width="1600" height="1200" loading="lazy"><figcaption>羚羊島遊客中心</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261006_190327.jpg" alt="久違的台菜：滷肉飯、牛肉麵、麻婆豆腐、燙青菜" width="1200" height="1600" loading="lazy"><figcaption>久違的台菜：滷肉飯、牛肉麵、麻婆豆腐、燙青菜</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d12">
+<div class="date"><span class="num">10/7</span><span class="wk">週三 · Day 12</span></div>
+<h2>飛往舊金山</h2>
+<p class="meta"><span>漁人碼頭・Pier 39</span></p><div class="prose">
+<p>下午飛舊金山。Uber 司機很會聊天，一路聊天到飯店。</p>
+<p>晚上在 Pier 39 的 Swiss Louis 吃龍蝦大餐，還有海鮮義大利麵和酸麵包碗巧達湯，舊金山的酸麵包真的有酸到。</p>
+<p>吃完走到碼頭邊，海獅就躺在浮台上吼叫，摩天輪在霧裡發光。回飯店頂樓的火爐邊取暖，爸媽玩得很開心。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>Pier 39 的海獅是 1989 年舊金山大地震後幾個月突然出現的，一開始漁民想趕走牠們，後來海洋哺乳動物中心建議讓牠們留下，現在成了碼頭的招牌。牠們是加州海獅，公的可重達 350 公斤，數量冬天最多。</li><li>舊金山的酸麵包（sourdough）是淘金熱時代留下來的，用天然酵母發酵，當地的野生酵母菌讓它特別酸，挖空當碗裝蛤蜊巧達湯是漁人碼頭的招牌吃法。&quot;,&quot;舊金山的霧是夏末秋初的常態，太平洋的冷海水讓暖空氣凝結，傍晚從金門方向飄進來，所以晚上比白天冷很多。</li></ul></aside>
+<div class="grid">
+<div class="row single"><figure style="flex:1.333 1 0"><img src="photos/20261007_201442.jpg" alt="Swiss Louis 的海鮮晚餐" width="1600" height="1200" loading="lazy"><figcaption>Swiss Louis 的海鮮晚餐</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261007_205119.jpg" alt="Pier 39 的夜晚" width="1200" height="1600" loading="lazy"><figcaption>Pier 39 的夜晚</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261007_205723.jpg" alt="半夜還在吼的海獅" width="1200" height="1600" loading="lazy"><figcaption>半夜還在吼的海獅</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261007_210927.jpg" alt="飯店頂樓的火爐" width="1200" height="1600" loading="lazy"><figcaption>飯店頂樓的火爐</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d13">
+<div class="date"><span class="num">10/8</span><span class="wk">週四 · Day 13</span></div>
+<h2>叮噹車、唐人街、艦隊週</h2>
+<p class="meta"><span>Powell-Hyde・Big Bus・唐人街・漁人碼頭</span><span>早晚冷</span></p><div class="prose">
+<p>早上搭 Powell-Hyde 叮噹車上下坡，很特別；路上還看到沒有人開的無人計程車。接著搭 Big Bus 觀光巴士繞市區一圈，經過金門大橋，最後在中國城下車。</p>
+<p>下午兩點才吃午餐，在 R&amp;G Lounge 吃椒鹽螃蟹，吃得很飽，也是這趟最貴的一餐。本來要搭叮噹車回漁人碼頭，等車的時候和一位廈門來的旅客聊了起來，結果車來了卻客滿，我們乾脆走路回去。路上遇到警車和老消防車，停下來拍照，還聞到很香的烤肉味。快到漁人碼頭時經過叮噹車的終點站，地上有一個大圓盤，就是用來把整台車轉向的。</p>
+<p>回到碼頭很幸運，剛好遇到艦隊週，藍天使特技機隊從海灣上空呼嘯而過，惡魔島就在對岸。最後再看一次 Pier 39 的海獅，碼頭上還有軍樂隊演出。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>叮噹車（cable car）1873 年開始營運，靠路面下不停轉動的鋼纜拉著走，車上的司機用手煞車夾住或鬆開鋼纜來開動和停車。它是全世界唯一還在運作的人力操作纜車系統，也是美國唯一會動的國家歷史地標。叮噹車不能倒退，所以每到終點站，工作人員要把整台車推上圓盤，用人力轉 180 度再開回去。</li><li>舊金山唐人街 1848 年就有了，是北美最古老的唐人街。入口的龍門牌樓是 1970 年中華民國（台灣）送給舊金山的禮物，上面「天下為公」四個字是孫中山先生的題字。</li><li>金門大橋 1937 年通車，全長 2.7 公里，完工時是世界最長的吊橋。橋的顏色叫「國際橘」，原本只是防鏽底漆的顏色，因為在霧裡特別顯眼就留下來了。</li><li>惡魔島 1934 到 1963 年是聯邦監獄，關過黑幫老大卡彭，因為四面是冰冷的海水和強勁海流，號稱沒人逃得出去。</li><li>艦隊週從 1981 年開始，每年十月美國海軍艦艇來舊金山，藍天使特技飛行隊是海軍的表演隊伍，1946 年成立，飛的是 F/A-18 戰機，六架編隊間距只有幾十公分。</li><li>路上那台沒人開的車是 Waymo 的無人計程車，舊金山是全球最早開放無人計程車載客的城市之一，用手機叫車，車上真的沒有司機。</li></ul></aside>
+<div class="grid">
+<div class="row single"><figure><video controls preload="metadata" playsinline poster="photos/20261008_170534.jpg" width="1280" height="720"><source src="photos/sealion.mp4" type="video/mp4">你的瀏覽器無法播放影片。</video><figcaption>Pier 39 的海獅，打開聲音聽牠們吼</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261008_091033.jpg" alt="Powell-Hyde 叮噹車" width="1200" height="1600" loading="lazy"><figcaption>Powell-Hyde 叮噹車</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261008_093831.jpg" alt="路上遇到的無人計程車" width="1200" height="1600" loading="lazy"><figcaption>路上遇到的無人計程車</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261008_093848.jpg" alt="唐人街的龍門牌樓" width="1200" height="1600" loading="lazy"><figcaption>唐人街的龍門牌樓</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261008_122956.jpg" alt="Big Bus 經過金門大橋" width="1200" height="1600" loading="lazy"><figcaption>Big Bus 經過金門大橋</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261008_123735.jpg" alt="金門大橋" width="1200" height="1600" loading="lazy"><figcaption>金門大橋</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261008_141357.jpg" alt="R&amp;G Lounge 的椒鹽螃蟹" width="1200" height="1600" loading="lazy"><figcaption>R&amp;G Lounge 的椒鹽螃蟹</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261008_160033.jpg" alt="走路回漁人碼頭，路邊的警車" width="1200" height="1600" loading="lazy"><figcaption>走路回漁人碼頭，路邊的警車</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261008_160132.jpg" alt="路邊有人在烤肉，香味飄過整條街" width="1200" height="1600" loading="lazy"><figcaption>路邊有人在烤肉，香味飄過整條街</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261008_162052.jpg" alt="叮噹車終點站的迴轉圓盤" width="1200" height="1600" loading="lazy"><figcaption>叮噹車終點站的迴轉圓盤</figcaption></figure></div>
+<div class="row"><figure style="flex:0.750 1 0"><img src="photos/20261008_163642.jpg" alt="艦隊週的藍天使特技表演" width="1200" height="1600" loading="lazy"><figcaption>艦隊週的藍天使特技表演</figcaption></figure><figure style="flex:0.750 1 0"><img src="photos/20261008_164314.jpg" alt="惡魔島與飛過的戰機" width="1200" height="1600" loading="lazy"><figcaption>惡魔島與飛過的戰機</figcaption></figure><figure style="flex:0.563 1 0"><img src="photos/20261008_171224.jpg" alt="碼頭上的軍樂隊" width="901" height="1600" loading="lazy"><figcaption>碼頭上的軍樂隊</figcaption></figure></div>
+</div>
+</section>
+<section class="day" id="d14">
+<div class="date"><span class="num">10/9–10</span><span class="wk">週五–六 · Day 14</span></div>
+<h2>回家</h2>
+<p class="meta"><span>舊金山 → 台北</span></p><div class="prose">
+<p>早上退房，Uber 到機場。在機場吃了茶蕎麥麵和照燒鮭魚，搭 UA871 回台北，10/10 傍晚落地桃園。</p>
+<p>十五天，四個人，開了一千多英里，看了噴泉、瀑布、野牛、大提頓山和海獅。幾乎每天都是大晴天，晴到大家都曬傷了。謝謝爸媽一路早起、一路走，這趟旅行因為大家在一起才完整。</p>
+</div>
+<aside class="facts"><h3>景點小知識</h3><ul><li>從舊金山飛台北約 13 個多小時，比去程的 11 個多小時久，因為去程順著高空的西風飛，回程是逆風。回程跨過國際換日線，所以出發是 10/9 下午，落地變成 10/10 傍晚。</li></ul></aside>
+</section>
+<section class="cost" id="cost"><div class="date"><span class="num">花費</span><span class="wk">依記帳檔整理</span></div><h2>這趟旅行花了多少</h2>
+<div class="prose"><p>四個人十五天，記帳檔裡的總額大約是新台幣 371,255 元，平均一人 92,814 元；若不算弟弟從英國來回的機票，是 331,255 元，一人約 82,814 元。住宿和機票佔了七成，玩的部分其實不貴：黃石和大提頓兩座國家公園，一台車一張年票 250 美元就全包了。</p><p>自炊省了不少。西黃石六天幾乎都在 Market Place 買菜回旅館，用帶去的萬用旅行鍋和電磁爐煮，六天的超市花費加起來不到 200 美元。真正放開吃的是三餐：唐人街 R&amp;G Lounge 的椒鹽螃蟹 213 美元（含小費），傑克遜 Glorietta Trattoria 的義式晚餐 141 美元，Pier 39 Swiss Louis 的龍蝦大餐 135 美元（含小費）。</p></div>
+<table><thead><tr><th>項目</th><th></th><th>新台幣</th></tr></thead><tbody>
+<tr><td>住宿（五間旅館，14 晚）</td><td style="width:28%"><div class="bar" style="width:100%"></div></td><td>137,902</td></tr>
+<tr><td>機票（台灣來回 + 弟弟英國來回）</td><td style="width:28%"><div class="bar" style="width:95%"></div></td><td>131,146</td></tr>
+<tr><td>租車與加油</td><td style="width:28%"><div class="bar" style="width:29%"></div></td><td>39,326</td></tr>
+<tr><td>吃（餐廳 + 超市自炊）</td><td style="width:28%"><div class="bar" style="width:25%"></div></td><td>34,618</td></tr>
+<tr><td>票券（年票、Big Bus、叮噹車、ESTA、SIM 卡）</td><td style="width:28%"><div class="bar" style="width:14%"></div></td><td>19,106</td></tr>
+<tr><td>購物（冰淇淋機、保健品）</td><td style="width:28%"><div class="bar" style="width:4%"></div></td><td>6,092</td></tr>
+<tr><td>舊金山 Uber</td><td style="width:28%"><div class="bar" style="width:2%"></div></td><td>3,065</td></tr>
+<tr class="total"><td>合計</td><td></td><td>371,255</td></tr></tbody></table>
+<p class="note">美金以記帳檔的匯率 31.73 換算。</p></section>
+<div class="lb" id="lb"><img alt=""><p></p></div>
+<script>
+(function(){var lb=document.getElementById('lb'),im=lb.querySelector('img'),cap=lb.querySelector('p');
+document.querySelectorAll('.grid img').forEach(function(el){el.addEventListener('click',function(){im.src=el.src;cap.textContent=el.alt;lb.classList.add('on');});});
+function close(){lb.classList.remove('on');im.src='';}
+lb.addEventListener('click',close);document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();
+</script>
+<footer>照片與影片皆為旅途中自己拍攝。文字整理自每日旅行筆記、行程網站與記帳紀錄。</footer>
+</div>
+</body>
+</html>
